@@ -160,17 +160,6 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
             - Underexposed photos
             """)
     
-    # Example images section
-    gr.Markdown("### 📸 Try These Example Scenarios")
-    
-    gr.Examples(
-        examples=[
-            ["Upload your own low-light image to test!"]
-        ],
-        label="Common Use Cases:",
-        inputs=input_image
-    )
-    
     # Wire up the enhancement
     enhance_btn.click(
         fn=full_enhancement_pipeline,
@@ -192,10 +181,10 @@ with gr.Blocks(theme=gr.themes.Soft()) as demo:
     - AI-driven optical aberration correction
     - Real-time processing on mobile devices
     
-    **Built by:** [Your Name] | **For:** Glass Imaging Application
+    **Built by:** Anju Vilashni Nandhakumar| **For:** Glass Imaging Application
     
     🔗 [Glass Imaging Website](https://glass-imaging.com) | 
-    🔗 [GitHub Demo Source](https://github.com/av1352/)
+    🔗 [GitHub Demo Source](https://github.com/Av1352/Job-search-demos/tree/main/glass-imaging-enhancement)
     """)
 
 # Launch the app

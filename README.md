@@ -4,12 +4,12 @@
 
 ## 📂 Projects
 
-### 🔬 [Low-Light Image Enhancement](./glass-imaging)
+### 🔬 [Glass Imaging - Low-Light Enhancement](./glass-imaging)
 **Domain:** Computational Photography  
 **Tech Stack:** Python, OpenCV, Gradio, NumPy, PIL  
 **Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/Glass-imaging)
 
-AI-powered image enhancement system using advanced computer vision techniques:
+AI-powered image enhancement system demonstrating understanding of Glass Imaging's neural processing approach:
 - CLAHE (Contrast Limited Adaptive Histogram Equalization)
 - LAB color space processing for luminance-chrominance separation
 - Non-local means denoising with edge preservation
@@ -19,11 +19,11 @@ AI-powered image enhancement system using advanced computer vision techniques:
 
 ---
 
-### 🤖 [AI Infrastructure Study](./langbase)
+### 🤖 [Langbase - AI Infrastructure Study](./langbase)
 **Domain:** AI Agent Systems & Developer Tools  
 **Tech Stack:** Python, FastAPI, JavaScript, HTML/CSS
 
-Micro-agent playground demonstrating understanding of modern AI infrastructure patterns:
+Micro-agent playground demonstrating Langbase's pipe-based architecture patterns:
 - Multi-agent orchestration (Research Summarizer, Code Reviewer, Product Critic)
 - RESTful API design with FastAPI
 - Real-time processing with configurable parameters
@@ -60,7 +60,7 @@ Passionate about building production-ready AI systems with focus on:
 
 ---
 
-**Status:** Actively seeking ML Engineer roles
+**Status:** Actively seeking ML Engineer roles | F1 OPT (H1B sponsorship required)
 
 ---
 

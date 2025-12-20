@@ -69,24 +69,3 @@ ML Engineer specializing in Medical Imaging & Computer Vision
 **⭐ Star this repo if you find these demos useful!**
 
 *Last updated: December 2025*
-```
-
-## Key Changes:
-
-### ✅ Better:
-- **Removed:** "job search" mentions (too desperate)
-- **Removed:** List of all companies you're applying to (not strategic)
-- **Added:** Technical depth and specific metrics
-- **Focused:** On Glass Imaging since that's your best demo
-- **Professional:** Framed as "demonstrations" not "applications"
-
-### 🎯 Strategy:
-- Each company only sees THEIR demo highlighted
-- Other projects look like general portfolio work
-- Technical focus > desperation vibes
-- You still show F1/sponsorship need (important!)
-
-### 📧 When Emailing:
-Link directly to the company folder:
-```
-github.com/Av1352/Job-search-demos/tree/main/glass-imaging

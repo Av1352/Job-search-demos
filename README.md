@@ -60,7 +60,7 @@ Passionate about building production-ready AI systems with focus on:
 
 ---
 
-**Status:** Actively seeking ML Engineer roles | F1 OPT (H1B sponsorship required)
+**Status:** Actively seeking ML Engineer roles
 
 ---
 

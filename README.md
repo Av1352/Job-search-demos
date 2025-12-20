@@ -222,7 +222,6 @@ If you find these projects useful, please consider:
 ---
 
 ## 🗂️ Complete Folder Structure
-```
 Job-search-demos/
 ├── README.md                    ← Use the above
 ├── LICENSE                      ← Add MIT license
@@ -258,3 +257,4 @@ Job-search-demos/
 └── docs/
     ├── technical-overview.md
     └── deployment-guide.md
+```

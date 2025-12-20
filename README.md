@@ -217,10 +217,10 @@ If you find these projects useful, please consider:
 ---
 
 *Last Updated: December 2025*
-```
 
 ---
 
+```
 ## 🗂️ Complete Folder Structure
 Job-search-demos/
 ├── README.md                    ← Use the above

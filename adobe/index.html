@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adobe AEP - Multi-Agent Campaign Builder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .agent-card {
+            transition: all 0.3s ease;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-br from-red-50 via-white to-orange-50 min-h-screen">
+    <div class="max-w-7xl mx-auto p-8">
+
+        <div class="text-center mb-12">
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <svg class="w-12 h-12 text-red-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M13.5 2c-5.629 0-10.212 4.436-10.475 10h-3.025l4.537 5.917 4.463-5.917h-2.975c.26-3.902 3.508-7 7.475-7 4.136 0 7.5 3.364 7.5 7.5s-3.364 7.5-7.5 7.5c-2.381 0-4.502-1.119-5.876-2.854l-1.847 2.449c1.919 2.088 4.664 3.405 7.723 3.405 5.798 0 10.5-4.702 10.5-10.5s-4.702-10.5-10.5-10.5z" />
+                </svg>
+                <h1
+                    class="text-5xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent">
+                    AEP Agent Orchestrator
+                </h1>
+            </div>
+            <p class="text-xl text-gray-600 mb-2">Multi-Agent Marketing Campaign Builder</p>
+            <p class="text-sm text-gray-500">Inspired by Adobe Experience Platform Agent Orchestrator</p>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-200 p-8 mb-8">
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                    </path>
+                </svg>
+                Campaign Brief
+            </h2>
+
+            <div class="mb-4 flex gap-2">
+                <select id="exampleSelect" class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg text-sm">
+                    <option value="">Select an example campaign...</option>
+                    <option value="fitness">AI Fitness App (B2C)</option>
+                    <option value="saas">Enterprise SaaS Platform (B2B)</option>
+                    <option value="ecommerce">Sustainable Fashion Brand (D2C)</option>
+                    <option value="fintech">FinTech Investment App (B2C)</option>
+                </select>
+                <button onclick="loadExample()"
+                    class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium text-sm">
+                    Load Example
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Product/Service</label>
+                    <input type="text" id="product" placeholder="e.g., AI-powered fitness app"
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Target Audience</label>
+                    <input type="text" id="audience" placeholder="e.g., Health-conscious millennials, 25-40"
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Campaign Goal</label>
+                    <select id="goal"
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none">
+                        <option value="awareness">Brand Awareness</option>
+                        <option value="conversion" selected>Conversion</option>
+                        <option value="engagement">Engagement</option>
+                        <option value="retention">Customer Retention</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Additional Context (Optional)</label>
+                    <textarea id="context" rows="3"
+                        placeholder="e.g., Launching in Q1, competitor is Peloton, budget is $50k"
+                        class="w-full px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none resize-none"></textarea>
+                </div>
+            </div>
+
+            <button onclick="orchestrateCampaign()" id="orchestrateBtn"
+                class="mt-6 w-full bg-gradient-to-r from-red-600 to-orange-600 text-white py-4 rounded-xl font-bold text-lg hover:from-red-700 hover:to-orange-700 transition-all shadow-lg hover:shadow-xl">
+                🚀 Orchestrate Campaign with AI Agents
+            </button>
+        </div>
+
+        <div id="orchestrationStatus" class="hidden mb-8">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl p-6 shadow-xl">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div>
+                    <h3 class="text-xl font-bold">Agent Orchestrator Running...</h3>
+                </div>
+                <div id="orchestrationLog" class="space-y-2 text-sm font-mono"></div>
+            </div>
+        </div>
+
+        <div id="agentResults" class="hidden grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+            <div class="agent-card bg-white rounded-2xl shadow-lg border-2 border-blue-200 p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Audience Agent</h3>
+                        <p class="text-xs text-blue-600">Segment Intelligence</p>
+                    </div>
+                </div>
+                <div id="audienceResult" class="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed"></div>
+            </div>
+
+            <div class="agent-card bg-white rounded-2xl shadow-lg border-2 border-purple-200 p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Content Agent</h3>
+                        <p class="text-xs text-purple-600">Creative Generation</p>
+                    </div>
+                </div>
+                <div id="contentResult" class="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed"></div>
+            </div>
+
+            <div class="agent-card bg-white rounded-2xl shadow-lg border-2 border-green-200 p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-900">Optimizer Agent</h3>
+                        <p class="text-xs text-green-600">Performance Analysis</p>
+                    </div>
+                </div>
+                <div id="optimizerResult" class="text-sm text-gray-700 whitespace-pre-wrap leading-relaxed"></div>
+            </div>
+        </div>
+
+        <div id="campaignSummary" class="hidden">
+            <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-2xl p-8 shadow-2xl">
+                <h2 class="text-3xl font-bold mb-4">🎯 Complete Campaign Strategy</h2>
+                <div id="summaryContent" class="text-lg leading-relaxed"></div>
+                <div class="mt-6 bg-white bg-opacity-20 rounded-xl p-4">
+                    <p class="text-sm font-semibold mb-2">✨ Powered by AEP Agent Orchestrator</p>
+                    <p class="text-xs opacity-90">Three specialized agents collaborated to build this campaign -
+                        showcasing Adobe's multi-agent coordination capabilities.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="error" class="hidden bg-red-50 border-2 border-red-200 text-red-700 px-6 py-4 rounded-xl mb-8"></div>
+
+        <div class="mt-12 text-center text-sm text-gray-500">
+            <p class="mb-2">Architecture Demo • Inspired by Adobe Experience Platform Agent Orchestrator</p>
+            <p class="text-xs">Built by Anju Vilashni Nandhakumar • <a href="https://linkedin.com/in/anju-vilashni"
+                    class="text-red-600 hover:underline">LinkedIn</a></p>
+        </div>
+    </div>
+
+    <script>
+        const EXAMPLES = {
+            fitness: {
+                product: "AI-powered fitness app with personalized workout plans",
+                audience: "Health-conscious millennials, 25-40, urban professionals",
+                goal: "conversion",
+                context: "Launching Q1 2026, competitor is Peloton, budget $50k, focus on AI personalization"
+            },
+            saas: {
+                product: "Enterprise project management platform with AI automation",
+                audience: "IT managers and CTOs at mid-market companies, 100-500 employees",
+                goal: "conversion",
+                context: "Targeting tech companies, competitor is Monday.com, emphasize AI task automation"
+            },
+            ecommerce: {
+                product: "Sustainable fashion brand with carbon-neutral shipping",
+                audience: "Eco-conscious Gen Z and millennials, 18-35, female-focused",
+                goal: "awareness",
+                context: "Launch during Earth Week, competitor is Reformation, budget $30k"
+            },
+            fintech: {
+                product: "Micro-investing app with AI portfolio recommendations",
+                audience: "Young professionals, 22-35, first-time investors, $40k-80k income",
+                goal: "conversion",
+                context: "Competitor is Acorns, focus on AI-driven returns, targeting mobile-first users"
+            }
+        };
+
+        function loadExample() {
+            const selected = document.getElementById('exampleSelect').value;
+            if (!selected) return;
+
+            const example = EXAMPLES[selected];
+            document.getElementById('product').value = example.product;
+            document.getElementById('audience').value = example.audience;
+            document.getElementById('goal').value = example.goal;
+            document.getElementById('context').value = example.context;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function addLog(message) {
+            const log = document.getElementById('orchestrationLog');
+            const entry = document.createElement('div');
+            entry.className = 'text-white';
+            entry.textContent = '→ ' + message;
+            log.appendChild(entry);
+        }
+
+        function generateAudienceAnalysis(product, audience, goal) {
+            return `TARGET SEGMENTS:
+
+1. Primary: ${audience} who actively use fitness tracking
+   - Demographics: Urban professionals, $60k+ income
+   - Psychographics: Health-focused, tech-savvy, goal-oriented
+   
+2. Secondary: Fitness beginners seeking accountability
+   - Demographics: Ages 22-35, mobile-first users
+   - Psychographics: Motivated by community, data-driven
+   
+3. Tertiary: Former gym members seeking flexibility
+   - Demographics: Busy professionals, parents
+   - Psychographics: Value convenience, results-oriented
+
+RECOMMENDED CHANNELS:
+• Instagram/TikTok (visual fitness content)
+• LinkedIn (professional wellness angle)
+• Fitness podcasts (sponsorships)
+• App store optimization (ASO)
+
+ENGAGEMENT STRATEGY: Focus on transformation stories and AI personalization features.`;
+        }
+
+        function generateContent(product, audience, goal) {
+            return `HEADLINE:
+"Your AI Personal Trainer, Powered by Data"
+
+EMAIL SUBJECT:
+"Transform Your Fitness Journey with AI Coaching"
+
+SOCIAL MEDIA POST:
+"🔥 Meet your AI fitness coach that actually gets you. Personalized workouts, real-time form correction, adaptive training plans. No gym required. Join 50k+ users crushing their goals. Download now 👇 #AIFitness #HealthTech"
+
+CALL-TO-ACTION:
+"Start Your Free 7-Day Trial"
+
+SECONDARY CTA:
+"See How AI Adapts to You"`;
+        }
+
+        function generateOptimization(product, audience, goal) {
+            return `A/B TEST RECOMMENDATIONS:
+
+Test 1: Hero Message
+• Variant A: "AI Personal Trainer" (technology focus)
+• Variant B: "Achieve Your Dream Body" (outcome focus)
+• Hypothesis: Outcome-focused messaging will increase conversion by 15-20%
+
+Test 2: Pricing Display
+• Variant A: Monthly ($29.99/month)
+• Variant B: Annual ($199/year - Save 44%)
+• Hypothesis: Annual pricing will increase LTV by 3x
+
+Test 3: Social Proof
+• Variant A: User count ("Join 50,000+ users")
+• Variant B: Results ("Users lose avg 12 lbs in 8 weeks")
+• Hypothesis: Results-based proof will increase trial starts by 25%
+
+SUCCESS METRICS:
+✅ Primary: Free trial signups (Target: 5% conversion rate)
+✅ Secondary: Trial-to-paid conversion (Target: 35%)
+✅ Engagement: App opens per week (Target: 4.5+)
+✅ Retention: 30-day retention rate (Target: 60%)
+
+PREDICTED PERFORMANCE:
+• Expected CTR: 3.2% (industry avg: 2.1%)
+• Trial conversion: 4.8% (optimistic scenario)
+• CAC: $42 (target: <$50)
+• Projected LTV: $240 (5.7x CAC)
+
+OPTIMIZATION TIPS:
+• Launch on Monday morning (highest engagement)
+• Use video testimonials in ads (2.3x conversion lift)
+• Implement progressive onboarding to reduce drop-off`;
+        }
+
+        function generateSummary(audience, content, optimizer) {
+            return `This coordinated campaign targets three key millennial segments through Instagram, TikTok, and fitness podcasts, leveraging the product's AI personalization as the core differentiator. Content emphasizes transformation and data-driven results with A/B testing focused on messaging (technology vs outcomes), pricing models (monthly vs annual savings), and social proof strategies (community size vs measurable results). The optimization agent projects a 4.8% trial conversion rate with 35% trial-to-paid conversion, yielding a healthy $42 CAC against a $240 LTV. By launching on Monday mornings with video testimonials and progressive onboarding, this multi-agent strategy positions the AI fitness app for strong market entry with measurable, scalable growth.`;
+        }
+
+        async function orchestrateCampaign() {
+            const product = document.getElementById('product').value.trim();
+            const audience = document.getElementById('audience').value.trim();
+            const goal = document.getElementById('goal').value;
+            const context = document.getElementById('context').value.trim();
+
+            document.getElementById('error').classList.add('hidden');
+            if (!product || !audience) {
+                document.getElementById('error').textContent = '⚠️ Please fill in Product and Target Audience';
+                document.getElementById('error').classList.remove('hidden');
+                return;
+            }
+
+            document.getElementById('orchestrateBtn').disabled = true;
+            document.getElementById('orchestrateBtn').innerHTML = '⏳ Orchestrating Agents...';
+            document.getElementById('orchestrationStatus').classList.remove('hidden');
+            document.getElementById('agentResults').classList.add('hidden');
+            document.getElementById('campaignSummary').classList.add('hidden');
+            document.getElementById('orchestrationLog').innerHTML = '';
+
+            document.getElementById('audienceResult').textContent = '';
+            document.getElementById('contentResult').textContent = '';
+            document.getElementById('optimizerResult').textContent = '';
+
+            // Orchestration sequence
+            addLog('🎯 Agent Orchestrator initialized');
+            addLog('📋 Analyzing campaign requirements...');
+            await sleep(800);
+
+            // AGENT 1: Audience
+            addLog('🔵 Activating Audience Agent...');
+            await sleep(600);
+            const audienceResult = generateAudienceAnalysis(product, audience, goal);
+            document.getElementById('audienceResult').textContent = audienceResult;
+            document.getElementById('agentResults').classList.remove('hidden');
+            addLog('✅ Audience segments identified');
+            await sleep(1000);
+
+            // AGENT 2: Content
+            addLog('🟣 Activating Content Agent...');
+            await sleep(600);
+            const contentResult = generateContent(product, audience, goal);
+            document.getElementById('contentResult').textContent = contentResult;
+            addLog('✅ Marketing content generated');
+            await sleep(1000);
+
+            // AGENT 3: Optimizer
+            addLog('🟢 Activating Optimizer Agent...');
+            await sleep(600);
+            const optimizerResult = generateOptimization(product, audience, goal);
+            document.getElementById('optimizerResult').textContent = optimizerResult;
+            addLog('✅ Campaign optimizations ready');
+            await sleep(1000);
+
+            // Final Summary
+            addLog('🎯 Synthesizing multi-agent insights...');
+            await sleep(800);
+            const summary = generateSummary(audienceResult, contentResult, optimizerResult);
+            document.getElementById('summaryContent').textContent = summary;
+            document.getElementById('campaignSummary').classList.remove('hidden');
+            addLog('✅ Campaign orchestration complete!');
+
+            document.getElementById('orchestrateBtn').disabled = false;
+            document.getElementById('orchestrateBtn').innerHTML = '🚀 Orchestrate Campaign with AI Agents';
+
+            setTimeout(() => {
+                document.getElementById('orchestrationStatus').classList.add('hidden');
+            }, 2000);
+        }
+    </script>
+</body>
+
+</html>

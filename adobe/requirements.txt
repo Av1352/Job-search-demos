@@ -1,0 +1,3 @@
+# This is an HTML/JavaScript demo
+# No Python dependencies required
+# Uses Puter.js for free AI access

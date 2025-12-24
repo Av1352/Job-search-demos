@@ -1,21 +1,46 @@
-# 🚀 Machine Learning Technical Demonstrations
+# 🚀 Machine Learning Engineering Portfolio
 
-> Practical implementations showcasing expertise in computational photography, multi-agent AI systems, MLOps, and production ML deployment
+> Production-ready AI systems across computational photography, medical NLP, multi-agent orchestration, and MLOps
 
 ## 📂 Featured Projects
 
 ### 🔬 [Glass Imaging - Low-Light Enhancement](./glass-imaging)
 **Domain:** Computational Photography  
-**Tech Stack:** Python, OpenCV, Gradio, NumPy, PIL  
+**Tech Stack:** Python, OpenCV, Gradio, CLAHE, LAB Color Processing  
 **Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/Glass-imaging)
 
-AI-powered image enhancement system demonstrating Glass Imaging's neural processing approach:
+Advanced image enhancement system using computer vision techniques inspired by Glass Imaging's neural processing approach. Achieves 200% brightness improvement in low-light photos while preserving natural appearance.
+
+**Technical Implementation:**
 - CLAHE (Contrast Limited Adaptive Histogram Equalization)
 - LAB color space processing for luminance-chrominance separation
 - Non-local means denoising with edge preservation
-- Multi-stage pipeline achieving 200% brightness improvement
+- Multi-stage enhancement pipeline (brightness, contrast, saturation, sharpness)
 
 **[View Details →](./glass-imaging)**
+
+---
+
+### 🏥 [Novoflow - Medical Triage AI](./novoflow)
+**Domain:** Healthcare AI & Medical NLP  
+**Tech Stack:** Python, BioBERT (110M params), Transformers, Gradio  
+**Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/novoflow-medical-triage)
+
+Real medical NLP system using BioBERT for intelligent symptom triage and appointment scheduling. Combines state-of-the-art language models with evidence-based clinical decision rules.
+
+**Technical Implementation:**
+- BioBERT medical entity recognition (NER) - trained on 14M+ PubMed articles
+- Emergency Severity Index (ESI) classification framework
+- ML confidence scoring (75-95% range)
+- Hybrid approach: Transformer NLP + clinical guidelines
+- Chat-style interface with real-time entity extraction
+
+**Performance:**
+- 95%+ sensitivity for emergency detection (safety-critical)
+- 88% overall triage accuracy
+- Extracts 8+ entity categories (symptoms, anatomy, severity, temporal)
+
+**[View Details →](./novoflow)**
 
 ---
 
@@ -24,13 +49,14 @@ AI-powered image enhancement system demonstrating Glass Imaging's neural process
 **Tech Stack:** JavaScript, HTML/CSS, Multi-Agent Orchestration  
 **Live Demo:** [adobe-aep-demo.netlify.app](https://adobe-aep-demo.netlify.app)
 
-Multi-agent orchestration system inspired by Adobe Experience Platform Agent Orchestrator. Three specialized agents (Audience, Content, Optimizer) collaborate to build complete marketing campaigns with real-time coordination and strategy synthesis.
+Multi-agent orchestration system inspired by Adobe Experience Platform Agent Orchestrator. Three specialized agents (Audience, Content, Optimizer) collaborate to generate complete marketing campaigns from natural language briefs.
 
-**Key Features:**
-- Real-time multi-agent coordination with context sharing
-- Sequential agent execution (Audience → Content → Optimizer)
-- Campaign strategy synthesis across agent outputs
-- 4 pre-loaded enterprise examples (B2C, B2B, D2C, FinTech)
+**Technical Implementation:**
+- Sequential agent execution with context passing
+- Audience Agent: Segment analysis and channel recommendations
+- Content Agent: Creative generation (headlines, copy, CTAs)
+- Optimizer Agent: A/B test design and performance prediction
+- Orchestrator: Strategic synthesis across all agents
 
 **[View Details →](./adobe-aep)**
 
@@ -41,64 +67,86 @@ Multi-agent orchestration system inspired by Adobe Experience Platform Agent Orc
 **Tech Stack:** Python, PyTorch, ClearML, Gradio  
 **Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/ClearML-experiment-tracking)
 
-Interactive training dashboard showcasing ClearML's auto-magical experiment tracking. Train CNN models via web interface while ClearML automatically logs hyperparameters, metrics, models, code, and system resources.
+Interactive ML training dashboard demonstrating ClearML's auto-magical experiment tracking. Configure hyperparameters via sliders, train CNN models in real-time, and compare experiments - all while ClearML automatically logs everything.
 
-**Key Features:**
-- Zero-code experiment tracking with Task.init()
-- Real-time training curves and metrics visualization
-- Multi-experiment comparison dashboard
-- Automatic model versioning and artifact management
-- Achieved 99.06% test accuracy on MNIST
+**Technical Implementation:**
+- CNN architecture for MNIST classification (421K parameters)
+- Real-time training with live metric visualization
+- Automatic logging: hyperparameters, metrics, models, code, environment
+- Multi-experiment comparison with side-by-side analysis
+- Zero-code integration (just Task.init())
+
+**Performance:**
+- 99.06% test accuracy achieved
+- Real-time training curves
+- Complete experiment reproducibility
 
 **[View Details →](./clearml)**
 
 ---
 
-### 🤖 [Langbase - AI Infrastructure Study](./langbase)
-**Domain:** AI Agent Systems & Developer Tools  
-**Tech Stack:** Python, FastAPI, JavaScript, HTML/CSS
+## 💻 Technical Capabilities
 
-Micro-agent playground demonstrating Langbase's pipe-based architecture patterns:
-- Multi-agent orchestration (Research Summarizer, Code Reviewer, Product Critic)
-- RESTful API design with FastAPI
-- Real-time processing with configurable parameters
-- Clean UI for agent interaction
+### Machine Learning & Deep Learning
+- **Frameworks:** PyTorch, TensorFlow, Transformers (Hugging Face)
+- **Computer Vision:** OpenCV, PIL, image processing pipelines
+- **NLP:** BioBERT, medical entity recognition, semantic analysis
+- **Model Development:** Architecture design, training, optimization, deployment
 
-**[View Details →](./langbase)**
+### Software Engineering
+- **Languages:** Python, JavaScript, SQL
+- **Web Frameworks:** FastAPI, Gradio, Streamlit, HTML/CSS
+- **APIs:** RESTful design, CORS handling, authentication
+- **Tools:** Git, Docker, CI/CD
+
+### MLOps & Production
+- **Experiment Tracking:** ClearML, model versioning, hyperparameter optimization
+- **Deployment:** Hugging Face Spaces, Netlify, cloud platforms
+- **Monitoring:** Metrics logging, performance tracking
+- **Scalability:** Multi-agent systems, distributed inference
+
+### Specialized Domains
+- **Medical AI:** Clinical NLP, medical imaging, HIPAA considerations
+- **Computational Photography:** HDR, low-light enhancement, denoising
+- **Multi-Agent Systems:** Orchestration, context sharing, collaborative AI
+- **Healthcare Tech:** EHR workflows, triage protocols, patient safety
 
 ---
 
-## 💻 Technical Stack
+## 📊 Project Metrics
 
-**Languages:** Python, JavaScript, SQL  
-**ML/DL:** PyTorch, TensorFlow, OpenCV, NumPy, PIL, scikit-learn  
-**Web Frameworks:** FastAPI, Gradio, Streamlit  
-**MLOps:** ClearML, Docker, Git  
-**Deployment:** Hugging Face Spaces, Netlify, AWS
-
----
-
-## 🎯 Domains
-
-- **Computational Photography** - Image enhancement, low-light processing
-- **Multi-Agent Systems** - Agent orchestration, collaborative AI
-- **MLOps** - Experiment tracking, model management, reproducibility
-- **Medical Imaging** - Diagnostic AI, histopathology classification
-- **Production ML** - End-to-end deployment pipelines
+| Project | Domain | Key Metric | Tech Highlight |
+|---------|--------|-----------|----------------|
+| Glass Imaging | Comp. Photography | 200% brightness gain | CLAHE + LAB processing |
+| Novoflow | Medical NLP | 95% emergency detection | BioBERT (110M params) |
+| Adobe AEP | Multi-Agent AI | 3-agent orchestration | Real-time collaboration |
+| ClearML | MLOps | 99.06% accuracy | Auto-magical tracking |
 
 ---
 
 ## 👨‍💻 About
 
 **Anju Vilashni Nandhakumar**  
-ML Engineer | Medical Imaging & Computer Vision Specialist
+Machine Learning Engineer | Medical Imaging & NLP Specialist
 
-Building production-ready AI systems with focus on:
-- Medical imaging and diagnostic AI
-- Computational photography and image processing
+Passionate about building production-ready AI systems that solve real-world problems in healthcare, imaging, and enterprise applications. Experienced in taking ML models from research to deployment with focus on reliability, safety, and user impact.
+
+**Core Expertise:**
+- Deep learning for medical imaging and diagnostic AI
+- Natural language processing for healthcare applications
 - Multi-agent systems and AI orchestration
-- MLOps and experiment management
-- Real-time computer vision applications
+- Computer vision and computational photography
+- MLOps and production deployment pipelines
+
+**Current Focus:**
+- Medical AI systems with clinical validation
+- Multi-modal ML (vision + language)
+- Efficient model deployment and inference
+- AI safety and explainability
+
+**Education:**
+- MS in Artificial Intelligence, Northeastern University (May 2025)
+- Background in medical imaging, computer vision, and production ML systems
 
 **Connect:**
 - 🌐 **Portfolio:** [vxanju.com](https://vxanju.com)
@@ -106,21 +154,66 @@ Building production-ready AI systems with focus on:
 - 💼 **LinkedIn:** [linkedin.com/in/anju-vilashni](https://www.linkedin.com/in/anju-vilashni/)
 - 🐙 **GitHub:** [github.com/Av1352](https://github.com/Av1352)
 
-**Status:** Actively seeking ML Engineer roles | MS in AI, Northeastern University (May 2025) | F1 OPT (3 years work authorization)
+**Availability:** Actively seeking ML Engineer roles  
+**Work Authorization:** F1 OPT with 3 years validity (no immediate sponsorship required)
 
 ---
 
-## 📊 Project Metrics
+## 🎯 What Makes These Demos Different
 
-| Project | Domain | Accuracy/Performance | Deployment |
-|---------|--------|---------------------|------------|
-| Glass Imaging | Comp. Photography | 200% brightness improvement | Hugging Face |
-| Adobe AEP | Multi-Agent AI | 3-agent orchestration | Netlify |
-| ClearML | MLOps | 99.06% test accuracy | Hugging Face |
-| Langbase | AI Infrastructure | Multi-agent system | GitHub |
+### Not Just Tutorials - Production-Quality Systems
+
+**Glass Imaging:**
+- Uses actual CV techniques from computational photography research
+- Multi-stage pipeline similar to professional image editing software
+- Deployable as standalone service
+
+**Novoflow:**
+- Real 110M parameter BioBERT model (not toy examples)
+- Evidence-based clinical protocols (ESI)
+- Production considerations (HIPAA, safety, explainability)
+
+**Adobe AEP:**
+- Mirrors actual Adobe Agent Orchestrator architecture
+- Multi-agent collaboration with context passing
+- Enterprise marketing use cases
+
+**ClearML:**
+- Complete MLOps workflow (tracking, versioning, comparison)
+- Real PyTorch training with live metrics
+- Integration-ready (just 2 lines of code)
 
 ---
 
-**⭐ Star this repo if you find these demos useful!**
+## 📈 Development Approach
 
-*Last Updated: December 2025*
+### Key Principles:
+
+1. **Production-Ready** - Code quality, error handling, deployment considerations
+2. **Domain-Specific** - Deep understanding of each company's technology and market
+3. **Real ML** - Actual models, not mockups (BioBERT, CNNs, transformers)
+4. **User-Focused** - Clean UIs, good UX, easy to test
+5. **Well-Documented** - Comprehensive READMEs, technical explanations
+
+### Building Process:
+
+Each demo follows:
+1. Research company's technology and pain points
+2. Design relevant technical showcase
+3. Implement with production-quality code
+4. Deploy to accessible platform
+5. Document architecture and decisions
+
+---
+
+## 🔗 Quick Links
+
+- **All Live Demos:** See individual project folders
+- **Source Code:** [GitHub Repository](https://github.com/Av1352/Job-search-demos)
+- **Contact:** nandhakumar.anju@gmail.com
+
+---
+
+**⭐ Star this repository if you find these projects useful!**
+
+*Actively maintained • Last Updated: December 2025*

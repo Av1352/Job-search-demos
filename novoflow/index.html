@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novoflow - AI Medical Assistant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f4f8;
+        }
+
+        .chat-bubble {
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .typing-indicator {
+            display: inline-flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+
+            30% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Mobile-First Chat Interface -->
+    <div class="max-w-4xl mx-auto min-h-screen flex flex-col">
+
+        <!-- Header -->
+        <div class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-10">
+            <div class="p-4 flex items-center gap-4">
+                <div
+                    class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <h1 class="text-xl font-bold text-gray-900">Novoflow AI Assistant</h1>
+                    <div class="flex items-center gap-2 text-sm">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-gray-600">Online • 24/7 Available</span>
+                    </div>
+                </div>
+                <button onclick="showExamples()"
+                    class="px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 font-medium text-sm">
+                    📋 Examples
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="chatArea" class="flex-1 overflow-y-auto p-6 space-y-4">
+
+            <!-- Welcome Message -->
+            <div class="chat-bubble flex gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-white rounded-2xl rounded-tl-none shadow-md p-4 border border-gray-200">
+                        <p class="text-sm text-gray-900 leading-relaxed">
+                            👋 <strong>Welcome to Novoflow!</strong><br><br>
+                            I'm your AI medical assistant. I can help you schedule appointments, answer questions, and
+                            triage your concerns 24/7 in over 25 languages.<br><br>
+                            <strong>How can I help you today?</strong>
+                        </p>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1 ml-2">Just now</div>
+                </div>
+            </div>
+
+            <!-- Dynamic messages will appear here -->
+            <div id="messages"></div>
+
+            <!-- Typing indicator -->
+            <div id="typingIndicator" class="hidden flex gap-3">
+                <div
+                    class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="bg-white rounded-2xl rounded-tl-none shadow-md px-6 py-4 border border-gray-200">
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Area -->
+        <div id="inputArea" class="bg-white border-t border-gray-200 p-4">
+            <div class="mb-3 flex gap-2 flex-wrap">
+                <button onclick="loadExample('emergency')"
+                    class="px-3 py-2 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 text-xs font-medium">
+                    🚨 Emergency Example
+                </button>
+                <button onclick="loadExample('urgent')"
+                    class="px-3 py-2 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 text-xs font-medium">
+                    ⚠️ Urgent Example
+                </button>
+                <button onclick="loadExample('specialist')"
+                    class="px-3 py-2 bg-purple-100 text-purple-700 rounded-lg hover:bg-purple-200 text-xs font-medium">
+                    👨‍⚕️ Specialist Example
+                </button>
+                <button onclick="loadExample('routine')"
+                    class="px-3 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 text-xs font-medium">
+                    📋 Routine Example
+                </button>
+            </div>
+
+            <div class="grid grid-cols-3 gap-2 mb-3">
+                <input type="text" id="patientName" placeholder="Your name"
+                    class="px-3 py-2 border-2 border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                <input type="tel" id="phone" placeholder="Phone number"
+                    class="px-3 py-2 border-2 border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                <select id="language"
+                    class="px-3 py-2 border-2 border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                    <option value="English">🇺🇸 English</option>
+                    <option value="Spanish">🇪🇸 Español</option>
+                    <option value="Mandarin">🇨🇳 中文</option>
+                    <option value="Hindi">🇮🇳 हिन्दी</option>
+                </select>
+            </div>
+
+            <div class="flex gap-2">
+                <textarea id="symptoms" rows="2" placeholder="Describe your symptoms or reason for visit..."
+                    class="flex-1 px-4 py-3 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 outline-none resize-none text-sm"></textarea>
+                <button onclick="startTriage()" id="sendBtn"
+                    class="px-6 bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-xl font-bold hover:from-green-700 hover:to-blue-700 transition-all shadow-lg disabled:opacity-50">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Examples Modal -->
+        <div id="examplesModal"
+            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-2xl max-w-2xl w-full p-6 max-h-[80vh] overflow-y-auto">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold">Example Scenarios</h3>
+                    <button onclick="hideExamples()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-3">
+                    <button onclick="loadExample('emergency'); hideExamples();"
+                        class="w-full text-left p-4 bg-red-50 border-2 border-red-200 rounded-lg hover:bg-red-100">
+                        <div class="font-bold text-red-800 mb-1">🚨 Emergency: Chest Pain</div>
+                        <div class="text-sm text-gray-700">Severe symptoms requiring immediate attention</div>
+                    </button>
+                    <button onclick="loadExample('urgent'); hideExamples();"
+                        class="w-full text-left p-4 bg-orange-50 border-2 border-orange-200 rounded-lg hover:bg-orange-100">
+                        <div class="font-bold text-orange-800 mb-1">⚠️ Urgent: High Fever (Child)</div>
+                        <div class="text-sm text-gray-700">Same-day appointment needed</div>
+                    </button>
+                    <button onclick="loadExample('specialist'); hideExamples();"
+                        class="w-full text-left p-4 bg-purple-50 border-2 border-purple-200 rounded-lg hover:bg-purple-100">
+                        <div class="font-bold text-purple-800 mb-1">👨‍⚕️ Specialist: Skin Condition</div>
+                        <div class="text-sm text-gray-700">Requires dermatology expertise</div>
+                    </button>
+                    <button onclick="loadExample('routine'); hideExamples();"
+                        class="w-full text-left p-4 bg-green-50 border-2 border-green-200 rounded-lg hover:bg-green-100">
+                        <div class="font-bold text-green-800 mb-1">📋 Routine: Annual Physical</div>
+                        <div class="text-sm text-gray-700">Standard preventive care</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:8000';
+
+        const EXAMPLES = {
+            emergency: {
+                name: "Sarah Johnson",
+                phone: "(555) 234-5678",
+                symptoms: "I've been having severe chest pain for the last hour. Sharp pain on the left side that gets worse when I breathe. Also feeling short of breath and dizzy."
+            },
+            urgent: {
+                name: "Michael Chen",
+                phone: "(555) 345-6789",
+                symptoms: "My 8-year-old son has had a fever of 103°F for 6 hours, vomiting, and severe headache. He's very lethargic and won't eat or drink."
+            },
+            specialist: {
+                name: "Emily Rodriguez",
+                phone: "(555) 456-7890",
+                symptoms: "Red, itchy rash on my arms and torso that appeared 3 days ago. It's spreading and getting more inflamed. No known allergies or new products used."
+            },
+            routine: {
+                name: "David Kim",
+                phone: "(555) 567-8901",
+                symptoms: "Need to schedule my annual physical. I'm healthy but haven't had a checkup in over a year. Just want a routine wellness visit."
+            }
+        };
+
+        function showExamples() {
+            document.getElementById('examplesModal').classList.remove('hidden');
+        }
+
+        function hideExamples() {
+            document.getElementById('examplesModal').classList.add('hidden');
+        }
+
+        function loadExample(type) {
+            const ex = EXAMPLES[type];
+            document.getElementById('patientName').value = ex.name;
+            document.getElementById('phone').value = ex.phone;
+            document.getElementById('symptoms').value = ex.symptoms;
+        }
+
+        function addPatientMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = 'chat-bubble flex justify-end';
+            msg.innerHTML = `
+        <div class="max-w-[70%]">
+          <div class="bg-blue-600 text-white rounded-2xl rounded-tr-none shadow-md px-4 py-3">
+            <p class="text-sm leading-relaxed">${text}</p>
+          </div>
+          <div class="text-xs text-gray-500 mt-1 text-right">Just now</div>
+        </div>
+      `;
+            document.getElementById('messages').appendChild(msg);
+            scrollToBottom();
+        }
+
+        function addAIMessage(text) {
+            const msg = document.createElement('div');
+            msg.className = 'chat-bubble flex gap-3';
+            msg.innerHTML = `
+        <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <div class="flex-1 max-w-[70%]">
+          <div class="bg-white rounded-2xl rounded-tl-none shadow-md px-4 py-3 border border-gray-200">
+            <p class="text-sm text-gray-900 leading-relaxed">${text}</p>
+          </div>
+          <div class="text-xs text-gray-500 mt-1 ml-2">Just now</div>
+        </div>
+      `;
+            document.getElementById('messages').appendChild(msg);
+            scrollToBottom();
+        }
+
+        function addMLInsightCard(title, content, color = 'blue') {
+            const msg = document.createElement('div');
+            msg.className = 'chat-bubble';
+            msg.innerHTML = `
+        <div class="bg-${color}-50 border-2 border-${color}-200 rounded-xl p-4 shadow-sm">
+          <h4 class="font-bold text-${color}-900 mb-2 flex items-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            ${title}
+          </h4>
+          <div class="text-sm text-gray-800">${content}</div>
+        </div>
+      `;
+            document.getElementById('messages').appendChild(msg);
+            scrollToBottom();
+        }
+
+        function showTyping() {
+            document.getElementById('typingIndicator').classList.remove('hidden');
+            scrollToBottom();
+        }
+
+        function hideTyping() {
+            document.getElementById('typingIndicator').classList.add('hidden');
+        }
+
+        function scrollToBottom() {
+            const chatArea = document.getElementById('chatArea');
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        async function startTriage() {
+            const name = document.getElementById('patientName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const symptoms = document.getElementById('symptoms').value.trim();
+            const language = document.getElementById('language').value;
+
+            if (!name || !phone || !symptoms) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            document.getElementById('sendBtn').disabled = true;
+
+            // Clear old messages
+            document.getElementById('messages').innerHTML = '';
+
+            // Patient message
+            addPatientMessage(symptoms);
+            await sleep(800);
+
+            // AI processing
+            showTyping();
+            await sleep(1500);
+            hideTyping();
+
+            try {
+                const response = await fetch(`${API_URL}/triage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, phone, symptoms, language })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Triage service unavailable');
+                }
+
+                const data = await response.json();
+
+                // Show NER results
+                if (data.triage.entities.length > 0) {
+                    const entityHTML = data.triage.entities.map(e =>
+                        `<span class="inline-block px-2 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold mr-1 mb-1">${e.text}</span>`
+                    ).join('');
+
+                    addMLInsightCard(
+                        '🔍 Medical Entities Detected',
+                        `<div class="mb-2 text-xs text-gray-600">NLP extracted these medical terms from your description:</div>${entityHTML}`,
+                        'purple'
+                    );
+                    await sleep(800);
+                }
+
+                // Show AI greeting
+                addAIMessage(`Hello ${name}! I've analyzed your symptoms. Let me ask a few questions.`);
+                await sleep(1000);
+
+                // Show conversation
+                for (let i = 2; i < data.conversation.length; i++) {
+                    const turn = data.conversation[i];
+                    showTyping();
+                    await sleep(600);
+                    hideTyping();
+
+                    if (turn.speaker === 'ai') {
+                        addAIMessage(turn.message);
+                    } else {
+                        addPatientMessage(turn.message);
+                    }
+                    await sleep(800);
+                }
+
+                // Show triage assessment with ML details
+                const urgencyColors = {
+                    'EMERGENCY': 'red',
+                    'URGENT': 'orange',
+                    'SPECIALIST': 'purple',
+                    'ROUTINE': 'green'
+                };
+
+                const color = urgencyColors[data.triage.urgency_level];
+                const confidence = (data.triage.confidence * 100).toFixed(1);
+
+                const triageHTML = `
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-4 py-2 bg-${color}-600 text-white rounded-full text-sm font-bold">
+              ${data.triage.urgency_level}
+            </span>
+            <div class="text-right">
+              <div class="text-xs text-gray-600">ML Confidence</div>
+              <div class="text-2xl font-bold text-${color}-600">${confidence}%</div>
+            </div>
+          </div>
+          <div class="space-y-2 text-sm text-gray-800">
+            <p><strong>Recommended:</strong> ${data.triage.recommended_specialty}</p>
+            <p><strong>Provider:</strong> ${data.triage.recommended_provider}</p>
+            <p><strong>Timeframe:</strong> ${data.triage.estimated_wait}</p>
+          </div>
+          <div class="mt-3 pt-3 border-t border-gray-200">
+            <div class="text-xs font-bold text-gray-700 mb-2">🧠 Clinical Reasoning:</div>
+            <ul class="space-y-1 text-xs text-gray-700">
+              ${data.triage.reasoning.map(r => `<li>• ${r}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+
+                addMLInsightCard('🏥 Triage Classification Result', triageHTML, color);
+                await sleep(1000);
+
+                // Appointment confirmation
+                const apptMsg = document.createElement('div');
+                apptMsg.className = 'chat-bubble';
+                apptMsg.innerHTML = `
+          <div class="bg-gradient-to-r from-green-600 to-blue-600 text-white rounded-2xl p-6 shadow-xl">
+            <h3 class="text-2xl font-bold mb-4">✅ Appointment Scheduled</h3>
+            <div class="space-y-2">
+              <p class="text-lg"><strong>Patient:</strong> ${name}</p>
+              <p class="text-lg"><strong>Date:</strong> ${data.triage.appointment_date}</p>
+              <p class="text-lg"><strong>Time:</strong> ${data.triage.appointment_time}</p>
+              <p class="text-lg"><strong>Provider:</strong> ${data.triage.recommended_provider}</p>
+              <p class="text-lg"><strong>Confirmation:</strong> ${data.confirmation_number}</p>
+            </div>
+            <div class="mt-4 bg-white bg-opacity-20 rounded-lg p-3 text-sm">
+              <p class="font-semibold">📱 SMS sent to ${phone}</p>
+              <p class="text-xs opacity-90 mt-1">• Confirmation message<br>• 24h reminder<br>• Directions to clinic</p>
+            </div>
+          </div>
+        `;
+                document.getElementById('messages').appendChild(apptMsg);
+                scrollToBottom();
+
+            } catch (err) {
+                addAIMessage(`I'm sorry, I'm having trouble connecting to our system right now. Error: ${err.message}. Please try again or call us at (555) 100-1000.`);
+            } finally {
+                document.getElementById('sendBtn').disabled = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

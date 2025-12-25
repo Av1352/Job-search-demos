@@ -14,7 +14,7 @@ license: mit
 
 > Structured clinical summaries from patient conversations using multi-model ML pipeline
 
-**Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/paratus-health-intake) *(Add after deployment)*  
+**Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/paratus-health-intake)
 **Source Code:** [GitHub](https://github.com/Av1352/Job-search-demos/tree/main/paratus-health)
 
 ---

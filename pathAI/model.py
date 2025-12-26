@@ -4,6 +4,7 @@ from PIL import Image
 import torch
 import torch.nn as nn
 from torchvision import models, transforms
+from torchvision.models import ResNet50_Weights
 from typing import Dict, List
 
 class PathologyClassifier:
@@ -17,7 +18,7 @@ class PathologyClassifier:
         
     def _build_model(self):
         """Build ResNet50 model"""
-        model = models.resnet50(pretrained=True)
+        model = models.resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
         # Modify final layer for 3 classes
         model.fc = nn.Linear(model.fc.in_features, 3)
         model.eval()

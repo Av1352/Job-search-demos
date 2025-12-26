@@ -1,8 +1,8 @@
 ---
 title: PathAI Tumor Detection
 emoji: 🔬
-colorFrom: emerald
-colorTo: teal
+colorFrom: green
+colorTo: blue
 sdk: gradio
 sdk_version: 4.44.1
 app_file: app.py

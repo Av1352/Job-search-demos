@@ -151,8 +151,8 @@ class PathologyClassifier:
                 ]
             }
         
-        class_names = ['Benign', 'Malignant', 'Suspicious']
-        print(f"Debug - Mean: {mean_intensity:.1f} → {class_names[class_idx]}")
+        # class_names = ['Benign', 'Malignant', 'Suspicious']
+        # print(f"Debug - Mean: {mean_intensity:.1f} → {class_names[class_idx]}")
         
         return results
 

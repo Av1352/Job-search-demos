@@ -308,4 +308,4 @@ This is a demonstration system for educational and portfolio purposes. **Not for
 
 ---
 
-*Built with ❤️ for PathAI | December 2024*
+*Built with ❤️ for PathAI | December 2025*

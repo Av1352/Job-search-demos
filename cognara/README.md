@@ -99,21 +99,17 @@ python app.py
 ![Test Results](screenshots/02-test-failed.png)
 *Comprehensive analysis with defect detection and CV metrics*
 
+### Defects Detected
+![Defects](screenshots/03-defect-detected.png)
+*Descriptions of all defects detected including the pixel positions*
+
 ### Diff Visualization
-![Diff Visualization](screenshots/03-diff-visualization.png)
+![Diff Visualization](screenshots/04-diff-visualization.png)
 *Red overlay highlighting pixel-level differences*
 
-### Agent Execution Summary
-![Agent Execution](screenshots/04-agent-execution.png)
-*Multi-agent coordination with execution times and findings*
-
-### CV Algorithms
-![CV Algorithms](screenshots/05-cv-algorithms.png)
-*Technical implementation details with code examples*
-
-### Multi-Agent Architecture
-![Architecture](screenshots/06-multi-agent-architecture.png)
-*Agent coordination protocol and specialization*
+### Test Results - passed
+![Test Results](screenshots/05-test-passed.png)
+*Comprehensive analysis with defect detection and CV metrics*
 
 </div>
 
@@ -1032,4 +1028,4 @@ This is a demonstration system for educational and portfolio purposes. Productio
 
 ---
 
-*Last Updated: December 2024*
+*Last Updated: December 2025*

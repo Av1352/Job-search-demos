@@ -14,7 +14,7 @@ license: mit
 
 > Production-grade visual regression testing with multi-agent AI for VR/AR/Mobile
 
-**Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/Cognara-visionTest)
+**Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/cognara-ui-testing)
 **Source Code:** [GitHub](https://github.com/Av1352/job-search-demos/tree/main/cognara)
 
 ---
@@ -59,7 +59,7 @@ This demo was built for Cognara's Agentic Systems Engineer position to showcase:
 ## 🚀 Quick Start
 
 ### Try Live Demo
-Visit the [Hugging Face Space](https://huggingface.co/spaces/av1352/Cognara-visionTest)
+Visit the [Hugging Face Space](https://huggingface.co/spaces/av1352/cognara-ui-testing)
 
 1. Upload a baseline screenshot (expected UI state)
 2. Upload current screenshot (test run output)

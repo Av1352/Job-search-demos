@@ -1,0 +1,16 @@
+{
+  "timestamp": "20251227_162035",
+  "passed": true,
+  "regression_score": 1.0,
+  "metrics": {
+    "ssim": 1.0,
+    "psnr": Infinity,
+    "mse": 0.0,
+    "change_percent": 0.0,
+    "changed_pixels": 0,
+    "total_pixels": 480000,
+    "passed": true,
+    "changed_regions_count": 0
+  },
+  "defects": []
+}

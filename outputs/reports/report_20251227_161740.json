@@ -1,0 +1,57 @@
+{
+  "timestamp": "20251227_161740",
+  "passed": false,
+  "regression_score": 0.6537117861478313,
+  "metrics": {
+    "ssim": 0.9338739802111876,
+    "psnr": 24.39710772611099,
+    "mse": 236.2487875,
+    "change_percent": 1.7204166666666667,
+    "changed_pixels": 8258,
+    "total_pixels": 480000,
+    "passed": false,
+    "changed_regions_count": 5
+  },
+  "defects": [
+    {
+      "type": "Missing Element",
+      "severity": "medium",
+      "confidence": 0.2714285714285714,
+      "location": "Region around (214, 131)",
+      "description": "76 features not found in current image",
+      "expected": "280 features",
+      "actual": "320 features, 204 matched",
+      "agent": "Element Detection Agent"
+    },
+    {
+      "type": "Layout Shift",
+      "severity": "high",
+      "confidence": 0.92,
+      "location": "(0, 197)",
+      "description": "Large region changed: 800x357px",
+      "expected": "Stable position",
+      "actual": "Shifted by ~800px",
+      "agent": "Visual Diff Agent"
+    },
+    {
+      "type": "Layout Shift",
+      "severity": "medium",
+      "confidence": 0.92,
+      "location": "(47, 109)",
+      "description": "Large region changed: 138x65px",
+      "expected": "Stable position",
+      "actual": "Shifted by ~138px",
+      "agent": "Visual Diff Agent"
+    },
+    {
+      "type": "Layout Shift",
+      "severity": "medium",
+      "confidence": 0.92,
+      "location": "(15, 14)",
+      "description": "Large region changed: 785x72px",
+      "expected": "Stable position",
+      "actual": "Shifted by ~785px",
+      "agent": "Visual Diff Agent"
+    }
+  ]
+}

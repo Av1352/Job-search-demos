@@ -15,6 +15,7 @@ license: mit
 > Production-grade visual regression testing with multi-agent AI for VR/AR/Mobile
 
 **Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/cognara-ui-testing)
+
 **Source Code:** [GitHub](https://github.com/Av1352/job-search-demos/tree/main/cognara)
 
 ---
@@ -1032,4 +1033,4 @@ This is a demonstration system for educational and portfolio purposes. Productio
 
 ---
 
-*Last Updated: December 2024*
+*Last Updated: December 2025*

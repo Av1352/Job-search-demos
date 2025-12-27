@@ -2,6 +2,7 @@
 Metrics calculation for regression scoring
 """
 import numpy as np
+from typing import List, Dict
 
 class RegressionMetrics:
     """Calculate various regression and quality metrics"""

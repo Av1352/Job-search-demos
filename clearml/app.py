@@ -36,7 +36,7 @@ class MNISTNet(nn.Module):
         x = self.fc2(x)
         return x
 
-# Global data loaders (load once)
+# Global data loaders
 transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1307,), (0.3081,))
@@ -73,9 +73,8 @@ def create_plot(train_metrics, test_metrics):
     return fig
 
 def train_model(batch_size, learning_rate, hidden_size, dropout, epochs, progress=gr.Progress()):
-    """
-    Train model with ClearML tracking
-    """
+    """Train model with ClearML tracking"""
+    
     # Initialize ClearML Task
     task = Task.init(
         project_name='MNIST Classification',
@@ -83,7 +82,7 @@ def train_model(batch_size, learning_rate, hidden_size, dropout, epochs, progres
         tags=['gradio-demo', 'interactive']
     )
     
-    # Log hyperparameters to ClearML
+    # Log hyperparameters
     task.connect({
         'batch_size': int(batch_size),
         'learning_rate': learning_rate,
@@ -131,7 +130,6 @@ def train_model(batch_size, learning_rate, hidden_size, dropout, epochs, progres
             total += target.size(0)
             correct += predicted.eq(target).sum().item()
             
-            # Update progress
             if batch_idx % 100 == 0:
                 progress((epoch - 1 + batch_idx / len(train_loader)) / int(epochs), 
                         desc=f"Epoch {epoch}/{int(epochs)}")
@@ -180,54 +178,130 @@ def train_model(batch_size, learning_rate, hidden_size, dropout, epochs, progres
     # Get ClearML experiment URL
     clearml_url = f"https://app.clear.ml/projects/{task.project}/experiments/{task.id}"
     
-    # Final summary
+    # Final summary HTML
     summary = f"""
-🎉 Training Complete!
-
-📊 Final Results:
-- Best Test Accuracy: {max(test_metrics['acc']):.2f}%
-- Final Train Accuracy: {train_metrics['acc'][-1]:.2f}%
-- Total Epochs: {int(epochs)}
-
-🔗 View in ClearML Dashboard:
-{clearml_url}
-
-✅ Automatically Logged:
-- All hyperparameters
-- Training/test metrics per epoch
-- Model weights and artifacts
-- Git commit information
-- Python environment
-- Console output
-
-📈 You can now:
-- Compare with other experiments
-- Clone this configuration
-- Download the trained model
-- Reproduce this exact experiment
-"""
+    <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 3px solid #3b82f6; border-radius: 14px; padding: 28px; box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);">
+        <h2 style="color: #1e40af; font-size: 28px; font-weight: 900; margin: 0 0 24px 0; display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 32px;">🎉</span> Training Complete!
+        </h2>
+        
+        <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+            <h3 style="color: #1f2937; font-weight: 700; margin: 0 0 15px 0; font-size: 18px;">📊 Final Results</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;">
+                <div style="background: #f0fdf4; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
+                    <p style="color: #6b7280; font-size: 12px; margin: 0;">Best Test Accuracy</p>
+                    <p style="color: #10b981; font-size: 32px; font-weight: 800; margin: 5px 0;">{max(test_metrics['acc']):.2f}%</p>
+                </div>
+                <div style="background: #eff6ff; padding: 15px; border-radius: 8px; border-left: 4px solid #3b82f6;">
+                    <p style="color: #6b7280; font-size: 12px; margin: 0;">Final Train Accuracy</p>
+                    <p style="color: #3b82f6; font-size: 32px; font-weight: 800; margin: 5px 0;">{train_metrics['acc'][-1]:.2f}%</p>
+                </div>
+                <div style="background: #fef3c7; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <p style="color: #6b7280; font-size: 12px; margin: 0;">Total Epochs</p>
+                    <p style="color: #f59e0b; font-size: 32px; font-weight: 800; margin: 5px 0;">{int(epochs)}</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; padding: 20px; color: white; margin-bottom: 20px;">
+            <h3 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700;">🔗 View in ClearML Dashboard</h3>
+            <a href="{clearml_url}" target="_blank" style="color: white; font-size: 14px; text-decoration: underline; word-break: break-all;">
+                {clearml_url}
+            </a>
+        </div>
+        
+        <div style="background: white; border-radius: 12px; padding: 20px;">
+            <h3 style="color: #1f2937; font-weight: 700; margin: 0 0 15px 0; font-size: 16px;">✅ Automatically Logged to ClearML:</h3>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ All hyperparameters</p>
+                </div>
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ Training/test metrics per epoch</p>
+                </div>
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ Model weights and artifacts</p>
+                </div>
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ Git commit information</p>
+                </div>
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ Python environment</p>
+                </div>
+                <div style="background: #f9fafb; padding: 12px; border-radius: 6px;">
+                    <p style="margin: 0; color: #374151; font-size: 14px;">✓ Console output logs</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="background: rgba(59, 130, 246, 0.1); padding: 16px; border-radius: 8px; margin-top: 20px;">
+            <h4 style="color: #1e40af; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">📈 Next Steps:</h4>
+            <ul style="margin: 0; padding-left: 24px; color: #3b82f6; font-size: 13px; line-height: 2;">
+                <li>Compare with other experiments in ClearML dashboard</li>
+                <li>Clone this configuration for hyperparameter tuning</li>
+                <li>Download the trained model for deployment</li>
+                <li>Reproduce this exact experiment on any machine</li>
+            </ul>
+        </div>
+    </div>
+    """
     
     return plot_fig, output_log, summary, clearml_url
 
+# Custom CSS
+custom_css = """
+.gradio-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+"""
+
 # Gradio Interface
-with gr.Blocks(title="ClearML MLOps Demo") as demo:
-    gr.Markdown("""
-    # 🚀 ClearML Experiment Tracking Dashboard
+with gr.Blocks(
+    title="ClearML MLOps Demo",
+    css=custom_css,
+    theme=gr.themes.Soft(primary_hue="blue")
+) as demo:
     
-    ### Interactive ML Training with Auto-Magical Experiment Management
+    gr.HTML("""
+    <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-radius: 20px; margin-bottom: 30px; box-shadow: 0 6px 16px rgba(59, 130, 246, 0.2);">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4); margin: 0 auto 20px auto;">
+            <span style="font-size: 44px;">🚀</span>
+        </div>
+        
+        <h1 style="font-size: 52px; font-weight: 900; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 15px 0;">
+            ClearML
+        </h1>
+        
+        <p style="font-size: 26px; color: #1f2937; font-weight: 700; margin: 12px 0;">Experiment Tracking Dashboard</p>
+        <p style="font-size: 16px; color: #6b7280; font-weight: 500; margin-bottom: 24px;">Interactive ML Training with Auto-Magical Experiment Management</p>
+        
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 700px; margin: 0 auto;">
+            <span style="background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);">Auto-Logging</span>
+            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);">MLOps</span>
+            <span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);">Open Source</span>
+            <span style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);">PyTorch</span>
+        </div>
+    </div>
+    """)
     
-    Train a CNN on MNIST and watch as ClearML automatically tracks **everything** - hyperparameters, 
-    metrics, models, code, environment, and more!
-    
-    **What makes ClearML special:** Just add `Task.init()` and everything is tracked automatically. 
-    No manual logging required! 🎯
-    
-    ---
+    gr.HTML("""
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #a855f7; border-radius: 14px; padding: 24px; margin-bottom: 25px;">
+        <h3 style="color: #6b21a8; font-size: 20px; font-weight: 700; margin: 0 0 15px 0;">✨ The Magic: Just 2 Lines of Code</h3>
+        <div style="background: #1f2937; border-radius: 10px; padding: 20px; font-family: 'Courier New', monospace;">
+            <pre style="margin: 0; color: #10b981; font-size: 14px; line-height: 1.8;"><span style="color: #8b5cf6;">from</span> clearml <span style="color: #8b5cf6;">import</span> Task
+task = Task.init(project_name=<span style="color: #fbbf24;">'MNIST'</span>, task_name=<span style="color: #fbbf24;">'Training'</span>)
+
+<span style="color: #6b7280;"># That's it! Everything below is now tracked automatically ✨</span></pre>
+        </div>
+        <p style="color: #7c3aed; font-size: 13px; margin: 15px 0 0 0; font-weight: 600;">
+            🎯 No manual logging, no boilerplate code - ClearML handles everything!
+        </p>
+    </div>
     """)
     
     with gr.Row():
         with gr.Column(scale=1):
-            gr.Markdown("### 🎛️ Training Configuration")
+            gr.HTML("<h3 style='color: #3b82f6; font-size: 22px; font-weight: 700; margin-bottom: 15px;'>🎛️ Training Configuration</h3>")
             
             batch_size = gr.Slider(
                 minimum=16, maximum=256, value=64, step=16,
@@ -259,26 +333,33 @@ with gr.Blocks(title="ClearML MLOps Demo") as demo:
                 info="Training iterations over full dataset"
             )
             
-            train_btn = gr.Button("🚀 Start Training", variant="primary", size="lg")
+            train_btn = gr.Button(
+                "🚀 Start Training with ClearML",
+                variant="primary",
+                size="lg"
+            )
             
-            gr.Markdown("""
-            ---
-            
-            ### 📊 What Gets Tracked Automatically:
-            
-            ✅ **Hyperparameters** - All config values  
-            ✅ **Metrics** - Loss, accuracy per epoch  
-            ✅ **Model** - Saved PyTorch weights  
-            ✅ **Code** - Git commit + uncommitted changes  
-            ✅ **Environment** - Python packages, versions  
-            ✅ **Console** - All training output  
-            ✅ **System** - GPU/CPU/RAM usage  
-            
-            **Zero extra code required!** 🎉
+            gr.HTML("""
+            <hr style="margin: 25px 0; border: 1px solid #e5e7eb;">
+            <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 10px; padding: 20px;">
+                <h4 style="color: #065f46; margin: 0 0 12px 0; font-size: 16px; font-weight: 700;">📊 Auto-Tracked by ClearML:</h4>
+                <ul style="margin: 0; padding-left: 20px; color: #047857; font-size: 14px; line-height: 2;">
+                    <li><strong>Hyperparameters</strong> - All config values</li>
+                    <li><strong>Metrics</strong> - Loss, accuracy per epoch</li>
+                    <li><strong>Model</strong> - Saved PyTorch weights</li>
+                    <li><strong>Code</strong> - Git commit + changes</li>
+                    <li><strong>Environment</strong> - Packages, versions</li>
+                    <li><strong>Console</strong> - All training output</li>
+                    <li><strong>System</strong> - GPU/CPU/RAM usage</li>
+                </ul>
+                <div style="background: #d1fae5; padding: 12px; border-radius: 6px; margin-top: 15px; text-align: center;">
+                    <p style="color: #065f46; font-weight: 700; margin: 0; font-size: 14px;">✨ Zero extra code required!</p>
+                </div>
+            </div>
             """)
         
         with gr.Column(scale=2):
-            gr.Markdown("### 📈 Training Results")
+            gr.HTML("<h3 style='color: #10b981; font-size: 22px; font-weight: 700; margin-bottom: 15px;'>📈 Training Results</h3>")
             
             plot_output = gr.Plot(label="Training Curves")
             
@@ -289,78 +370,41 @@ with gr.Blocks(title="ClearML MLOps Demo") as demo:
                     max_lines=20
                 )
             
-            summary_output = gr.Textbox(
-                label="Experiment Summary",
-                lines=15
-            )
+            summary_output = gr.HTML(label="Experiment Summary")
             
             clearml_link = gr.Textbox(
                 label="🔗 ClearML Experiment URL",
                 interactive=False
             )
     
-    gr.Markdown("""
-    ---
+    gr.HTML("""
+    <hr style="border: 2px solid #e5e7eb; margin: 40px 0;">
     
-    ## 🎯 How This Showcases ClearML
-    
-    ### The Magic: Just 2 Lines of Code
-```python
-    from clearml import Task
-    task = Task.init(project_name='MNIST', task_name='Training')
-    # That's it! Everything below is now tracked automatically
-```
-    
-    ### What Happens Behind the Scenes:
-    
-    1. **Auto-detects** your Git repository and captures commit hash
-    2. **Captures** all Python packages and versions (`pip freeze`)
-    3. **Logs** all arguments and hyperparameters
-    4. **Records** all console output (prints, warnings, errors)
-    5. **Tracks** scalars, plots, and custom metrics
-    6. **Uploads** model files and artifacts
-    7. **Monitors** system resources (GPU, CPU, RAM)
-    
-    ### ClearML vs Competitors:
-    
-    | Feature | ClearML | MLflow | W&B |
-    |---------|---------|--------|-----|
-    | Auto-logging | ✅ Zero code | ❌ Manual calls | ❌ Manual calls |
-    | Open Source | ✅ Apache 2.0 | ✅ Apache 2.0 | ❌ Proprietary |
-    | Self-hostable | ✅ Free | ✅ Free | ❌ Enterprise only |
-    | Pipelines | ✅ Built-in | ⚠️ Limited | ⚠️ Limited |
-    | Remote Execution | ✅ Yes | ❌ No | ❌ No |
-    | HPO | ✅ Built-in | ❌ External | ✅ Paid tier |
-    
-    ---
-    
-    ## 🏢 Production Use Cases
-    
-    ### Medical Imaging Pipeline (Example)
-    
-    ClearML would track:
-    - **Data versioning** - DICOM datasets per hospital/scanner
-    - **Model experiments** - ResNet vs EfficientNet vs ViT
-    - **Preprocessing** - Different normalization/augmentation strategies
-    - **Performance** - Accuracy per pathology type
-    - **Deployment** - Which model version is in production
-    - **Compliance** - Full audit trail for FDA validation
-    
-    ### Why ClearML for Production:
-    
-    ✅ **Reproducibility** - Recreate any experiment exactly  
-    ✅ **Collaboration** - Team shares experiments seamlessly  
-    ✅ **Resource Management** - Track GPU costs per experiment  
-    ✅ **Model Registry** - Centralized model storage  
-    ✅ **CI/CD Integration** - Automated training pipelines  
-    
-    ---
-    
-    **Built by:** Anju Vilashni Nandhakumar  
-    **Contact:** nandhakumar.anju@gmail.com  
-    **LinkedIn:** [linkedin.com/in/anju-vilashni](https://www.linkedin.com/in/anju-vilashni/)  
-    
-    *Demonstrating ClearML's MLOps capabilities through practical implementation*
+    <div style="text-align: center; padding: 28px; background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.08);">
+        <h3 style="color: #3b82f6; margin: 0 0 15px 0; font-size: 22px; font-weight: 800;">👨‍💻 About This Demo</h3>
+        <p style="color: #1f2937; margin: 10px 0; font-size: 16px; line-height: 1.6;">
+            Built for <strong style="color: #3b82f6;">ClearML</strong> by 
+            <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>
+        </p>
+        <div style="margin: 20px 0; padding: 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+            <p style="margin: 6px 0; font-size: 14px;">
+                📧 <a href="mailto:nandhakumar.anju@gmail.com" style="color: #3b82f6; font-weight: 600;">nandhakumar.anju@gmail.com</a>
+            </p>
+            <p style="margin: 6px 0; font-size: 14px;">
+                💼 <a href="https://linkedin.com/in/anju-vilashni" target="_blank" style="color: #3b82f6; font-weight: 600;">LinkedIn</a> | 
+                💻 <a href="https://github.com/Av1352" target="_blank" style="color: #3b82f6; font-weight: 600;">GitHub</a> | 
+                🌐 <a href="https://vxanju.com" target="_blank" style="color: #3b82f6; font-weight: 600;">Portfolio</a>
+            </p>
+        </div>
+        <p style="color: #6b7280; font-size: 14px; margin: 12px 0; font-weight: 600;">
+            <strong style="color: #3b82f6;">Tech Stack:</strong> ClearML, PyTorch, MNIST, Gradio, Matplotlib
+        </p>
+        <hr style="border: 1px solid #e5e7eb; margin: 20px 0;">
+        <p style="color: #9ca3af; font-size: 13px; font-style: italic; line-height: 1.6;">
+            Demonstrating ClearML's MLOps capabilities through practical CNN training.<br>
+            Shows automatic experiment tracking, hyperparameter logging, and model versioning.
+        </p>
+    </div>
     """)
     
     # Wire up the training
@@ -371,5 +415,4 @@ with gr.Blocks(title="ClearML MLOps Demo") as demo:
     )
 
 if __name__ == "__main__":
-    demo.launch(share=True)
-    
+    demo.launch()

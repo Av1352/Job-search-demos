@@ -685,3 +685,9 @@ Healthcare AI isn't just about accuracy metrics. It's about fitting into real cl
 **⭐ If you found this demo useful, please star the repository!**
 
 *This is a technical demonstration project and is not affiliated with or endorsed by Paratus Health. Not for actual medical use - always consult healthcare professionals for medical advice.*
+
+---
+
+```
+*Built with ❤️ for Paratus Health | December 2025*
+```

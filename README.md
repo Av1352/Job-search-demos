@@ -31,7 +31,7 @@ Production-grade visual regression testing system for VR/AR/Mobile UI automation
 
 ---
 
-### 🔬 [PathologyNet - AI Tumor Detection](./pathai)
+### 🔬 [PathologyNet - AI Tumor Detection](./pathAI)
 **Domain:** Medical Imaging & Deep Learning  
 **Tech Stack:** PyTorch, ResNet50, OpenCV, Grad-CAM, Gradio  
 **Live Demo:** [Hugging Face Space](https://huggingface.co/spaces/av1352/pathai-tumor-detection)
@@ -51,7 +51,7 @@ Deep learning system for histopathology image analysis with clinical-grade accur
 - 97.1% specificity (benign detection)
 - κ = 0.92 agreement with pathologists
 
-**[View Details →](./pathai)**
+**[View Details →](./pathAI)**
 
 ---
 
@@ -175,7 +175,7 @@ Interactive ML training dashboard demonstrating ClearML's automatic experiment t
 
 ---
 
-### 🎨 [Adobe AEP - Multi-Agent Campaign Builder](./adobe-aep)
+### 🎨 [Adobe AEP - Multi-Agent Campaign Builder](./adobe)
 **Domain:** Enterprise AI & Multi-Agent Systems  
 **Tech Stack:** JavaScript, HTML/CSS, Multi-Agent Orchestration, Claude API  
 **Live Demo:** [adobe-aep-demo.netlify.app](https://adobe-aep-demo.netlify.app)
@@ -196,7 +196,7 @@ Multi-agent orchestration system for Adobe Experience Platform. Three specialize
 - A/B test design and optimization
 - Enterprise marketing operations
 
-**[View Details →](./adobe-aep)**
+**[View Details →](./adobe)**
 
 ---
 

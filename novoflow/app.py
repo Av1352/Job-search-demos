@@ -43,40 +43,42 @@ def get_appointment_details(urgency_level):
     return appointments.get(urgency_level, appointments['ROUTINE'])
 
 def format_entities_html(entities):
-    """Format entities as colored badges"""
+    """Format entities as colored gradient badges"""
     if not entities:
-        return "<p class='text-gray-500 text-sm'>No medical entities detected</p>"
+        return "<p style='color: #9ca3af; font-style: italic; font-size: 14px;'>No medical entities detected</p>"
     
     colors = {
-        'pain': 'bg-red-100 text-red-800',
-        'respiratory': 'bg-orange-100 text-orange-800',
-        'cardiac': 'bg-red-200 text-red-900',
-        'gastrointestinal': 'bg-yellow-100 text-yellow-800',
-        'dermatological': 'bg-pink-100 text-pink-800',
-        'fever': 'bg-orange-200 text-orange-900',
-        'neurological': 'bg-purple-100 text-purple-800',
-        'musculoskeletal': 'bg-blue-100 text-blue-800',
-        'anatomy': 'bg-indigo-100 text-indigo-800',
-        'severity': 'bg-gray-200 text-gray-900',
-        'temporal': 'bg-teal-100 text-teal-800'
+        'pain': 'background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);',
+        'respiratory': 'background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);',
+        'cardiac': 'background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);',
+        'gastrointestinal': 'background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);',
+        'dermatological': 'background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);',
+        'fever': 'background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);',
+        'neurological': 'background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);',
+        'musculoskeletal': 'background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);',
+        'anatomy': 'background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);',
+        'severity': 'background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);',
+        'temporal': 'background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);'
     }
     
-    html = '<div class="flex flex-wrap gap-2">'
-    for entity in entities:
-        color = colors.get(entity['category'], 'bg-gray-100 text-gray-800')
-        html += f'<span class="{color} px-3 py-1 rounded-full text-xs font-semibold">{entity["text"]} <span class="opacity-60">({entity["category"]})</span></span>'
+    html = '<div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px;">'
+    for entity in entities[:15]:  # Limit to 15 for display
+        style = colors.get(entity['category'], 'background: #6b7280;')
+        html += f'''
+        <span style="{style} color: white; padding: 8px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.15);">
+            {entity["text"]} <span style="opacity: 0.8; font-size: 11px;">({entity["category"]})</span>
+        </span>
+        '''
     html += '</div>'
     
     return html
 
 def perform_triage(name, phone, symptoms, language):
-    """
-    Perform medical triage using BioBERT ML system
-    """
+    """Perform medical triage using BioBERT ML system"""
     
     if not name or not phone or not symptoms:
         return (
-            "<p class='text-red-600'>⚠️ Please fill in all required fields</p>",
+            "<div style='background: #fee2e2; border: 2px solid #dc2626; padding: 20px; border-radius: 10px;'><p style='color: #991b1b; font-weight: bold; font-size: 18px; margin: 0;'>⚠️ Please fill in all required fields (Name, Phone, Symptoms)</p></div>",
             "",
             "",
             ""
@@ -95,102 +97,212 @@ def perform_triage(name, phone, symptoms, language):
     confirmation = f"NV-{random.randint(10000, 99999)}"
     
     # Format entities display
-    entities_html = format_entities_html(entities)
+    entities_html = f"""
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 2px solid #9333ea; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(147, 51, 234, 0.15);">
+        <h4 style="color: #6b21a8; font-size: 18px; font-weight: 700; margin: 0 0 15px 0; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 22px;">🔬</span> BioBERT Medical Entity Extraction
+        </h4>
+        {format_entities_html(entities)}
+        <div style="background: rgba(147, 51, 234, 0.1); padding: 12px; border-radius: 8px; margin-top: 15px;">
+            <p style="font-size: 13px; color: #7c3aed; font-weight: 600; margin: 0;">
+                ✓ Extracted {len(entities)} medical entities from 110M parameter PubMed-trained model
+            </p>
+        </div>
+    </div>
+    """
     
-    # Format triage assessment
-    urgency_colors = {
-        'EMERGENCY': ('bg-red-100 border-red-600 text-red-900', 'bg-red-600'),
-        'URGENT': ('bg-orange-100 border-orange-600 text-orange-900', 'bg-orange-600'),
-        'SPECIALIST': ('bg-purple-100 border-purple-600 text-purple-900', 'bg-purple-600'),
-        'ROUTINE': ('bg-green-100 border-green-600 text-green-900', 'bg-green-600')
+    # Format triage assessment with proper styling
+    urgency_configs = {
+        'EMERGENCY': {
+            'gradient': 'linear-gradient(135deg, #fee2e2 0%, #fecaca 100%)',
+            'border': '#dc2626',
+            'text': '#991b1b',
+            'badge': 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)'
+        },
+        'URGENT': {
+            'gradient': 'linear-gradient(135deg, #fed7aa 0%, #fdba74 100%)',
+            'border': '#f97316',
+            'text': '#9a3412',
+            'badge': 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)'
+        },
+        'SPECIALIST': {
+            'gradient': 'linear-gradient(135deg, #e9d5ff 0%, #d8b4fe 100%)',
+            'border': '#a855f7',
+            'text': '#6b21a8',
+            'badge': 'linear-gradient(135deg, #a855f7 0%, #9333ea 100%)'
+        },
+        'ROUTINE': {
+            'gradient': 'linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%)',
+            'border': '#10b981',
+            'text': '#065f46',
+            'badge': 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
+        }
     }
     
-    card_color, badge_color = urgency_colors[urgency_level]
+    config = urgency_configs[urgency_level]
+    
+    reasoning_list = ''.join([f'<li style="margin: 6px 0; line-height: 1.5;">{r}</li>' for r in reasoning])
     
     triage_html = f"""
-    <div class="p-6 {card_color} border-2 rounded-xl">
-        <div class="flex items-center justify-between mb-4">
-            <span class="{badge_color} text-white px-4 py-2 rounded-full font-bold text-sm">
+    <div style="background: {config['gradient']}; border: 3px solid {config['border']}; border-radius: 14px; padding: 24px; box-shadow: 0 6px 12px rgba(0,0,0,0.1);">
+        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 20px;">
+            <div style="background: {config['badge']}; color: white; padding: 10px 24px; border-radius: 25px; font-weight: 800; font-size: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
                 {urgency_level}
-            </span>
-            <div class="text-right">
-                <div class="text-xs opacity-70">ML Confidence</div>
-                <div class="text-3xl font-bold">{confidence:.1%}</div>
+            </div>
+            <div style="text-align: right;">
+                <p style="color: {config['text']}; font-size: 12px; opacity: 0.8; margin: 0;">ML Confidence</p>
+                <p style="color: {config['text']}; font-size: 36px; font-weight: 800; margin: 5px 0 0 0;">{confidence:.0%}</p>
             </div>
         </div>
         
-        <div class="space-y-2 text-sm mb-4">
-            <p><strong>Specialty:</strong> {appt['provider']}</p>
-            <p><strong>Recommendation:</strong> {reasoning[3] if len(reasoning) > 3 else reasoning[-1]}</p>
+        <div style="background: white; border-radius: 10px; padding: 16px; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+            <p style="margin: 8px 0; color: #1f2937; font-size: 14px;"><strong>Specialty:</strong> {appt['provider']}</p>
+            <p style="margin: 8px 0; color: #1f2937; font-size: 14px;"><strong>Recommendation:</strong> {reasoning[-1] if reasoning else 'Assessment complete'}</p>
         </div>
         
-        <div class="bg-white bg-opacity-50 rounded-lg p-3 mt-4">
-            <div class="text-xs font-bold mb-2">🧠 Clinical Reasoning (BioBERT Analysis):</div>
-            <ul class="space-y-1 text-xs">
-                {''.join([f'<li>• {r}</li>' for r in reasoning])}
+        <div style="background: rgba(255, 255, 255, 0.6); border-radius: 10px; padding: 16px;">
+            <p style="font-size: 13px; font-weight: 700; color: {config['text']}; margin: 0 0 10px 0;">🧠 Clinical Reasoning (BioBERT Analysis):</p>
+            <ul style="margin: 0; padding-left: 24px; color: {config['text']}; font-size: 13px; line-height: 1.8;">
+                {reasoning_list}
             </ul>
         </div>
     </div>
     """
     
-    # Format appointment
+    # Format appointment with glassmorphism
     appt_html = f"""
-    <div class="bg-gradient-to-r from-green-500 to-blue-500 text-white p-6 rounded-xl">
-        <h3 class="text-2xl font-bold mb-4">✅ Appointment Scheduled</h3>
-        <div class="space-y-2">
-            <p class="text-lg"><strong>Patient:</strong> {name}</p>
-            <p class="text-lg"><strong>Date:</strong> {appt['date']}</p>
-            <p class="text-lg"><strong>Time:</strong> {appt['time']}</p>
-            <p class="text-lg"><strong>Provider:</strong> {appt['provider']}</p>
-            <p class="text-lg"><strong>Phone:</strong> {phone}</p>
-            <p class="text-lg"><strong>Language:</strong> {language}</p>
-            <p class="text-lg"><strong>Confirmation:</strong> {confirmation}</p>
+    <div style="background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 14px; padding: 28px; box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);">
+        <h3 style="color: white; font-size: 26px; font-weight: 800; margin: 0 0 20px 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">✅ Appointment Scheduled</h3>
+        
+        <div style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 10px; padding: 20px; margin-bottom: 16px; border: 1px solid rgba(255, 255, 255, 0.3);">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; color: white;">
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Patient</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{name}</p>
+                </div>
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Date</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{appt['date']}</p>
+                </div>
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Time</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{appt['time']}</p>
+                </div>
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Provider</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{appt['provider']}</p>
+                </div>
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Phone</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{phone}</p>
+                </div>
+                <div>
+                    <p style="font-size: 12px; opacity: 0.9; margin: 0;">Language</p>
+                    <p style="font-size: 18px; font-weight: 700; margin: 5px 0;">{language}</p>
+                </div>
+            </div>
         </div>
-        <div class="mt-4 bg-white bg-opacity-20 rounded-lg p-3 text-sm">
-            <p class="font-semibold">📱 SMS Confirmation Sent</p>
-            <p class="text-xs mt-1">• Confirmation message<br>• 24h reminder<br>• Directions to clinic</p>
+        
+        <div style="background: rgba(255, 255, 255, 0.95); border-radius: 10px; padding: 16px; margin-bottom: 16px;">
+            <p style="font-size: 14px; font-weight: 700; color: #1f2937; margin: 0 0 8px 0;">Confirmation Number</p>
+            <p style="font-size: 32px; font-weight: 800; color: #10b981; margin: 0; font-family: monospace;">{confirmation}</p>
+        </div>
+        
+        <div style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(5px); border-radius: 8px; padding: 14px; border: 1px dashed rgba(255, 255, 255, 0.4);">
+            <p style="font-weight: 600; color: white; margin: 0 0 8px 0; font-size: 14px;">📱 Automated SMS Confirmations:</p>
+            <ul style="margin: 0; padding-left: 20px; color: rgba(255, 255, 255, 0.95); font-size: 13px; line-height: 1.8;">
+                <li>Immediate confirmation message sent</li>
+                <li>24-hour reminder scheduled</li>
+                <li>Clinic directions & parking info included</li>
+            </ul>
         </div>
     </div>
     """
     
     # System info
     info_html = f"""
-    <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
-        <h4 class="font-bold text-blue-900 mb-2">🤖 ML System Details</h4>
-        <div class="text-xs text-blue-800 space-y-1">
-            <p>• <strong>Model:</strong> BioBERT (PubMedBERT) - 110M parameters</p>
-            <p>• <strong>Training:</strong> 14M PubMed abstracts + 3M full-text articles</p>
-            <p>• <strong>Entities Extracted:</strong> {len(entities)} medical terms</p>
-            <p>• <strong>Tokens Processed:</strong> {len(symptoms.split())} via transformer</p>
-            <p>• <strong>Classification:</strong> ESI-based clinical decision rules</p>
-            <p>• <strong>Inference Time:</strong> ~150ms</p>
+    <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 2px solid #3b82f6; border-radius: 12px; padding: 20px; box-shadow: 0 4px 8px rgba(59, 130, 246, 0.15);">
+        <h4 style="color: #1e40af; font-weight: 700; margin: 0 0 15px 0; font-size: 18px; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 22px;">🤖</span> ML System Details
+        </h4>
+        <div style="background: white; border-radius: 8px; padding: 16px;">
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Model</td>
+                    <td style="padding: 10px 0; color: #3b82f6; font-weight: 700; text-align: right;">BioBERT (PubMedBERT)</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Parameters</td>
+                    <td style="padding: 10px 0; color: #10b981; font-weight: 700; text-align: right;">110M</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Training Corpus</td>
+                    <td style="padding: 10px 0; color: #8b5cf6; font-weight: 700; text-align: right;">14M PubMed abstracts</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Entities Extracted</td>
+                    <td style="padding: 10px 0; color: #f59e0b; font-weight: 700; text-align: right;">{len(entities)}</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #e5e7eb;">
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Tokens Processed</td>
+                    <td style="padding: 10px 0; color: #ec4899; font-weight: 700; text-align: right;">{len(symptoms.split())}</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px 0; color: #374151; font-weight: 600;">Inference Time</td>
+                    <td style="padding: 10px 0; color: #14b8a6; font-weight: 700; text-align: right;">~150ms</td>
+                </tr>
+            </table>
+        </div>
+        <div style="background: rgba(59, 130, 246, 0.15); padding: 12px; border-radius: 8px; margin-top: 15px;">
+            <p style="font-size: 12px; color: #1e40af; font-weight: 600; margin: 0;">
+                ⚡ Classification: ESI-based clinical decision rules + BioBERT semantic analysis
+            </p>
         </div>
     </div>
     """
     
     return entities_html, triage_html, appt_html, info_html
 
+# Custom CSS for styling
+custom_css = """
+.gradio-container {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+"""
+
 # Gradio Interface
-with gr.Blocks(title="Novoflow Medical Triage AI") as demo:
+with gr.Blocks(
+    title="Novoflow Medical Triage AI",
+    css=custom_css,
+    theme=gr.themes.Soft(primary_hue="emerald")
+) as demo:
     
-    gr.Markdown("""
-    # 🏥 Novoflow AI Medical Assistant
-    
-    ### Intelligent Triage & Scheduling with BioBERT
-    
-    Real medical NLP system using BioBERT (110M parameters) for symptom analysis, 
-    medical entity recognition, and evidence-based triage classification.
-    
-    **Powered by:** BioBERT + Emergency Severity Index (ESI) Clinical Guidelines
-    
-    ---
+    gr.HTML("""
+    <div style="text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-radius: 20px; margin-bottom: 30px; box-shadow: 0 6px 16px rgba(16, 185, 129, 0.15);">
+        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4); margin: 0 auto 20px auto;">
+            <span style="font-size: 44px;">🏥</span>
+        </div>
+        
+        <h1 style="font-size: 52px; font-weight: 900; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin: 0 0 15px 0;">
+            Novoflow
+        </h1>
+        
+        <p style="font-size: 26px; color: #1f2937; font-weight: 700; margin: 12px 0;">AI Medical Assistant</p>
+        <p style="font-size: 16px; color: #6b7280; font-weight: 500; margin-bottom: 24px;">Intelligent Triage & Scheduling with BioBERT</p>
+        
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; max-width: 600px; margin: 0 auto;">
+            <span style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(236, 72, 153, 0.3);">Medical NER</span>
+            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(139, 92, 246, 0.3);">ESI Triage</span>
+            <span style="background: linear-gradient(135deg, #f97316 0%, #ea580c 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(249, 115, 22, 0.3);">110M Params</span>
+            <span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 8px 18px; border-radius: 25px; font-size: 14px; font-weight: 700; box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3);">24/7 Available</span>
+        </div>
+    </div>
     """)
     
     with gr.Row():
         with gr.Column(scale=1):
-            gr.Markdown("### 📋 Patient Intake")
+            gr.HTML("<h3 style='color: #10b981; font-size: 22px; font-weight: 700; margin-bottom: 15px;'>📋 Patient Intake</h3>")
             
-            # Example selector
             example_selector = gr.Dropdown(
                 choices=[
                     "🚨 Emergency: Chest Pain",
@@ -198,14 +310,20 @@ with gr.Blocks(title="Novoflow Medical Triage AI") as demo:
                     "👨‍⚕️ Specialist: Skin Rash",
                     "📋 Routine: Annual Checkup"
                 ],
-                label="Quick Load Example",
+                label="Quick Load Example Scenario",
                 value=None
             )
             
-            name = gr.Textbox(label="Patient Name", placeholder="e.g., Sarah Johnson")
-            phone = gr.Textbox(label="Phone Number", placeholder="(555) 123-4567")
+            name = gr.Textbox(
+                label="Patient Name *",
+                placeholder="e.g., Sarah Johnson"
+            )
+            phone = gr.Textbox(
+                label="Phone Number *",
+                placeholder="(555) 123-4567"
+            )
             symptoms = gr.Textbox(
-                label="Chief Complaint / Symptoms",
+                label="Chief Complaint / Symptoms *",
                 placeholder="Describe symptoms in detail...",
                 lines=5
             )
@@ -215,29 +333,38 @@ with gr.Blocks(title="Novoflow Medical Triage AI") as demo:
                 label="Preferred Language"
             )
             
-            triage_btn = gr.Button("📞 Start AI Triage & Scheduling", variant="primary", size="lg")
+            triage_btn = gr.Button(
+                "📞 Start AI Triage & Scheduling",
+                variant="primary",
+                size="lg"
+            )
             
-            gr.Markdown("""
-            ---
-            ### 🤖 AI Capabilities:
-            
-            ✅ **Medical NER** - BioBERT entity extraction  
-            ✅ **Triage Classification** - ESI-based urgency  
-            ✅ **Confidence Scores** - ML probability outputs  
-            ✅ **25+ Languages** - Multilingual support  
-            ✅ **24/7 Availability** - Always online  
-            ✅ **EHR Integration** - Universal scheduling  
+            gr.HTML("""
+            <hr style="margin: 25px 0; border: 1px solid #e5e7eb;">
+            <div style="background: #f0fdf4; border: 2px solid #10b981; border-radius: 10px; padding: 18px;">
+                <h4 style="color: #065f46; margin: 0 0 12px 0; font-size: 16px; font-weight: 700;">🤖 AI Capabilities</h4>
+                <ul style="margin: 0; padding-left: 20px; color: #047857; font-size: 14px; line-height: 2;">
+                    <li><strong>Medical NER</strong> - BioBERT entity extraction</li>
+                    <li><strong>Triage Classification</strong> - ESI-based urgency</li>
+                    <li><strong>Confidence Scores</strong> - ML probability outputs</li>
+                    <li><strong>25+ Languages</strong> - Multilingual support</li>
+                    <li><strong>24/7 Availability</strong> - Always online</li>
+                    <li><strong>EHR Integration</strong> - Universal scheduling</li>
+                </ul>
+            </div>
             """)
         
         with gr.Column(scale=1):
-            gr.Markdown("### 🔬 AI Analysis Results")
+            gr.HTML("<h3 style='color: #3b82f6; font-size: 22px; font-weight: 700; margin-bottom: 15px;'>🔬 AI Analysis Results</h3>")
             
-            entities_output = gr.HTML(label="Medical Entities (NER)")
-            triage_output = gr.HTML(label="Triage Classification")
-            appointment_output = gr.HTML(label="Scheduled Appointment")
-            system_info = gr.HTML(label="ML System Details")
+            entities_output = gr.HTML(label="Medical Entities")
+            triage_output = gr.HTML(label="Triage Assessment")
+            appointment_output = gr.HTML(label="Appointment Details")
+            system_info = gr.HTML(label="System Info")
     
-    # Examples
+    gr.HTML("<hr style='border: 2px solid #e5e7eb; margin: 30px 0;'>")
+    
+    gr.HTML("<h3 style='color: #1f2937; font-size: 20px; font-weight: 700; margin-bottom: 15px;'>🎯 Try Example Scenarios</h3>")
     gr.Examples(
         examples=[
             ["Sarah Johnson", "(555) 234-5678", "Severe chest pain for the last hour. Sharp pain on left side that gets worse when I breathe. Also feeling short of breath and dizzy.", "English"],
@@ -246,49 +373,37 @@ with gr.Blocks(title="Novoflow Medical Triage AI") as demo:
             ["David Kim", "(555) 567-8901", "Need to schedule my annual physical. Healthy but haven't had checkup in over a year.", "English"]
         ],
         inputs=[name, phone, symptoms, language],
-        label="Click to Load Example Scenarios"
+        label="Clinical Scenarios"
     )
     
-    gr.Markdown("""
-    ---
+    gr.HTML("""
+    <hr style="border: 2px solid #e5e7eb; margin: 40px 0;">
     
-    ## 🏥 About This System
-    
-    ### ML Architecture (Hybrid Approach)
-    
-    **NLP Component:**
-    - **Model:** BioBERT (microsoft/BiomedNLP-PubMedBERT) - 110M parameters
-    - **Training Corpus:** 14M PubMed abstracts + 3M PMC full-text articles
-    - **Purpose:** Medical entity recognition and semantic text understanding
-    - **Entities:** Symptoms, body parts, severity indicators, temporal markers
-    
-    **Classification Component:**
-    - **Framework:** Emergency Severity Index (ESI) - industry standard triage protocol
-    - **Logic:** Evidence-based clinical decision rules
-    - **Levels:** Emergency (ESI 1) → Urgent (ESI 2-3) → Specialist → Routine (ESI 4-5)
-    - **Safety:** High-sensitivity emergency detection (95%+ confidence)
-    
-    **Why Hybrid?**
-    Real hospital triage systems combine ML for understanding with clinical protocols for safety and regulatory compliance. 
-    Production deployment would fine-tune on hospital-specific data while maintaining clinical guideline adherence.
-    
-    ### What Novoflow Actually Does
-    
-    Novoflow builds AI employees that automate medical operations for clinics:
-    - **24/7 Voice AI** - Answers patient calls in 25+ languages
-    - **Universal EHR Integration** - Works with any system (Epic, Athena, even 1990s HL7)
-    - **Appointment Management** - Books, reschedules, recovers cancellations
-    - **Revenue Recovery** - Saves clinics $50k/month average in missed appointments
-    - **YC-Backed** - $3.1M raised, Spring 2025 batch
-    
-    ---
-    
-    **Built by:** Anju Vilashni Nandhakumar  
-    **Contact:** nandhakumar.anju@gmail.com  
-    **LinkedIn:** [linkedin.com/in/anju-vilashni](https://linkedin.com/in/anju-vilashni/)  
-    **GitHub:** [github.com/Av1352](https://github.com/Av1352)
-    
-    *Demonstrating medical AI + NLP capabilities for Novoflow application*
+    <div style="text-align: center; padding: 28px; background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); border-radius: 16px; box-shadow: 0 4px 8px rgba(0,0,0,0.08);">
+        <h3 style="color: #10b981; margin: 0 0 15px 0; font-size: 22px; font-weight: 800;">👨‍💻 About This Demo</h3>
+        <p style="color: #1f2937; margin: 10px 0; font-size: 16px; line-height: 1.6;">
+            Built for <strong style="color: #10b981;">Novoflow</strong> by 
+            <strong style="color: #3b82f6;">Anju Vilashni Nandhakumar</strong>
+        </p>
+        <div style="margin: 20px 0; padding: 18px; background: white; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+            <p style="margin: 6px 0; font-size: 14px;">
+                📧 <a href="mailto:nandhakumar.anju@gmail.com" style="color: #3b82f6; font-weight: 600;">nandhakumar.anju@gmail.com</a>
+            </p>
+            <p style="margin: 6px 0; font-size: 14px;">
+                💼 <a href="https://linkedin.com/in/anju-vilashni" target="_blank" style="color: #3b82f6; font-weight: 600;">LinkedIn</a> | 
+                💻 <a href="https://github.com/Av1352" target="_blank" style="color: #3b82f6; font-weight: 600;">GitHub</a> | 
+                🌐 <a href="https://vxanju.com" target="_blank" style="color: #3b82f6; font-weight: 600;">Portfolio</a>
+            </p>
+        </div>
+        <p style="color: #6b7280; font-size: 14px; margin: 12px 0; font-weight: 600;">
+            <strong style="color: #10b981;">Tech Stack:</strong> BioBERT, PyTorch, Transformers, ESI Protocols, Gradio
+        </p>
+        <hr style="border: 1px solid #e5e7eb; margin: 20px 0;">
+        <p style="color: #9ca3af; font-size: 13px; font-style: italic; line-height: 1.6;">
+            Demonstration system for educational purposes. Not for actual medical triage.<br>
+            Always consult licensed healthcare professionals for medical advice.
+        </p>
+    </div>
     """)
     
     # Wire up

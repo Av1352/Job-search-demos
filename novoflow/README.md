@@ -603,5 +603,5 @@ Would require:
 *This is a technical demonstration project and is not affiliated with or endorsed by Novoflow. Not for actual medical use - seek professional medical advice for health concerns.*
 
 ```
-*Built with ❤️ for Paratus Health | December 2025*
+*Built with ❤️ for Novoflow | December 2025*
 ```

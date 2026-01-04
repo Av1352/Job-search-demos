@@ -1,173 +1,59 @@
 # 🔬 Glass Imaging - Low-Light Enhancement Demo
 
-> AI-powered computational photography showcasing advanced image enhancement techniques
+**Classical low-light enhancement inspired by Glass Imaging’s AI-first camera pipeline**
 
-**Live Demo:** [View on Hugging Face Spaces](https://huggingface.co/spaces/av1352/Glass-imaging)
+Built for **Glass Imaging** by Anju Nandhakumar  
 
----
-
-## 🎯 Overview
-
-This demo showcases advanced image enhancement techniques inspired by Glass Imaging's revolutionary approach to computational photography. Glass Imaging replaces traditional glass camera lenses with deep neural networks to deliver DSLR-quality images from ultra-thin smartphone cameras.
-
-## ✨ Features
-
-- **Adaptive Histogram Equalization (CLAHE)** - Intelligent contrast enhancement
-- **LAB Color Space Processing** - Preserves natural colors during enhancement
-- **Non-local Means Denoising** - Reduces noise in dark regions
-- **Multi-stage Enhancement Pipeline** - Brightness, contrast, saturation, and sharpness optimization
-
-## 🚀 Quick Start
-
-### Local Setup
-```bash
-# Clone the repo
-git clone https://github.com/Av1352/Job-search-demos
-cd Job-search-demos/glass-imaging
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the app
-python app.py
-```
-
-The app will launch at `http://localhost:7860`
-
-### Deploy to Hugging Face Spaces
-
-1. Create a new Space on [Hugging Face](https://huggingface.co/spaces)
-2. Upload `app.py`, `requirements.txt`, and `README.md`
-3. Set SDK to "Gradio"
-4. Your app will be live in minutes!
-
-## 🔬 Technical Approach
-
-### Enhancement Pipeline
-```
-Input Image
-    ↓
-1. Denoising (Optional)
-   - Non-local Means Denoising
-   - Reduces noise while preserving edges
-    ↓
-2. Color Space Conversion
-   - RGB → LAB
-   - Separates luminance from color
-    ↓
-3. CLAHE on Luminance
-   - Adaptive histogram equalization
-   - Enhances local contrast
-    ↓
-4. Multi-stage Enhancement
-   - Brightness boost (+20%)
-   - Contrast increase (+30%)
-   - Color saturation (+15%)
-   - Sharpness enhancement (+40%)
-    ↓
-Enhanced Output
-```
-
-### Why These Techniques?
-
-**CLAHE (Contrast Limited Adaptive Histogram Equalization)**
-- Prevents over-amplification in bright/dark regions
-- Maintains natural appearance
-- Used in medical imaging and computational photography
-
-**LAB Color Space**
-- Separates brightness from color information
-- Allows independent enhancement of luminance and chrominance
-- Prevents color shifting during enhancement
-
-**Non-local Means Denoising**
-- Preserves fine details while removing noise
-- Works across similar patches in the image
-- Essential for low-light photography
-
-## 🏆 Glass Imaging's Approach
-
-While this demo uses classical computer vision techniques, Glass Imaging's production technology goes further:
-
-### Their Technology Stack
-- **Raw Neural Processing** - AI processes raw sensor data
-- **Deep Learning Models** - Replace traditional glass optics
-- **Edge AI** - Real-time processing on mobile devices
-- **Co-designed Hardware + Software** - Optimized for specific sensors
-
-### Achievements
-- ✅ **DXOMARK Validated** - Independently tested by world-leading lab
-- ✅ **Beats iPhone 15 Pro Max** - Superior tele scores on Motorola Edge 40 Pro
-- ✅ **$9.3M Funding** - Led by GV (Google Ventures)
-- ✅ **Production Deployment** - Shipping on Xiaomi and Motorola devices
-
-## 📊 Use Cases
-
-This enhancement pipeline is valuable for:
-
-- 📱 **Smartphone Photography** - Improve low-light photos
-- 🏥 **Medical Imaging** - Enhance diagnostic image quality
-- 🔒 **Security Cameras** - Better night vision
-- 🎥 **Video Enhancement** - Real-time video processing
-- 🚗 **Automotive** - Low-light camera systems
-
-## 🎨 Example Results
-
-| Scenario | Input | Output | Improvement |
-|----------|-------|--------|-------------|
-| Night Street | Dark, noisy | Bright, clear | +200% brightness |
-| Indoor Dim | Underexposed | Natural lighting | +150% contrast |
-| Backlit | Silhouette | Balanced exposure | +180% detail |
-
-## 🛠️ Future Enhancements
-
-To move closer to Glass Imaging's approach:
-
-1. **Deep Learning Models**
-   - Train CNNs on paired low/normal light images
-   - Use GANs for photo-realistic enhancement
-   - Deploy models with ONNX for edge inference
-
-2. **Raw Sensor Processing**
-   - Process RAW image data before demosaicing
-   - Leverage full sensor bit depth
-   - Apply AI during ISP pipeline
-
-3. **Real-time Processing**
-   - Optimize for mobile GPUs
-   - Implement frame-by-frame video enhancement
-   - Add hardware acceleration
-
-4. **Learned Optical Corrections**
-   - Train models for lens aberration correction
-   - Chromatic aberration removal
-   - Vignetting compensation
-
-## 📚 Technical References
-
-- [Glass Imaging Official Website](https://glass-imaging.com)
-- CLAHE: Adaptive Histogram Equalization
-- LAB Color Space: Perceptual color model
-- Non-local Means: Denoising algorithm by Buades et al.
-
-## 👨‍💻 About This Demo
-
-**Built by:** Anju Vilashni Nandhakumar  
-**Purpose:** Application to Glass Imaging  
-**Contact:** nandhakumar.anju@gmail.com  
-**LinkedIn:** [linkedin.com/in/anju-vilashni](https://www.linkedin.com/in/anju-vilashni/)  
-**GitHub:** [github.com/Av1352](https://github.com/Av1352)
+🔗 **[Live Demo](https://huggingface.co/spaces/av1352/Glass-imaging)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 
-### Why Glass Imaging?
+## What This Does
 
-I'm passionate about computational photography and the intersection of AI + optics. Glass Imaging's approach of replacing traditional glass lenses with neural networks is revolutionary - it's exactly the kind of innovation that excites me about the future of imaging technology.
+AI-powered enhancement for dark, noisy photos using classical computer vision.
 
-My background in medical imaging and deep learning aligns perfectly with Glass Imaging's mission to deliver DSLR-quality images from ultra-thin devices. The challenge of optimizing neural networks for edge deployment and real-time processing is particularly exciting to me.
+**Features:**
+- CLAHE-based local contrast enhancement  
+- LAB color space processing to preserve realistic colors  
+- Optional non-local means denoising for very noisy images  
+- Tuned boosts to brightness, contrast, saturation, and sharpness
+
+**Example Flow:**  
+Upload low-light image → (optional) denoise → RGB → LAB → CLAHE on L channel → multi-stage enhancement → Download brighter, clearer image.
 
 ---
 
-**⭐ If you found this demo interesting, please star the repo!**
+## Why It Matters
 
-*This is a technical demonstration project and is not affiliated with or endorsed by Glass Imaging Inc.*
+**Problem:** Low-light smartphone photos are often dark, noisy, and washed out.  
+**Solution:** This pipeline recovers detail and contrast while keeping colors natural, making low-light images more usable for everyday photography, security, and medical contexts.
+
+**Inspiration:** Glass Imaging uses neural ISPs and co-designed optics + AI to deliver DSLR-level quality from ultra-thin smartphone cameras.
+---
+
+## Demo Features
+
+✓ Upload image + toggle denoising  
+✓ Side-by-side before/after visualization  
+✓ Adjustable enhancement strength presets (subtle → strong)  
+✓ Download enhanced output image   
+
+---
+
+## Tech Stack
+
+Python • OpenCV • scikit-image • NumPy • Gradio UI 
+
+---
+
+## Future Direction
+
+- Swap classical pipeline for CNN/GAN-based low-light enhancement  
+- Move earlier in the chain to operate on RAW sensor data  
+- Optimize for real-time, on-device processing similar to Glass Imaging’s Neural Night stack  
+
+---
+
+**Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)  
+
+Built with ❤️ for Glass Imaging

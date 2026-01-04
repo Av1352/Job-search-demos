@@ -1,42 +1,73 @@
----
-title: Hyperbound Sales AI
-emoji: 📞
-colorFrom: blue
-colorTo: purple
-sdk: gradio
-sdk_version: 4.16.0
-app_file: app.py
-pinned: false
-license: mit
----
-
 # 📞 Hyperbound AI - Sales Call Analysis & Coaching
 
 **AI-powered sales performance optimization**
 
 Built for **Hyperbound AI** by Anju Nandhakumar
 
----
-
-## 🎯 What This Does
-
-AI sales coaching platform with real-time call analysis, performance scoring, and actionable feedback to increase win rates.
-
-### Key Features:
-- 📊 Automated call scoring (talk ratio, questions, objections)
-- 💡 AI coaching insights (what to improve)
-- 📈 Team performance dashboards
-- 🎯 Win rate optimization
-
-### Impact:
-- 8-15% win rate increase
-- $800K+ revenue impact per team per year
-- 10x faster rep ramp time
+🔗 **[Live Demo](https://huggingface.co/spaces/av1352/hyperbound-sales-ai)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 
-## 👤 About
+## What This Does
 
-**Anju Nandhakumar** | ML Engineer | MS in AI (Northeastern, May 2025)
+AI sales coaching platform with real-time call analysis and performance scoring.
 
-📧 nandhakumar.anju@gmail.com | 💼 [LinkedIn](https://linkedin.com/in/anju-vilashni) | 🌐 [vxanju.com](https://vxanju.com)
+**Features:**
+- Call performance grading (A/B/C/D based on 4 metrics)
+- Talk-listen ratio analysis (target: 30-40% rep speaking)
+- Discovery question tracking (target: 7-10 questions)
+- Objection handling scoring
+- Next steps verification
+- Team performance dashboard (487 calls, 34% win rate, +8% improvement)
+
+**Example:** Discovery call analyzed → Rep spoke 35% (✅ good), asked 8 questions (✅ strong), defined next steps (✅) → Grade: A (87/100)
+
+---
+
+## Why It Matters
+
+**Problem:** Sales coaching is subjective, slow, inconsistent  
+**Solution:** AI gives instant, objective feedback on every call
+
+**ROI:** 8-15% win rate increase = $800K+ revenue for typical sales team
+
+---
+
+## Demo Features
+
+✓ 3 sample calls (Discovery, Demo, Closing)  
+✓ Real transcripts with AI analysis  
+✓ Performance radar chart (5 metrics)  
+✓ Team leaderboard (top 3 reps ranked)  
+✓ 30-day win rate trend
+
+---
+
+## Coaching Metrics
+
+- **Talk Ratio**: 30-40% ideal (rep should listen more)
+- **Questions Asked**: 7-10 for discovery calls (uncover pain points)
+- **Objection Handling**: 0 objections = excellent, 1-2 = good
+- **Next Steps Defined**: Always required for deal progression
+- **Prospect Engagement**: 75-95% (sentiment analysis)
+
+---
+
+## Tech Stack
+
+Python • Gradio • NLP • Sales Analytics • Conversation Analysis
+
+---
+
+## Impact
+
+- 8-15% win rate increase from AI coaching
+- Instant feedback (minutes after call vs weekly review)
+- 100% call coverage (every call analyzed)
+- 10x faster rep ramp (new hires productive in weeks)
+
+---
+
+**Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)  
+
+Built with ❤️ for Hyperbound AI

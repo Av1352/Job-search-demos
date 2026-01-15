@@ -8,6 +8,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image, ImageDraw
+import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(
@@ -102,46 +103,32 @@ def generate_sample_image(version, index):
     draw.text((10, 10), f"{version} - Sample {index}", fill=(255, 255, 255))
     return img
 
-# Header - Break into smaller chunks
-st.markdown("""
+# Header - Complete in one component
+components.html("""
 <div style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; margin-bottom: 35px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);">
-    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; margin: 0 auto 25px auto; border: 5px solid white; display: flex; align-items: center; justify-content: center;">
+    <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; margin: 0 auto 25px auto; border: 5px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);">
         <span style="font-size: 56px;">🗂️</span>
     </div>
-</div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<div style="text-align: center; margin-top: -30px; margin-bottom: 20px;">
-    <h1 style="font-size: 58px; font-weight: 900; color: #667eea; margin: 0 0 18px 0;">
+    
+    <h1 style="font-size: 58px; font-weight: 900; color: white; margin: 0 0 18px 0; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">
         Deep Lake Dataset Versioning
     </h1>
+    
+    <p style="font-size: 28px; color: rgba(255,255,255,0.95); font-weight: 700; margin: 15px 0;">Multi-Modal AI Dataset Management</p>
+    <p style="font-size: 18px; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 25px;">Version control for ML datasets • Track performance • Compare versions</p>
+    
+    <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 800px; margin: 28px auto 0 auto;">
+        <span style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);">Multi-Modal</span>
+        <span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);">Version Control</span>
+        <span style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);">Deep Lake</span>
+        <span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">Activeloop</span>
+    </div>
+    
+    <p style="font-size: 16px; color: rgba(255,255,255,0.9); margin-top: 25px; font-weight: 600;">
+        Built for <strong style="color: white;">Activeloop</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
+    </p>
 </div>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-<div style="text-align: center; margin-bottom: 25px;">
-    <p style="font-size: 28px; color: #667eea; font-weight: 700; margin: 15px 0;">Multi-Modal AI Dataset Management</p>
-    <p style="font-size: 18px; color: #6b7280; font-weight: 500; margin-bottom: 25px;">Version control for ML datasets • Track performance • Compare versions</p>
-</div>
-""", unsafe_allow_html=True)
-
-# Badges
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.markdown('<span style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; display: block; text-align: center;">Multi-Modal</span>', unsafe_allow_html=True)
-with col2:
-    st.markdown('<span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; display: block; text-align: center;">Version Control</span>', unsafe_allow_html=True)
-with col3:
-    st.markdown('<span style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; display: block; text-align: center;">Deep Lake</span>', unsafe_allow_html=True)
-with col4:
-    st.markdown('<span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; display: block; text-align: center;">Activeloop</span>', unsafe_allow_html=True)
-
-st.markdown("""
-<p style="text-align: center; font-size: 16px; color: #6b7280; margin-top: 25px; font-weight: 600;">
-    Built for <strong style="color: #667eea;">Activeloop</strong> by <strong style="color: #667eea;">Anju Nandhakumar</strong>
-</p>
-""", unsafe_allow_html=True)
+""", height=600)
 
 st.markdown("---")
 

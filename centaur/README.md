@@ -4,7 +4,7 @@
 
 Built for **Centaur AI** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/centaur-ml-monitor)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/centaur)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

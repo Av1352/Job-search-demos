@@ -203,9 +203,9 @@ components.html(
         </p>
     </div>
     """,
-    height=450,
+    height=480,
 )
-
+st.markdown("---")
 
 # Tabs
 tab1, tab2, tab3 = st.tabs(["🔍 Execution Trace", "📊 Dashboard", "⚠️ Error Analysis"])

@@ -4,7 +4,7 @@
 
 Built for **Akute Health** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/akute-health-analytics)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/akuteHealth)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

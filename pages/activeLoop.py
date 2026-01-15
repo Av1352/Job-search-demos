@@ -108,7 +108,7 @@ components.html(
     """
     <div style="
         text-align: center;
-        padding: 30px 30px 70px 30px;
+        padding:25px 30px 70px 30px;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         border-radius: 25px;
         box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);

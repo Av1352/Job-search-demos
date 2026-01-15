@@ -11,6 +11,7 @@ import pandas as pd
 from datetime import datetime
 import random
 import re
+import textwrap
 
 # Page config
 st.set_page_config(

@@ -182,7 +182,7 @@ components.html(
         </p>
     </div>
     """,
-    height=500,
+    height=520,
 )
 
 st.markdown("---")

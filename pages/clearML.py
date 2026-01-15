@@ -292,7 +292,7 @@ with col2:
                 </ul>
             </div>
         </div>
-        """,height=800)
+        """,height=875)
         
         st.success(f"✅ Training completed with batch_size={batch_size}, lr={learning_rate}, hidden={hidden_size}")
 

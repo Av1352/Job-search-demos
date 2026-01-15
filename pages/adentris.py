@@ -129,7 +129,6 @@ def analyze_clinical_note(note_text):
     return issues, score, compliance_level, compliance_color, word_count
 
 # Header
-# Header - Complete version with icon
 components.html("""
 <div style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; margin-bottom: 35px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);">
     <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; margin: 0 auto 25px auto; border: 5px solid white; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);">
@@ -159,7 +158,7 @@ components.html("""
         Built for <strong style="color: white;">Adentris</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
     </p>
 </div>
-""", height=600)
+""", height=500)
 
 st.markdown("---")
 

@@ -150,7 +150,7 @@ components.html("""
         Built for <strong style="color: white;">Aden Technologies</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
     </p>
 </div>
-""", height=500)
+""", height=480)
 
 st.markdown("---")
 

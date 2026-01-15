@@ -128,7 +128,7 @@ components.html("""
         Built for <strong style="color: white;">Activeloop</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
     </p>
 </div>
-""", height=600)
+""", height=480)
 
 st.markdown("---")
 

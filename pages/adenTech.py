@@ -304,7 +304,7 @@ with tab1:
                 """
             
             step_html += "</div>"
-            st.markdown(step_html, unsafe_allow_html=True)
+            components.html(step_html, height=200)
         
         # Waterfall chart
         step_names = [f"Step {s['step_number']}: {s['step_type']}" for s in trace["steps"]]

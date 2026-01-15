@@ -435,7 +435,7 @@ with tab3:
         <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; margin-bottom: 25px;">
             <h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🎯 Diversification Strategy</h3>
             <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px;"><p style="font-size: 16px; color: #1f2937; font-weight: 700; margin: 0 0 15px 0;">Ideal vs Current Allocation</p>
-        </div>
+            </div>
         </div>
         """, unsafe_allow_html=True)
         

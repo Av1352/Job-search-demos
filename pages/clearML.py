@@ -14,6 +14,7 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import io
 from PIL import Image
+import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(
@@ -228,7 +229,7 @@ with col2:
         st.info("🚀 Training simulation starting... (ClearML integration requires actual setup)")
         
         # Simulated training for demo purposes
-        st.markdown("""
+        components.html("""
         <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 3px solid #3b82f6; border-radius: 14px; padding: 28px;">
             <h2 style="color: #1e40af; font-size: 28px; font-weight: 900; margin: 0 0 24px 0;">🎉 Training Complete!</h2>
             
@@ -291,7 +292,7 @@ with col2:
                 </ul>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """,height=600)
         
         st.success(f"✅ Training completed with batch_size={batch_size}, lr={learning_rate}, hidden={hidden_size}")
 

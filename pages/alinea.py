@@ -328,7 +328,7 @@ with tab2:
         # Tech allocation warning
         tech_allocation = sector_allocation.get('Technology', 0) / total_value * 100
         
-        st.markdown(f"""
+        components.html(f"""
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; margin-bottom: 25px;">
             <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🤖 AI Investment Recommendations</h2>
             

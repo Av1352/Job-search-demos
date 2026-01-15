@@ -410,7 +410,7 @@ with tab2:
                     </div>
                 </div>
             </div>
-            """, height=300)
+            """, height=400)
         
         with col2:
             # Performance

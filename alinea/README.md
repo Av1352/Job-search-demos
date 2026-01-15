@@ -4,7 +4,7 @@
 
 Built for **Alinea Invest** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/alinea-investment-platform)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/alinea)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

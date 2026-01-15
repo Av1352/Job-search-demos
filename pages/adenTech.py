@@ -203,7 +203,7 @@ components.html(
         </p>
     </div>
     """,
-    height=480,
+    height=500,
 )
 st.markdown("---")
 

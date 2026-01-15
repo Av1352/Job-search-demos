@@ -349,7 +349,7 @@ with tab2:
                 </p>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """, height=450)
         
         # Top performers
         top_performers = df.nlargest(3, 'gain_loss_pct')

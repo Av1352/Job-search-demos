@@ -304,7 +304,7 @@ with tab1:
                 """
             
             step_html += "</div>"
-            components.html(step_html, height=100)
+            components.html(step_html, height=150)
         
         # Waterfall chart
         step_names = [f"Step {s['step_number']}: {s['step_type']}" for s in trace["steps"]]

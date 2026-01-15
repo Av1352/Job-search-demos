@@ -398,11 +398,13 @@ with tab2:
             """, unsafe_allow_html=True)
             
             st.markdown(f"""
+            <div style="background: white; border-radius: 12px; padding: 15px; margin-top: 10px;">
                 <div style="margin-bottom: 10px;">
                     <p style="font-size: 14px; color: #6b7280; font-weight: 600; margin: 0 0 6px 0;">Validation: {data['splits']['val']:,}</p>
                     <div style="background: #e5e7eb; border-radius: 8px; height: 8px; overflow: hidden;">
                         <div style="background: linear-gradient(90deg, #8b5cf6, #7c3aed); height: 100%; width: {data['splits']['val']/data['samples']*100}%;"></div>
                     </div>
+                </div>
                 </div>
             """, unsafe_allow_html=True)
             

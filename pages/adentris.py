@@ -159,7 +159,7 @@ components.html("""
         Built for <strong style="color: white;">Adentris</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
     </p>
 </div>
-""", height=400)
+""", height=600)
 
 st.markdown("---")
 

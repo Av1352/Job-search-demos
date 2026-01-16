@@ -278,7 +278,7 @@ with st.expander("📐 Computer Vision Algorithms"):
             <li>Works well for UI elements (buttons, icons)</li>
         </ul>
     </div>
-    """, height=350)
+    """, height=375)
 
 with st.expander("🤖 Multi-Agent Architecture"):
     st.markdown("""

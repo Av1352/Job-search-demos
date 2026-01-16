@@ -4,12 +4,14 @@ AI-powered API connector and data synchronization
 Built for HotGlue by Anju Nandhakumar
 """
 
-import gradio as gr
+import streamlit as st
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
+
+st.set_page_config(page_title="HotGlue Integration Platform", layout="wide")
 
 def generate_integration_data():
     """Generate sample integration data"""
@@ -30,14 +32,10 @@ def generate_integration_data():
     
     sync_data = []
     for integration in integrations:
-        # Generate sync history
         for i in range(5):
             sync_time = datetime.now() - timedelta(hours=np.random.randint(1, 48))
             records_synced = int(integration['records'] * np.random.uniform(0.05, 0.15))
-            
-            # Success rate
             is_success = np.random.random() < 0.95
-            
             duration = np.random.uniform(5, 45)
             
             sync_data.append({
@@ -48,7 +46,7 @@ def generate_integration_data():
                 'records_synced': records_synced,
                 'duration': round(duration, 1),
                 'status': 'Success' if is_success else 'Failed',
-                'throughput': round(records_synced / (duration / 60), 0)  # records per minute
+                'throughput': round(records_synced / (duration / 60), 0)
             })
     
     return pd.DataFrame(sync_data)
@@ -109,7 +107,6 @@ def create_category_chart(by_category):
 def create_integration_flow(source_app, target_app, data_type):
     """Create integration flow visualization"""
     
-    # Mapping configurations
     field_mappings = {
         'Customer Data': {
             'fields': ['name', 'email', 'phone', 'company', 'address'],
@@ -134,101 +131,80 @@ def create_integration_flow(source_app, target_app, data_type):
     }
     
     config = field_mappings.get(data_type, field_mappings['Customer Data'])
-    
-    # Estimate sync metrics
     estimated_records = np.random.randint(500, 5000)
-    estimated_duration = round(estimated_records / 150, 1)  # ~150 records per minute
+    estimated_duration = round(estimated_records / 150, 1)
     
     flow_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🔄 Integration Flow</h2>
-        
         <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 20px; align-items: center;">
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 40px; margin: 0 0 10px 0;">📤</p>
                 <p style="font-size: 24px; color: white; font-weight: 900; margin: 0 0 8px 0;">{source_app}</p>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin: 0;">Source</p>
             </div>
-            
             <div style="color: white; font-size: 32px;">→</div>
-            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 40px; margin: 0 0 10px 0;">📥</p>
                 <p style="font-size: 24px; color: white; font-weight: 900; margin: 0 0 8px 0;">{target_app}</p>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin: 0;">Target</p>
             </div>
         </div>
-        
         <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 20px; margin-top: 20px; border: 2px solid rgba(255,255,255,0.2);">
             <p style="font-size: 16px; color: white; font-weight: 700; margin: 0;">Data Type: {data_type}</p>
         </div>
     </div>
-    
     <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2); margin-bottom: 25px;">
         <h3 style="color: #065f46; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">📋 Field Mappings</h3>
-        
         <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
             <p style="font-size: 16px; color: #1f2937; font-weight: 700; margin: 0 0 15px 0;">Synced Fields ({len(config['fields'])})</p>
-            
-            <div style="display: grid; gap: 8px;">
-    """
+            <div style="display: grid; gap: 8px;">"""
     
     for field in config['fields']:
         flow_html += f"""
         <div style="background: #f0fdf4; border-left: 4px solid #10b981; border-radius: 8px; padding: 12px;">
             <p style="font-size: 14px; color: #065f46; font-weight: 600; margin: 0;">{field}</p>
-        </div>
-        """
+        </div>"""
     
     flow_html += """
             </div>
         </div>
-        
         <div style="background: white; border-radius: 12px; padding: 20px;">
             <p style="font-size: 16px; color: #1f2937; font-weight: 700; margin: 0 0 15px 0;">Transformations Applied</p>
-            
-            <div style="display: grid; gap: 8px;">
-    """
+            <div style="display: grid; gap: 8px;">"""
     
     for transform in config['transformations']:
         flow_html += f"""
         <div style="background: #f0f9ff; border-left: 4px solid #3b82f6; border-radius: 8px; padding: 12px;">
             <p style="font-size: 14px; color: #1e40af; font-weight: 600; margin: 0;">✓ {transform}</p>
-        </div>
-        """
+        </div>"""
     
     flow_html += f"""
             </div>
         </div>
     </div>
-    
     <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);">
         <h3 style="color: #92400e; font-size: 22px; font-weight: 900; margin: 0 0 15px 0;">⚡ Estimated Performance</h3>
-        
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
             <div style="background: white; border-radius: 10px; padding: 18px; text-align: center;">
                 <p style="font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">Records/Sync</p>
                 <p style="font-size: 28px; color: #f59e0b; font-weight: 800; margin: 0;">{estimated_records:,}</p>
             </div>
-            
             <div style="background: white; border-radius: 10px; padding: 18px; text-align: center;">
                 <p style="font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">Duration</p>
                 <p style="font-size: 28px; color: #f59e0b; font-weight: 800; margin: 0;">{estimated_duration}min</p>
             </div>
-            
             <div style="background: white; border-radius: 10px; padding: 18px; text-align: center;">
                 <p style="font-size: 12px; color: #6b7280; margin: 0 0 6px 0;">Throughput</p>
                 <p style="font-size: 28px; color: #f59e0b; font-weight: 800; margin: 0;">150/min</p>
             </div>
         </div>
-        
         <div style="background: rgba(245, 158, 11, 0.1); border-radius: 10px; padding: 18px; margin-top: 15px;">
             <p style="font-size: 14px; color: #92400e; margin: 0; line-height: 1.6;">
                 <strong>💡 Pro Tip:</strong> Enable real-time sync for critical data or schedule batch syncs every 15 minutes for optimal performance.
             </p>
         </div>
-    </div>
-    """
+    </div>"""
     
     return flow_html
 
@@ -243,26 +219,22 @@ def process_dashboard():
     summary_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🔌 Integration Dashboard</h2>
-        
         <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin: 0 0 10px 0; font-weight: 600;">Total Syncs</p>
                 <p style="font-size: 48px; color: white; font-weight: 900; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">{total_syncs}</p>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin: 8px 0 0 0;">Last 48h</p>
             </div>
-            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin: 0 0 10px 0; font-weight: 600;">Records Synced</p>
                 <p style="font-size: 48px; color: #86efac; font-weight: 900; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">{total_records/1000:.1f}K</p>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin: 8px 0 0 0;">Total</p>
             </div>
-            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin: 0 0 10px 0; font-weight: 600;">Success Rate</p>
                 <p style="font-size: 48px; color: white; font-weight: 900; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">{success_rate:.0f}%</p>
                 <p style="font-size: 13px; color: rgba(255,255,255,0.7); margin: 8px 0 0 0;">Reliability</p>
             </div>
-            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; text-align: center; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 14px; color: rgba(255,255,255,0.8); margin: 0 0 10px 0; font-weight: 600;">Throughput</p>
                 <p style="font-size: 48px; color: #fbbf24; font-weight: 900; margin: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2);">{avg_throughput:.0f}</p>
@@ -270,12 +242,9 @@ def process_dashboard():
             </div>
         </div>
     </div>
-    
     <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2); margin-bottom: 25px;">
         <h3 style="color: #1e40af; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🔗 Integration Performance</h3>
-        
-        <div style="display: grid; gap: 12px;">
-    """
+        <div style="display: grid; gap: 12px;">"""
     
     colors = ['#667eea', '#10b981', '#ec4899', '#f59e0b', '#3b82f6', '#8b5cf6', '#ef4444', '#14b8a6', '#f97316', '#764ba2']
     for idx, (integration, row) in enumerate(by_integration.iterrows()):
@@ -291,116 +260,101 @@ def process_dashboard():
                     <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">{row['success_rate']:.0f}% success</p>
                 </div>
             </div>
-        </div>
-        """
+        </div>"""
     
     summary_html += "</div></div>"
     
     return summary_html, integration_chart, category_chart, df
 
-custom_css = """
-.gradio-container {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-"""
-
-with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
-    
-    gr.HTML("""
+# Header
+st.markdown("""
     <div style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; margin-bottom: 35px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);">
         <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5); margin: 0 auto 25px auto; border: 5px solid white;">
             <span style="font-size: 56px;">🔌</span>
         </div>
-        
         <h1 style="font-size: 58px; font-weight: 900; color: white; margin: 0 0 18px 0; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">
             HotGlue Integration Platform
         </h1>
-        
         <p style="font-size: 28px; color: rgba(255,255,255,0.95); font-weight: 700; margin: 15px 0;">SaaS Connectors • Data Sync</p>
         <p style="font-size: 18px; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 25px;">Connect any SaaS app with zero-code integrations</p>
-        
         <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 850px; margin: 28px auto 0 auto;">
             <span style="background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(236, 72, 153, 0.4);">10+ Integrations</span>
             <span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);">Real-Time Sync</span>
             <span style="background: linear-gradient(135deg, #f59e0b 0%, #ea580c 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);">Field Mapping</span>
             <span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">Zero-Code</span>
         </div>
-        
         <p style="font-size: 16px; color: rgba(255,255,255,0.9); margin-top: 25px; font-weight: 600;">
             Built for <strong style="color: white;">HotGlue</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
         </p>
     </div>
-    """)
+    """, unsafe_allow_html=True)
+
+# Tabs
+tab1, tab2 = st.tabs(["📊 Integration Analytics", "🔌 Create Integration"])
+
+with tab1:
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 16px; padding: 24px; margin-bottom: 20px;">
+        <h3 style="color: #1e40af; font-size: 22px; font-weight: 800; margin: 0;">Data Sync Performance</h3>
+        <p style="color: #3b82f6; font-size: 14px; margin: 8px 0 0 0;">Track 50 syncs across 10 SaaS integrations</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    with gr.Tabs():
-        with gr.Tab("📊 Integration Analytics"):
-            gr.HTML("""
-            <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 16px; padding: 24px; margin-bottom: 20px;">
-                <h3 style="color: #1e40af; font-size: 22px; font-weight: 800; margin: 0;">Data Sync Performance</h3>
-                <p style="color: #3b82f6; font-size: 14px; margin: 8px 0 0 0;">Track 50 syncs across 10 SaaS integrations</p>
-            </div>
-            """)
-            
-            dashboard_btn = gr.Button("🔄 Load Dashboard", variant="primary", size="lg")
-            
-            summary_md = gr.HTML()
-            
-            with gr.Row():
-                with gr.Column():
-                    integration_chart = gr.Plot(label="Records by Integration")
-                with gr.Column():
-                    category_chart = gr.Plot(label="Category Distribution")
-            
-            sync_table = gr.Dataframe(label="Recent Syncs")
+    if st.button("🔄 Load Dashboard", type="primary", use_container_width=True):
+        summary_html, integration_chart, category_chart, df = process_dashboard()
         
-        with gr.Tab("🔌 Create Integration"):
-            gr.HTML("""
-            <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 3px solid #a855f7; border-radius: 16px; padding: 24px; margin-bottom: 20px;">
-                <h3 style="color: #6b21a8; font-size: 22px; font-weight: 800; margin: 0;">Build Your Integration Flow</h3>
-                <p style="color: #a855f7; font-size: 14px; margin: 8px 0 0 0;">Connect apps, map fields, and sync data automatically</p>
-            </div>
-            """)
-            
-            with gr.Row():
-                with gr.Column():
-                    source_input = gr.Dropdown(
-                        choices=['Salesforce', 'HubSpot', 'Stripe', 'QuickBooks', 'Slack', 
-                                'Google Sheets', 'Shopify', 'Zendesk', 'Jira', 'Mailchimp'],
-                        label="Source App",
-                        value='Salesforce'
-                    )
-                    target_input = gr.Dropdown(
-                        choices=['Salesforce', 'HubSpot', 'Stripe', 'QuickBooks', 'Slack', 
-                                'Google Sheets', 'Shopify', 'Zendesk', 'Jira', 'Mailchimp'],
-                        label="Target App",
-                        value='HubSpot'
-                    )
-                    data_type_input = gr.Dropdown(
-                        choices=['Customer Data', 'Invoices', 'Support Tickets', 'Products', 'Tasks'],
-                        label="Data Type",
-                        value='Customer Data'
-                    )
-                    create_btn = gr.Button("⚡ Create Integration", variant="primary", size="lg")
-            
-            flow_output = gr.HTML()
+        st.markdown(summary_html, unsafe_allow_html=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.plotly_chart(integration_chart, use_container_width=True)
+        with col2:
+            st.plotly_chart(category_chart, use_container_width=True)
+        
+        st.dataframe(df, use_container_width=True, height=400)
+
+with tab2:
+    st.markdown("""
+    <div style="background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%); border: 3px solid #a855f7; border-radius: 16px; padding: 24px; margin-bottom: 20px;">
+        <h3 style="color: #6b21a8; font-size: 22px; font-weight: 800; margin: 0;">Build Your Integration Flow</h3>
+        <p style="color: #a855f7; font-size: 14px; margin: 8px 0 0 0;">Connect apps, map fields, and sync data automatically</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    dashboard_btn.click(
-        fn=process_dashboard,
-        outputs=[summary_md, integration_chart, category_chart, sync_table]
-    )
+    col1, col2, col3 = st.columns(3)
     
-    create_btn.click(
-        fn=create_integration_flow,
-        inputs=[source_input, target_input, data_type_input],
-        outputs=flow_output
-    )
+    with col1:
+        source_app = st.selectbox(
+            "Source App",
+            ['Salesforce', 'HubSpot', 'Stripe', 'QuickBooks', 'Slack', 
+             'Google Sheets', 'Shopify', 'Zendesk', 'Jira', 'Mailchimp'],
+            index=0
+        )
     
-    gr.HTML("""
+    with col2:
+        target_app = st.selectbox(
+            "Target App",
+            ['Salesforce', 'HubSpot', 'Stripe', 'QuickBooks', 'Slack', 
+             'Google Sheets', 'Shopify', 'Zendesk', 'Jira', 'Mailchimp'],
+            index=1
+        )
+    
+    with col3:
+        data_type = st.selectbox(
+            "Data Type",
+            ['Customer Data', 'Invoices', 'Support Tickets', 'Products', 'Tasks'],
+            index=0
+        )
+    
+    if st.button("⚡ Create Integration", type="primary", use_container_width=True):
+        flow_html = create_integration_flow(source_app, target_app, data_type)
+        st.markdown(flow_html, unsafe_allow_html=True)
+
+# Footer
+st.markdown("""
     <hr style="border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;">
-    
     <div style="background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 35px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
         <h2 style="color: #667eea; margin: 0 0 25px 0; font-size: 32px; font-weight: 900; text-align: center;">🎯 Why This Matters for HotGlue</h2>
-        
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px;">
             <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #10b981;">
                 <h4 style="color: #10b981; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">🔌 10+ Pre-Built Connectors</h4>
@@ -408,14 +362,12 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
                     Salesforce, HubSpot, Stripe, QuickBooks, Shopify, Zendesk, and more. No custom API code needed.
                 </p>
             </div>
-            
             <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #3b82f6;">
                 <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">⚡ 150 Records/Min</h4>
                 <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
                     High-throughput data sync with automatic field mapping and transformations. 95% success rate.
                 </p>
             </div>
-            
             <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #ec4899;">
                 <h4 style="color: #ec4899; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">🎯 Zero-Code Setup</h4>
                 <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
@@ -423,7 +375,6 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
                 </p>
             </div>
         </div>
-        
         <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 16px; padding: 28px;">
             <h3 style="color: #065f46; margin: 0 0 18px 0; font-size: 24px; font-weight: 800;">⚡ Technical Features</h3>
             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
@@ -446,7 +397,6 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
             </div>
         </div>
     </div>
-    
     <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35); color: white;">
         <h3 style="margin: 0 0 18px 0; font-size: 28px; font-weight: 900;">👨‍💻 About This Demo</h3>
         <p style="font-size: 18px; margin: 12px 0; font-weight: 600;">
@@ -463,7 +413,7 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
             </p>
         </div>
         <p style="font-size: 15px; margin: 18px 0; font-weight: 700;">
-            <strong style="color: white;">Tech Stack:</strong> Python • REST APIs • Data Transformation • Plotly • Gradio
+            <strong style="color: white;">Tech Stack:</strong> Python • REST APIs • Data Transformation • Plotly • Streamlit
         </p>
         <hr style="border: 1px solid rgba(255,255,255,0.3); margin: 25px 0;">
         <p style="font-size: 14px; font-style: italic; line-height: 1.8; max-width: 900px; margin: 0 auto; color: rgba(255,255,255,0.9);">
@@ -471,7 +421,4 @@ with gr.Blocks(css=custom_css, theme=gr.themes.Soft()) as demo:
             10+ connectors • Real-time sync • Field mapping • Zero-code setup
         </p>
     </div>
-    """)
-
-if __name__ == "__main__":
-    demo.launch()
+    """, unsafe_allow_html=True)

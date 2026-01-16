@@ -4,7 +4,7 @@
 
 Built by **Anju Nandhakumar** for **Dioptra AI**
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/dioptra-contract-ai)** |  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/dioptraAI)** |  
 🔗 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---

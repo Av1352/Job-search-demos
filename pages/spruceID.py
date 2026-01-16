@@ -113,6 +113,19 @@ def verify_credential(cred_type, issuer_name, holder_name):
     
     all_checks_passed = all(checks.values())
     
+    # Build verification checks HTML
+    check_items = []
+    for check_name, passed in checks.items():
+        check_html = f"""
+        <div style="background: white; border-radius: 10px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
+            <p style="font-size: 15px; color: #1f2937; font-weight: 600; margin: 0;">{check_name}</p>
+            <div style="background: #{'d1fae5' if passed else 'fee2e2'}; color: #{'065f46' if passed else '991b1b'}; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 14px;">
+                {'✓ PASS' if passed else '✗ FAIL'}
+            </div>
+        </div>
+        """
+        check_items.append(check_html.replace('\n', '').replace('  ', ''))
+    
     result_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🔐 Verification Result</h2>
@@ -134,6 +147,7 @@ def verify_credential(cred_type, issuer_name, holder_name):
             </div>
         </div>
     </div>
+    
     <div style="background: linear-gradient(135deg, #{'d1fae5' if all_checks_passed else 'fee2e2'} 0%, #{'a7f3d0' if all_checks_passed else 'fecaca'} 100%); border: 3px solid #{'10b981' if all_checks_passed else 'ef4444'}; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba({'16, 185, 129' if all_checks_passed else '239, 68, 68'}, 0.2); margin-bottom: 25px;">
         <h3 style="color: #{'065f46' if all_checks_passed else '991b1b'}; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">📋 Credential Details</h3>
         <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 15px;">
@@ -161,25 +175,18 @@ def verify_credential(cred_type, issuer_name, holder_name):
             <p style="font-size: 13px; color: #1f2937; font-weight: 600; margin: 0; font-family: monospace; word-break: break-all;">{cred_hash}</p>
         </div>
     </div>
+    
     <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2);">
         <h3 style="color: #92400e; font-size: 22px; font-weight: 900; margin: 0 0 15px 0;">🔍 Verification Checks</h3>
         <div style="display: grid; gap: 10px;">
-    """
-    
-    for check_name, passed in checks.items():
-        result_html += f"""
-        <div style="background: white; border-radius: 10px; padding: 16px; display: flex; justify-content: space-between; align-items: center;">
-            <p style="font-size: 15px; color: #1f2937; font-weight: 600; margin: 0;">{check_name}</p>
-            <div style="background: #{'d1fae5' if passed else 'fee2e2'}; color: #{'065f46' if passed else '991b1b'}; padding: 6px 12px; border-radius: 8px; font-weight: 800; font-size: 14px;">
-                {'✓ PASS' if passed else '✗ FAIL'}
-            </div>
+            {''.join(check_items)}
         </div>
-        """
-    
-    result_html += "</div></div>"
+    </div>
+    """
     
     return result_html
 
+# Header
 st.markdown("""
 <div style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 25px; margin-bottom: 35px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35);">
     <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5); margin: 0 auto 25px auto; border: 5px solid white;">
@@ -202,6 +209,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# Tabs
 tab1, tab2 = st.tabs(["📊 Verification Analytics", "🔐 Verify Credential"])
 
 with tab1:
@@ -215,9 +223,31 @@ with tab1:
     if st.button("🔍 Load Analytics", type="primary"):
         st.rerun()
     
+    # Generate data
     df = generate_credential_data()
     total_verifications, valid_count, success_rate, avg_time, by_type = analyze_verifications(df)
     
+    # Build credential type cards
+    colors = ['#667eea', '#10b981', '#ec4899', '#f59e0b', '#3b82f6', '#8b5cf6', '#ef4444', '#764ba2']
+    cred_cards = []
+    for idx, (cred_type, row) in enumerate(by_type.iterrows()):
+        card_html = f"""
+        <div style="background: white; border-left: 5px solid {colors[idx % len(colors)]}; border-radius: 12px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <p style="font-size: 18px; color: #1f2937; font-weight: 800; margin: 0 0 4px 0;">{cred_type}</p>
+                    <p style="font-size: 13px; color: #6b7280; margin: 0;">{int(row['total'])} verifications • {int(row['valid'])} valid</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 28px; color: {colors[idx % len(colors)]}; font-weight: 900; margin: 0;">{row['success_rate']:.1f}%</p>
+                    <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Success rate</p>
+                </div>
+            </div>
+        </div>
+        """
+        cred_cards.append(card_html.replace('\n', '').replace('  ', ''))
+    
+    # Display dashboard
     summary_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🔐 Verification Dashboard</h2>
@@ -244,29 +274,14 @@ with tab1:
             </div>
         </div>
     </div>
+    
     <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2); margin-bottom: 25px;">
         <h3 style="color: #1e40af; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">📊 Credential Type Breakdown</h3>
         <div style="display: grid; gap: 12px;">
-    """
-    
-    colors = ['#667eea', '#10b981', '#ec4899', '#f59e0b', '#3b82f6', '#8b5cf6', '#ef4444', '#764ba2']
-    for idx, (cred_type, row) in enumerate(by_type.iterrows()):
-        summary_html += f"""
-        <div style="background: white; border-left: 5px solid {colors[idx % len(colors)]}; border-radius: 12px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <div>
-                    <p style="font-size: 18px; color: #1f2937; font-weight: 800; margin: 0 0 4px 0;">{cred_type}</p>
-                    <p style="font-size: 13px; color: #6b7280; margin: 0;">{int(row['total'])} verifications • {int(row['valid'])} valid</p>
-                </div>
-                <div style="text-align: right;">
-                    <p style="font-size: 28px; color: {colors[idx % len(colors)]}; font-weight: 900; margin: 0;">{row['success_rate']:.1f}%</p>
-                    <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Success rate</p>
-                </div>
-            </div>
+            {''.join(cred_cards)}
         </div>
-        """
-    
-    summary_html += "</div></div>"
+    </div>
+    """
     
     st.markdown(summary_html, unsafe_allow_html=True)
     
@@ -301,10 +316,13 @@ with tab2:
         with col2:
             st.markdown(verify_credential(cred_type_input, issuer_input, holder_input), unsafe_allow_html=True)
 
+# Footer
 st.markdown("""
 <hr style="border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;">
+
 <div style="background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 35px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
     <h2 style="color: #667eea; margin: 0 0 25px 0; font-size: 32px; font-weight: 900; text-align: center;">🎯 Why This Matters for Spruce ID</h2>
+    
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px;">
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #10b981;">
             <h4 style="color: #10b981; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">⚡ 2s Verification</h4>
@@ -312,12 +330,14 @@ st.markdown("""
                 Instant cryptographic verification vs days for manual checks. 99% faster than traditional methods.
             </p>
         </div>
+        
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #3b82f6;">
             <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">🔐 5-Point Validation</h4>
             <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
                 Issuer auth, crypto signature, expiration, revocation, tamper detection. 92%+ success rate.
             </p>
         </div>
+        
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #ec4899;">
             <h4 style="color: #ec4899; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">🌐 Decentralized Trust</h4>
             <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
@@ -325,6 +345,7 @@ st.markdown("""
             </p>
         </div>
     </div>
+    
     <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 16px; padding: 28px;">
         <h3 style="color: #065f46; margin: 0 0 18px 0; font-size: 24px; font-weight: 800;">⚡ Technical Features</h3>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
@@ -347,6 +368,7 @@ st.markdown("""
         </div>
     </div>
 </div>
+
 <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35); color: white;">
     <h3 style="margin: 0 0 18px 0; font-size: 28px; font-weight: 900;">👨‍💻 About This Demo</h3>
     <p style="font-size: 18px; margin: 12px 0; font-weight: 600;">

@@ -343,42 +343,18 @@ with tab2:
         </div>
         """, unsafe_allow_html=True)
         
-        # Build restaurant cards list
+        # Build restaurant cards - NO EMPTY LINES!
         colors = ['#3b82f6', '#10b981', '#ec4899', '#f59e0b', '#8b5cf6']
         restaurant_cards = []
         
         for idx, (restaurant, data) in enumerate(RESTAURANTS.items()):
             restaurant_orders = random.randint(80, 200)
-            card = f"""
-            <div style="background: white; border-left: 5px solid {colors[idx]}; border-radius: 12px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div>
-                        <p style="font-size: 18px; color: #1f2937; font-weight: 800; margin: 0 0 4px 0;">{restaurant}</p>
-                        <p style="font-size: 13px; color: #6b7280; margin: 0;">{data['cuisine']} • {data['price_range']} • ⭐ {data['avg_rating']}</p>
-                    </div>
-                    <div style="text-align: right;">
-                        <p style="font-size: 28px; color: {colors[idx]}; font-weight: 900; margin: 0;">{restaurant_orders}</p>
-                        <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Predicted orders</p>
-                    </div>
-                </div>
-                <div style="background: #f9fafb; border-radius: 8px; padding: 10px; margin-top: 10px;">
-                    <p style="font-size: 13px; color: #6b7280; margin: 0;">Avg prep: {data['avg_prep_time']}min • Popular: {data['popular_items'][0]}</p>
-                </div>
-            </div>
-            """
+            card = f'<div style="background: white; border-left: 5px solid {colors[idx]}; border-radius: 12px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);"><div style="display: flex; justify-content: space-between; align-items: center;"><div><p style="font-size: 18px; color: #1f2937; font-weight: 800; margin: 0 0 4px 0;">{restaurant}</p><p style="font-size: 13px; color: #6b7280; margin: 0;">{data["cuisine"]} • {data["price_range"]} • ⭐ {data["avg_rating"]}</p></div><div style="text-align: right;"><p style="font-size: 28px; color: {colors[idx]}; font-weight: 900; margin: 0;">{restaurant_orders}</p><p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Predicted orders</p></div></div><div style="background: #f9fafb; border-radius: 8px; padding: 10px; margin-top: 10px;"><p style="font-size: 13px; color: #6b7280; margin: 0;">Avg prep: {data["avg_prep_time"]}min • Popular: {data["popular_items"][0]}</p></div></div>'
             restaurant_cards.append(card)
         
-        # Join all cards
         all_cards = ''.join(restaurant_cards)
         
-        insights_html = f"""
-        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2); margin-bottom: 25px;">
-            <h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🍽️ Restaurant Demand Insights</h3>
-            <div style="display: grid; gap: 12px;">
-                {all_cards}
-            </div>
-        </div>
-        """
+        insights_html = f'<div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2); margin-bottom: 25px;"><h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🍽️ Restaurant Demand Insights</h3><div style="display: grid; gap: 12px;">{all_cards}</div></div>'
         
         st.markdown(insights_html, unsafe_allow_html=True)
         st.plotly_chart(fig_demand, use_container_width=True)

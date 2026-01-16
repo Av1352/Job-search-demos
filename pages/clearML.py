@@ -225,7 +225,6 @@ with col2:
         st.markdown("""
         <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 3px solid #3b82f6; border-radius: 14px; padding: 28px;">
             <h2 style="color: #1e40af; font-size: 28px; font-weight: 900; margin: 0 0 24px 0;">🎉 Training Complete!</h2>
-            
             <div style="background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
                 <h3 style="color: #1f2937; font-weight: 700; margin: 0 0 15px 0; font-size: 18px;">📊 Final Results</h3>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">

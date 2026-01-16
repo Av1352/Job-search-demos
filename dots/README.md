@@ -4,7 +4,7 @@
 
 Built for **Dots** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/dots-global-payouts)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/dots)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

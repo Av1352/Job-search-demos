@@ -148,8 +148,7 @@ st.markdown("---")
 # System overview
 st.markdown("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
-    <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2>
-    <p style="color: #d1d5db; line-height: 1.8;">
+    <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2><p style="color: #d1d5db; line-height: 1.8;">
         This platform demonstrates a complete visual regression testing pipeline using multi-agent AI
     </p>
     <div style="margin-top: 20px;">

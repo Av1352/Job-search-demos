@@ -343,19 +343,13 @@ with tab2:
         </div>
         """, unsafe_allow_html=True)
         
-        # Restaurant insights
-        insights_html = """
-        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2); margin-bottom: 25px;">
-            <h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🍽️ Restaurant Demand Insights</h3>
-            <div style="display: grid; gap: 12px;">
-        """
-        
+        # Build restaurant cards list
         colors = ['#3b82f6', '#10b981', '#ec4899', '#f59e0b', '#8b5cf6']
+        restaurant_cards = []
         
         for idx, (restaurant, data) in enumerate(RESTAURANTS.items()):
             restaurant_orders = random.randint(80, 200)
-            
-            insights_html += f"""
+            card = f"""
             <div style="background: white; border-left: 5px solid {colors[idx]}; border-radius: 12px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
                 <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div>
@@ -372,8 +366,19 @@ with tab2:
                 </div>
             </div>
             """
+            restaurant_cards.append(card)
         
-        insights_html += "</div></div>"
+        # Join all cards
+        all_cards = ''.join(restaurant_cards)
+        
+        insights_html = f"""
+        <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2); margin-bottom: 25px;">
+            <h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🍽️ Restaurant Demand Insights</h3>
+            <div style="display: grid; gap: 12px;">
+                {all_cards}
+            </div>
+        </div>
+        """
         
         st.markdown(insights_html, unsafe_allow_html=True)
         st.plotly_chart(fig_demand, use_container_width=True)

@@ -9,7 +9,6 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import random
 from datetime import datetime
-import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(
@@ -299,7 +298,7 @@ with tab1:
                 """
             
             step_html += "</div>"
-            st.markdown(step_html, height=150)
+            st.markdown(step_html, unsafe_allow_html=True)
         
         # Waterfall chart
         step_names = [f"Step {s['step_number']}: {s['step_type']}" for s in trace["steps"]]

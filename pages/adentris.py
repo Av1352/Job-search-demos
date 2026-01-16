@@ -12,7 +12,6 @@ from datetime import datetime
 import random
 import re
 import textwrap
-import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(

@@ -8,7 +8,6 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image, ImageDraw
-import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(

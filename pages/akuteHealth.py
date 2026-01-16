@@ -5,7 +5,6 @@ Built for Akute Health by Anju Nandhakumar
 """
 
 import streamlit as st
-import streamlit.components.v1 as components
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pandas as pd

@@ -242,7 +242,7 @@ def analyze_contract(contract_text, contract_type):
         """, unsafe_allow_html=True)
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -265,7 +265,6 @@ components.html(
         ">
             <span style="font-size: 56px;">⚖️</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -275,7 +274,6 @@ components.html(
         ">
             Dioptra Contract AI
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -284,7 +282,6 @@ components.html(
         ">
             AI-Powered Contract Analysis & Negotiation
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -293,7 +290,6 @@ components.html(
         ">
             Risk detection • Market comparison • Negotiation recommendations
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -308,7 +304,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">NLP Analysis</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">YC Backed</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -320,7 +315,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")

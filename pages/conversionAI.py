@@ -87,7 +87,7 @@ OPTIMIZATION_STRATEGIES = {
 }
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -110,7 +110,6 @@ components.html(
         ">
             <span style="font-size: 56px;">📊</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -120,7 +119,6 @@ components.html(
         ">
             Conversion AI
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -129,7 +127,6 @@ components.html(
         ">
             Marketing Conversion Optimization
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -138,7 +135,6 @@ components.html(
         ">
             AI-powered funnel analysis • Automated optimization • Revenue growth
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -153,7 +149,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">ROAS Tracking</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Revenue Growth</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -165,7 +160,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")
@@ -280,7 +275,7 @@ with tab1:
         for idx, (strategy, data) in enumerate(sorted_strategies[:3]):
             color = rank_colors[idx]
             
-            components.html(f"""
+            st.markdown(f"""
             <div style="background: white; border-left: 5px solid {color}; border-radius: 12px; padding: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <div>
@@ -307,7 +302,7 @@ with tab1:
                     </div>
                 </div>
             </div>
-            """, height=140)
+            """, unsafe_allow_html=True)
         
         total_lift = sum([s[1]['expected_lift'] for s in sorted_strategies[:3]])
         additional_conversions = int(total_purchases * total_lift)

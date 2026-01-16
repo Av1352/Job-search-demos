@@ -88,7 +88,7 @@ def create_plot(train_metrics, test_metrics):
     return fig
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -111,7 +111,6 @@ components.html(
         ">
             <span style="font-size: 56px;">🚀</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -120,7 +119,6 @@ components.html(
         ">
             ClearML
         </h1>
-
         <p style="
             font-size: 28px;
             color: #1f2937;
@@ -129,7 +127,6 @@ components.html(
         ">
             Experiment Tracking Dashboard
         </p>
-
         <p style="
             font-size: 18px;
             color: #6b7280;
@@ -138,7 +135,6 @@ components.html(
         ">
             Interactive ML Training with Auto-Magical Experiment Management
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -153,7 +149,6 @@ components.html(
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Open Source</span>
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">PyTorch</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: #374151;
@@ -165,7 +160,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")
@@ -229,7 +224,7 @@ with col2:
         st.info("🚀 Training simulation starting... (ClearML integration requires actual setup)")
         
         # Simulated training for demo purposes
-        components.html("""
+        st.markdown("""
         <div style="background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border: 3px solid #3b82f6; border-radius: 14px; padding: 28px;">
             <h2 style="color: #1e40af; font-size: 28px; font-weight: 900; margin: 0 0 24px 0;">🎉 Training Complete!</h2>
             
@@ -249,15 +244,13 @@ with col2:
                         <p style="color: #f59e0b; font-size: 32px; font-weight: 800; margin: 5px 0;">{int(epochs)}</p>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
             <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; padding: 20px; color: white; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 12px 0; font-size: 18px; font-weight: 700;">🔗 View in ClearML Dashboard</h3>
                 <p style="color: rgba(255,255,255,0.9); font-size: 14px; margin: 0;">
                     https://app.clear.ml/projects/MNIST-Classification/experiments/training-demo
                 </p>
-            </div>
-            
+            </div>            
             <div style="background: white; border-radius: 12px; padding: 20px;">
                 <h3 style="color: #1f2937; font-weight: 700; margin: 0 0 15px 0; font-size: 16px;">✅ Automatically Logged to ClearML:</h3>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;">
@@ -280,8 +273,7 @@ with col2:
                         <p style="margin: 0; color: #374151; font-size: 14px;">✓ Console output logs</p>
                     </div>
                 </div>
-            </div>
-            
+            </div>            
             <div style="background: rgba(59, 130, 246, 0.1); padding: 16px; border-radius: 8px; margin-top: 20px;">
                 <h4 style="color: #1e40af; font-weight: 700; margin: 0 0 10px 0; font-size: 14px;">📈 Next Steps:</h4>
                 <ul style="margin: 0; padding-left: 24px; color: #3b82f6; font-size: 13px; line-height: 2;">
@@ -292,7 +284,7 @@ with col2:
                 </ul>
             </div>
         </div>
-        """,height=875)
+        """,unsafe_allow_html=True)
         
         st.success(f"✅ Training completed with batch_size={batch_size}, lr={learning_rate}, hidden={hidden_size}")
 

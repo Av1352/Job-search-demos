@@ -95,7 +95,7 @@ def generate_patient_cohort(n_patients=100):
     return pd.DataFrame(patients)
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -118,7 +118,6 @@ components.html(
         ">
             <span style="font-size: 56px;">🏥</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -128,7 +127,6 @@ components.html(
         ">
             Akute Health Analytics
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -137,7 +135,6 @@ components.html(
         ">
             Patient Analytics & Clinical Decision Support
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -146,7 +143,6 @@ components.html(
         ">
             EMR analytics for digital health platforms
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -161,7 +157,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Clinical Insights</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">YC Backed</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -173,7 +168,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")

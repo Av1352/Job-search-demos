@@ -126,7 +126,7 @@ def create_performance_chart(df):
     return fig
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -149,7 +149,6 @@ components.html(
         ">
             <span style="font-size: 56px;">📈</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -159,7 +158,6 @@ components.html(
         ">
             Alinea Investment Intelligence
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -168,7 +166,6 @@ components.html(
         ">
             Portfolio Analysis • AI Recommendations
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -177,7 +174,6 @@ components.html(
         ">
             Smart investing for Gen Z with AI-powered insights
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -192,7 +188,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Diversification</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Performance</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -204,7 +199,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")
@@ -328,18 +323,16 @@ with tab2:
         # Tech allocation warning
         tech_allocation = sector_allocation.get('Technology', 0) / total_value * 100
         
-        components.html(f"""
+        st.markdown(f"""
         <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; margin-bottom: 25px;">
-            <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🤖 AI Investment Recommendations</h2>
-            
+            <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">🤖 AI Investment Recommendations</h2>            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; border: 2px solid rgba(255,255,255,0.2); margin-bottom: 15px;">
                 <p style="font-size: 18px; color: white; font-weight: 800; margin: 0 0 10px 0;">⚠️ Portfolio Concentration Risk</p>
                 <p style="font-size: 15px; color: rgba(255,255,255,0.9); margin: 0; line-height: 1.6;">
                     Your portfolio is <strong>{tech_allocation:.0f}%</strong> allocated to Technology sector. 
                     Consider diversifying into Healthcare, Financial, or Consumer sectors to reduce risk.
                 </p>
-            </div>
-            
+            </div>            
             <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border-radius: 16px; padding: 22px; border: 2px solid rgba(255,255,255,0.2);">
                 <p style="font-size: 18px; color: white; font-weight: 800; margin: 0 0 10px 0;">💡 Recommended Actions</p>
                 <p style="font-size: 15px; color: rgba(255,255,255,0.9); margin: 0; line-height: 1.6;">
@@ -349,7 +342,7 @@ with tab2:
                 </p>
             </div>
         </div>
-        """, height=450)
+        """, unsafe_allow_html=True)
         
         # Top performers
         top_performers = df.nlargest(3, 'gain_loss_pct')

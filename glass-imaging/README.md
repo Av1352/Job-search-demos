@@ -4,7 +4,7 @@
 
 Built for **Glass Imaging** by Anju Nandhakumar  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/Glass-imaging)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/glass_imaging)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

@@ -4,7 +4,7 @@
 
 Built for **PathAI** by **Anju Vilashni Nandhakumar** · MS in AI, Northeastern University (2025)  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/Av1352/pathai-tumor-detection)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/pathAI)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

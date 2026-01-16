@@ -291,8 +291,7 @@ with tab1:
                         <p style="font-size: 28px; color: {color}; font-weight: 900; margin: 0;">+{data['expected_lift']:.0%}</p>
                         <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Expected lift</p>
                     </div>
-                </div>
-                
+                </div>                
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px;">
                     <div style="background: #f9fafb; border-radius: 8px; padding: 10px; text-align: center;">
                         <p style="font-size: 11px; color: #6b7280; margin: 0;">Target Stage</p>

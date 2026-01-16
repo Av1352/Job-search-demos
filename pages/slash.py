@@ -333,31 +333,27 @@ st.markdown("""
 <hr style="border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;">
 
 <div style="background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%); padding: 35px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.08); margin-bottom: 30px;">
-    <h2 style="color: #667eea; margin: 0 0 25px 0; font-size: 32px; font-weight: 900; text-align: center;">🎯 Why This Matters for Slash</h2>
-    
+    <h2 style="color: #667eea; margin: 0 0 25px 0; font-size: 32px; font-weight: 900; text-align: center;">🎯 Why This Matters for Slash</h2>    
     <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 25px;">
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #10b981;">
             <h4 style="color: #10b981; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">💰 15% Lower Fees</h4>
             <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
                 Smart routing selects optimal processor per transaction. $15K savings per $1M processed.
             </p>
-        </div>
-        
+        </div>        
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #3b82f6;">
             <h4 style="color: #3b82f6; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">📈 8% Higher Success</h4>
             <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
                 Method-specific routing maximizes approval rates. Fewer failed transactions, happier customers.
             </p>
-        </div>
-        
+        </div>        
         <div style="background: white; padding: 24px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-top: 5px solid #ec4899;">
             <h4 style="color: #ec4899; margin: 0 0 12px 0; font-size: 18px; font-weight: 800;">⚡ 40% Faster</h4>
             <p style="color: #6b7280; font-size: 14px; line-height: 1.7; margin: 0;">
                 Real-time processor selection. Average 2-3s processing vs 5s+ manual routing.
             </p>
         </div>
-    </div>
-    
+    </div>    
     <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 16px; padding: 28px;">
         <h3 style="color: #065f46; margin: 0 0 18px 0; font-size: 24px; font-weight: 800;">⚡ Technical Features</h3>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
@@ -380,7 +376,6 @@ st.markdown("""
         </div>
     </div>
 </div>
-
 <div style="text-align: center; padding: 40px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; box-shadow: 0 12px 28px rgba(102, 126, 234, 0.35); color: white;">
     <h3 style="margin: 0 0 18px 0; font-size: 28px; font-weight: 900;">👨‍💻 About This Demo</h3>
     <p style="font-size: 18px; margin: 12px 0; font-weight: 600;">

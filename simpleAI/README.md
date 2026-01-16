@@ -4,7 +4,7 @@
 
 Built for **Simple AI** by **Anju Nandhakumar**  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/Av1352/simple-ai-phone-agent)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/simpleAI)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

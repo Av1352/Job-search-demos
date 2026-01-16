@@ -68,7 +68,7 @@ def compute_simple_diff(baseline, current):
     }
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -91,7 +91,6 @@ components.html(
         ">
             <span style="font-size: 56px;">👁️</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -101,7 +100,6 @@ components.html(
         ">
             VisionTest
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -110,7 +108,6 @@ components.html(
         ">
             Agentic Visual Testing Platform
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -119,7 +116,6 @@ components.html(
         ">
             Production CV + Multi-Agent System for VR/AR/Mobile UI Testing
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -134,7 +130,6 @@ components.html(
             <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Automated Eval</span>
             <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Production Ready</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -146,19 +141,18 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")
 
 # System overview
-components.html("""
+st.markdown("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
     <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2>
     <p style="color: #d1d5db; line-height: 1.8;">
         This platform demonstrates a complete visual regression testing pipeline using multi-agent AI
     </p>
-    
     <div style="margin-top: 20px;">
         <h3 style="color: #60a5fa;">Perception Pipeline:</h3>
         <ul style="color: #d1d5db; line-height: 1.8;">
@@ -166,7 +160,6 @@ components.html("""
             <li>Visual diffing (SSIM + pixel-level analysis)</li>
             <li>Defect detection (missing elements, layout shifts, clipping)</li>
         </ul>
-        
         <h3 style="color: #60a5fa;">Multi-Agent System:</h3>
         <ul style="color: #d1d5db; line-height: 1.8;">
             <li>Visual Diff Agent (SSIM-based comparison)</li>
@@ -176,7 +169,7 @@ components.html("""
         </ul>
     </div>
 </div>
-""", height=500)
+""", unsafe_allow_html=True)
 
 # Image upload
 col1, col2 = st.columns(2)
@@ -260,7 +253,7 @@ if test_btn:
 
 # Expandable sections
 with st.expander("📐 Computer Vision Algorithms"):
-    components.html("""
+    st.markdown("""
     <div style="background: #1f2937; padding: 20px; border-radius: 10px; color: #d1d5db;">
         <h3 style="color: #10b981;">SSIM (Structural Similarity Index)</h3>
         <p>Measures perceptual similarity between images</p>
@@ -268,8 +261,7 @@ with st.expander("📐 Computer Vision Algorithms"):
             <li>More perceptually accurate than MSE</li>
             <li>Captures structural changes humans notice</li>
             <li>Standard in image quality assessment</li>
-        </ul>
-        
+        </ul>        
         <h3 style="color: #10b981; margin-top: 25px;">ORB Features</h3>
         <p>Detects and matches UI elements</p>
         <ul>
@@ -278,7 +270,7 @@ with st.expander("📐 Computer Vision Algorithms"):
             <li>Works well for UI elements (buttons, icons)</li>
         </ul>
     </div>
-    """, height=375)
+    """, unsafe_allow_html=True)
 
 with st.expander("🤖 Multi-Agent Architecture"):
     st.markdown("""
@@ -302,7 +294,7 @@ with st.expander("🤖 Multi-Agent Architecture"):
 # Footer
 st.markdown("<hr style='border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;'>", unsafe_allow_html=True)
 
-components.html("""
+st.markdown("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px;">
     <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>
     
@@ -310,18 +302,15 @@ components.html("""
         Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
         <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>
     </p>
-    
     <div style="margin: 20px 0; padding: 15px; background: #111827; border-radius: 8px;">
         <p style="margin: 5px 0; color: #d1d5db;">📧 nandhakumar.anju@gmail.com</p>
         <p style="margin: 5px 0;"><a href="https://linkedin.com/in/anju-vilashni" style="color: #60a5fa;">💼 LinkedIn</a> | 
         <a href="https://github.com/Av1352" style="color: #60a5fa;">💻 GitHub</a> | 
         <a href="https://vxanju.com" style="color: #60a5fa;">🌐 Portfolio</a></p>
-    </div>
-    
+    </div>    
     <p style="color: #9ca3af; font-size: 14px; margin-top: 20px;">
         <strong style="color: #10b981;">Tech Stack:</strong> OpenCV, SSIM, ORB+FLANN, Multi-Agent Coordination, Production Logging
-    </p>
-    
+    </p>    
     <p style="color: #d1d5db; margin-top: 20px; line-height: 1.8;">
         <strong style="color: #10b981;">Why This Role:</strong> 
         This position combines my three core strengths: computer vision (medical imaging, 96% accuracy), 
@@ -329,4 +318,4 @@ components.html("""
         I understand the difference between research prototypes and production systems that ship weekly.
     </p>
 </div>
-""", height=375)
+""", unsafe_allow_html=True)

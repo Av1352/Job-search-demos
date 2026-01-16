@@ -292,7 +292,7 @@ def generate_tests(code_snippet, test_type, coverage_target):
     st.plotly_chart(fig_tests, use_container_width=True)
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -315,7 +315,6 @@ components.html(
         ">
             <span style="font-size: 56px;">🧪</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -325,7 +324,6 @@ components.html(
         ">
             Decipher Test AI
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -334,16 +332,14 @@ components.html(
         ">
             Automated Test Generation & QA
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
             font-weight: 500;
             margin-bottom: 25px;
         ">
-            AI-powered testing • Code coverage • Bug detection
+        AI-powered testing • Code coverage • Bug detection
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -358,7 +354,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Bug Detection</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">YC Backed</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -370,7 +365,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")

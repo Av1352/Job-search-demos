@@ -294,26 +294,24 @@ with st.expander("🤖 Multi-Agent Architecture"):
 st.markdown("<hr style='border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;'>", unsafe_allow_html=True)
 
 st.markdown("""
-<div style="background: #1f2937; padding: 25px; border-radius: 12px;">
-    <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>    
-    <p style="color: #d1d5db; line-height: 1.8;">
-        Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
-        <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>
-    </p>
-    <div style="margin: 20px 0; padding: 15px; background: #111827; border-radius: 8px;">
-        <p style="margin: 5px 0; color: #d1d5db;">📧 nandhakumar.anju@gmail.com</p>
-        <p style="margin: 5px 0;"><a href="https://linkedin.com/in/anju-vilashni" style="color: #60a5fa;">💼 LinkedIn</a> | 
-        <a href="https://github.com/Av1352" style="color: #60a5fa;">💻 GitHub</a> | 
-        <a href="https://vxanju.com" style="color: #60a5fa;">🌐 Portfolio</a></p>
-    </div>    
-    <p style="color: #9ca3af; font-size: 14px; margin-top: 20px;">
-        <strong style="color: #10b981;">Tech Stack:</strong> OpenCV, SSIM, ORB+FLANN, Multi-Agent Coordination, Production Logging
-    </p>    
-    <p style="color: #d1d5db; margin-top: 20px; line-height: 1.8;">
-        <strong style="color: #10b981;">Why This Role:</strong> 
-        This position combines my three core strengths: computer vision (medical imaging, 96% accuracy), 
-        ML engineering (production deployments), and systems engineering (modular, debuggable code). 
-        I understand the difference between research prototypes and production systems that ship weekly.
-    </p>
-</div>
+    <div style="background: #1f2937; padding: 25px; border-radius: 12px;">
+        <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>    
+        <p style="color: #d1d5db; line-height: 1.8;"> Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
+            <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong></p>
+        <div style="margin: 20px 0; padding: 15px; background: #111827; border-radius: 8px;">
+            <p style="margin: 5px 0; color: #d1d5db;">📧 nandhakumar.anju@gmail.com</p>
+            <p style="margin: 5px 0;"><a href="https://linkedin.com/in/anju-vilashni" style="color: #60a5fa;">💼 LinkedIn</a> | 
+            <a href="https://github.com/Av1352" style="color: #60a5fa;">💻 GitHub</a> | 
+            <a href="https://vxanju.com" style="color: #60a5fa;">🌐 Portfolio</a></p>
+        </div>    
+        <p style="color: #9ca3af; font-size: 14px; margin-top: 20px;">
+            <strong style="color: #10b981;">Tech Stack:</strong> OpenCV, SSIM, ORB+FLANN, Multi-Agent Coordination, Production Logging
+        </p>    
+        <p style="color: #d1d5db; margin-top: 20px; line-height: 1.8;">
+            <strong style="color: #10b981;">Why This Role:</strong> 
+            This position combines my three core strengths: computer vision (medical imaging, 96% accuracy), 
+            ML engineering (production deployments), and systems engineering (modular, debuggable code). 
+            I understand the difference between research prototypes and production systems that ship weekly.
+        </p>
+    </div>
 """, unsafe_allow_html=True)

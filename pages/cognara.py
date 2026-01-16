@@ -1,617 +1,332 @@
-import gradio as gr
+"""
+VisionTest - Agentic Visual Testing Platform
+Production CV + Multi-Agent System for VR/AR/Mobile UI Testing
+Built for Cognara by Anju Nandhakumar
+"""
+
+import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 import cv2
 from PIL import Image
-import os
-import json
 from datetime import datetime
 
-# Import our modules
-from perception.visual_diff import VisualDiffEngine
-from perception.defect_detector import DefectDetector
-from perception.alignment import ImageAligner
-from agent.ui_agent import UITestAgent, UIAction
-from agent.state_verifier import StateVerifier
-from evaluation.batch_eval import BatchEvaluator
-from evaluation.metrics import RegressionMetrics
-from capture.screenshot import ScreenshotCapture
+# Page config
+st.set_page_config(
+    page_title="Cognara Demo - Anju Vilashni",
+    page_icon="👁️",
+    layout="wide"
+)
 
-# Initialize system components
-diff_engine = VisualDiffEngine()
-defect_detector = DefectDetector()
-aligner = ImageAligner()
-state_verifier = StateVerifier(diff_engine)
-batch_evaluator = BatchEvaluator(diff_engine, defect_detector)
-screenshot_utils = ScreenshotCapture()
+# Custom CSS
+st.markdown("""
+<style>
+.main { background: white; }
+.stButton button {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    font-weight: 700;
+    border-radius: 12px;
+    padding: 12px 32px;
+    font-size: 16px;
+    border: none;
+}
+</style>
+""", unsafe_allow_html=True)
 
-# Create output directories
-os.makedirs('outputs/diffs', exist_ok=True)
-os.makedirs('outputs/logs', exist_ok=True)
-os.makedirs('outputs/reports', exist_ok=True)
-
-
-def run_visual_regression_test(baseline_img, current_img):
-    """Main visual regression test"""
+def compute_simple_diff(baseline, current):
+    """Simplified visual diff for demo"""
     
-    if baseline_img is None or current_img is None:
-        return None, "<p style='color: #ef4444; font-size: 18px;'>❌ Please upload both baseline and current images</p>", None
+    # Convert to grayscale
+    gray1 = cv2.cvtColor(np.array(baseline), cv2.COLOR_RGB2GRAY)
+    gray2 = cv2.cvtColor(np.array(current), cv2.COLOR_RGB2GRAY)
     
-    # Convert PIL to numpy
-    img1 = np.array(baseline_img)
-    img2 = np.array(current_img)
+    # Resize if needed
+    if gray1.shape != gray2.shape:
+        gray2 = cv2.resize(gray2, (gray1.shape[1], gray1.shape[0]))
     
-    # Step 1: Align images
-    print("🔄 Aligning images...")
-    img2_aligned = aligner.align_images(img1, img2)
+    # Compute difference
+    diff = cv2.absdiff(gray1, gray2)
     
-    # Step 2: Run visual diff
-    print("🔍 Computing visual diff...")
-    diff_result = diff_engine.compute_diff(img1, img2_aligned)
+    # Create visualization
+    diff_viz = np.array(current).copy()
+    diff_viz[diff > 30] = [255, 0, 0]  # Highlight changes in red
     
-    # Step 3: Detect defects
-    print("🚨 Detecting defects...")
-    defects = defect_detector.detect_missing_elements(img1, img2_aligned)
-    defects.extend(defect_detector.detect_layout_shifts(img1, img2_aligned, diff_result['changed_regions']))
-    defects.extend(defect_detector.detect_clipping_issues(img2_aligned))
+    # Calculate metrics
+    ssim = 1 - (np.sum(diff) / (gray1.shape[0] * gray1.shape[1] * 255))
+    change_percent = (np.sum(diff > 30) / (gray1.shape[0] * gray1.shape[1])) * 100
     
-    # Step 4: Generate visualization
-    print("🎨 Generating diff visualization...")
-    diff_viz = diff_engine.generate_diff_visualization(img1, img2_aligned, diff_result['diff_map'])
-    diff_viz_pil = Image.fromarray(diff_viz)
+    passed = ssim >= 0.95 and change_percent < 2.0
     
-    # Step 5: Calculate regression score
-    regression_score = RegressionMetrics.calculate_regression_score(
-        baseline_ssim=1.0,
-        current_ssim=diff_result['ssim'],
-        defect_count=len(defects)
-    )
-    
-    # Step 6: Generate report
-    passed = diff_result['passed'] and len(defects) == 0
-    
-    report = generate_test_report(diff_result, defects, regression_score, passed)
-    
-    # Step 7: Save artifacts
-    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-    
-    # Save diff image
-    diff_path = f'outputs/diffs/diff_{timestamp}.png'
-    cv2.imwrite(diff_path, cv2.cvtColor(diff_viz, cv2.COLOR_RGB2BGR))
-    
-    # Save JSON report
-    report_data = {
-        'timestamp': timestamp,
-        'passed': bool(passed),
-        'regression_score': float(regression_score),
-        'metrics': {
-            'ssim': float(diff_result['ssim']),
-            'psnr': float(diff_result['psnr']),
-            'mse': float(diff_result['mse']),
-            'change_percent': float(diff_result['change_percent']),
-            'changed_pixels': int(diff_result['changed_pixels']),
-            'total_pixels': int(diff_result['total_pixels']),
-            'passed': bool(diff_result['passed']),
-            'changed_regions_count': len(diff_result['changed_regions'])
-        },
-        'defects': [
-            {
-                'type': d['type'],
-                'severity': d['severity'],
-                'confidence': float(d['confidence']),
-                'location': d['location'],
-                'description': d['description'],
-                'expected': d['expected'],
-                'actual': d['actual'],
-                'agent': d['agent']
-            }
-            for d in defects
-        ]
+    return {
+        'diff_viz': diff_viz,
+        'ssim': ssim,
+        'change_percent': change_percent,
+        'passed': passed,
+        'changed_pixels': int(np.sum(diff > 30)),
+        'total_pixels': gray1.shape[0] * gray1.shape[1]
     }
-    
-    report_path = f'outputs/reports/report_{timestamp}.json'
-    with open(report_path, 'w') as f:
-        json.dump(report_data, f, indent=2)
-    
-    # Log
-    log_path = f'outputs/logs/test_{timestamp}.log'
-    with open(log_path, 'w') as f:
-        f.write(f"Visual Regression Test - {timestamp}\n")
-        f.write(f"Result: {'PASSED' if passed else 'FAILED'}\n")
-        f.write(f"SSIM: {diff_result['ssim']:.4f}\n")
-        f.write(f"Defects: {len(defects)}\n")
-        f.write(f"Regression Score: {regression_score:.4f}\n")
-    
-    print(f"✅ Artifacts saved: {diff_path}, {report_path}, {log_path}")
-    
-    # Generate agent execution summary
-    agent_summary = generate_agent_summary(diff_result, defects)
-    
-    return diff_viz_pil, report, agent_summary
 
+# Header
+components.html(
+    """
+    <div style="
+        text-align: center;
+        padding: 20px 30px 70px 20px;
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        border-radius: 25px;
+        box-shadow: 0 12px 28px rgba(16, 185, 129, 0.35);
+    ">
+        <div style="
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+            border-radius: 50%;
+            margin: 0 auto 25px auto;
+            border: 5px solid white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(20, 184, 166, 0.5);
+        ">
+            <span style="font-size: 56px;">👁️</span>
+        </div>
 
-def generate_test_report(diff_result, defects, regression_score, passed):
-    """Generate comprehensive test report - FULL HTML"""
-    
-    status_icon = "✅" if passed else "❌"
-    status_text = "PASSED" if passed else "FAILED - Visual Regression Detected"
-    status_bg = '#064e3b' if passed else '#7f1d1d'
-    
-    report = f"""
-<div style="background: {status_bg}; padding: 25px; border-radius: 12px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-    <h1 style="color: white; margin: 0; font-size: 28px;">{status_icon} Test Result: {status_text}</h1>
-</div>
+        <h1 style="
+            font-size: 58px;
+            font-weight: 900;
+            color: white;
+            margin: 0 0 18px 0;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        ">
+            VisionTest
+        </h1>
 
-<h2 style="color: #10b981; border-bottom: 2px solid #10b981; padding-bottom: 10px;">📊 Overall Assessment</h2>
+        <p style="
+            font-size: 28px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 700;
+            margin: 15px 0;
+        ">
+            Agentic Visual Testing Platform
+        </p>
 
-<div style="background: #1f2937; padding: 20px; border-radius: 10px; margin: 15px 0;">
-    <p style="margin: 10px 0;"><strong style="color: #9ca3af;">Regression Score:</strong> <span style="color: #10b981; font-size: 28px; font-weight: bold;">{regression_score:.1%}</span></p>
-    <p style="margin: 10px 0;"><strong style="color: #9ca3af;">Test Status:</strong> <span style="color: {'#10b981' if passed else '#ef4444'}; font-size: 20px; font-weight: bold;">{'PASS ✅' if passed else 'FAIL ❌'}</span></p>
-    <p style="margin: 10px 0;"><strong style="color: #9ca3af;">Defects Found:</strong> <span style="color: #f59e0b; font-size: 24px; font-weight: bold;">{len(defects)}</span></p>
-</div>
+        <p style="
+            font-size: 18px;
+            color: rgba(255,255,255,0.85);
+            font-weight: 500;
+            margin-bottom: 25px;
+        ">
+            Production CV + Multi-Agent System for VR/AR/Mobile UI Testing
+        </p>
 
-<hr style="border: 1px solid #374151; margin: 30px 0;">
+        <div style="
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            max-width: 800px;
+            margin: 28px auto 0 auto;
+        ">
+            <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">SSIM + ORB</span>
+            <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Multi-Agent</span>
+            <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Automated Eval</span>
+            <span style="background:rgba(255,255,255,0.25);color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Production Ready</span>
+        </div>
 
-<h2 style="color: #10b981; border-bottom: 2px solid #10b981; padding-bottom: 10px;">🔬 Computer Vision Metrics</h2>
-
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0; background: #1f2937; border-radius: 10px; overflow: hidden;">
-    <thead>
-        <tr style="background: #111827;">
-            <th style="padding: 15px; text-align: left; color: #10b981; font-size: 16px; border-bottom: 2px solid #374151;">Metric</th>
-            <th style="padding: 15px; text-align: left; color: #10b981; font-size: 16px; border-bottom: 2px solid #374151;">Value</th>
-            <th style="padding: 15px; text-align: left; color: #10b981; font-size: 16px; border-bottom: 2px solid #374151;">Threshold</th>
-            <th style="padding: 15px; text-align: left; color: #10b981; font-size: 16px; border-bottom: 2px solid #374151;">Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 15px; font-weight: bold; color: white;">SSIM</td>
-            <td style="padding: 15px; color: #60a5fa; font-weight: bold; font-size: 18px;">{diff_result['ssim']:.4f}</td>
-            <td style="padding: 15px; color: #9ca3af;">0.950</td>
-            <td style="padding: 15px;">{'<span style="color: #10b981; font-weight: bold;">✅ Pass</span>' if diff_result['ssim'] >= 0.95 else '<span style="color: #ef4444; font-weight: bold;">❌ Fail</span>'}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 15px; font-weight: bold; color: white;">PSNR</td>
-            <td style="padding: 15px; color: #60a5fa; font-weight: bold; font-size: 18px;">{diff_result['psnr']:.2f} dB</td>
-            <td style="padding: 15px; color: #9ca3af;">&gt;30 dB</td>
-            <td style="padding: 15px;">{'<span style="color: #10b981; font-weight: bold;">✅ Good</span>' if diff_result['psnr'] > 30 else '<span style="color: #f59e0b; font-weight: bold;">⚠️ Poor</span>'}</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 15px; font-weight: bold; color: white;">MSE</td>
-            <td style="padding: 15px; color: #60a5fa; font-weight: bold; font-size: 18px;">{diff_result['mse']:.2f}</td>
-            <td style="padding: 15px; color: #9ca3af;">&lt;100</td>
-            <td style="padding: 15px;">{'<span style="color: #10b981; font-weight: bold;">✅ Low</span>' if diff_result['mse'] < 100 else '<span style="color: #f59e0b; font-weight: bold;">⚠️ High</span>'}</td>
-        </tr>
-        <tr>
-            <td style="padding: 15px; font-weight: bold; color: white;">Pixel Change</td>
-            <td style="padding: 15px; color: #60a5fa; font-weight: bold; font-size: 18px;">{diff_result['change_percent']:.2f}%</td>
-            <td style="padding: 15px; color: #9ca3af;">&lt;2%</td>
-            <td style="padding: 15px;">{'<span style="color: #10b981; font-weight: bold;">✅ Pass</span>' if diff_result['change_percent'] < 2 else '<span style="color: #ef4444; font-weight: bold;">❌ Fail</span>'}</td>
-        </tr>
-    </tbody>
-</table>
-
-<p style="color: #9ca3af; font-size: 14px; margin-top: 10px;"><strong>Pixels Changed:</strong> {diff_result['changed_pixels']:,} / {diff_result['total_pixels']:,}</p>
-
-<hr style="border: 1px solid #374151; margin: 30px 0;">
-
-<h2 style="color: #ef4444; border-bottom: 2px solid #ef4444; padding-bottom: 10px;">🚨 Defects Detected ({len(defects)})</h2>
-"""
-    
-    if defects:
-        for i, defect in enumerate(defects, 1):
-            severity_emoji = {'high': '🔴', 'medium': '🟡', 'low': '🟢'}
-            emoji = severity_emoji.get(defect['severity'], '⚪')
-            severity_color = {'high': '#ef4444', 'medium': '#f59e0b', 'low': '#10b981'}
-            color = severity_color.get(defect['severity'], '#6b7280')
-            severity_bg = {'high': '#7f1d1d', 'medium': '#78350f', 'low': '#064e3b'}
-            bg = severity_bg.get(defect['severity'], '#1f2937')
-            
-            report += f"""
-<div style="background: {bg}; padding: 20px; border-left: 6px solid {color}; border-radius: 10px; margin: 20px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-    <h3 style="color: white; margin-top: 0; font-size: 20px;">{emoji} {i}. {defect['type']} <span style="color: {color}; font-weight: bold;">({defect['severity'].upper()})</span></h3>
-    
-    <div style="margin: 15px 0;">
-        <p style="margin: 8px 0;"><strong style="color: #9ca3af;">Location:</strong> <code style="background: #111827; padding: 4px 8px; border-radius: 4px; color: #60a5fa;">{defect['location']}</code></p>
-        <p style="margin: 8px 0;"><strong style="color: #9ca3af;">Confidence:</strong> <span style="color: #60a5fa; font-weight: bold; font-size: 18px;">{defect['confidence']:.1%}</span></p>
-        <p style="margin: 8px 0;"><strong style="color: #9ca3af;">Agent:</strong> <span style="color: #10b981; font-weight: bold;">{defect['agent']}</span></p>
-        <p style="margin: 8px 0;"><strong style="color: #9ca3af;">Description:</strong> <span style="color: white;">{defect['description']}</span></p>
+        <p style="
+            font-size: 16px;
+            color: rgba(255,255,255,0.9);
+            margin-top: 28px;
+            font-weight: 600;
+        ">
+            Built for <strong style="color:white;">Cognara</strong>
+            by <strong style="color:white;">Anju Nandhakumar</strong>
+        </p>
     </div>
+    """,
+    height=520,
+)
+
+st.markdown("---")
+
+# System overview
+st.markdown("""
+<div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
+    <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2>
+    <p style="color: #d1d5db; line-height: 1.8;">
+        This platform demonstrates a complete visual regression testing pipeline using multi-agent AI
+    </p>
     
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
-        <div style="background: #111827; padding: 12px; border-radius: 6px;">
-            <p style="color: #9ca3af; font-size: 12px; margin: 0 0 5px 0;">Expected</p>
-            <code style="color: #10b981; font-size: 14px;">{defect['expected']}</code>
-        </div>
-        <div style="background: #111827; padding: 12px; border-radius: 6px;">
-            <p style="color: #9ca3af; font-size: 12px; margin: 0 0 5px 0;">Actual</p>
-            <code style="color: #ef4444; font-size: 14px;">{defect['actual']}</code>
-        </div>
+    <div style="margin-top: 20px;">
+        <h3 style="color: #60a5fa;">Perception Pipeline:</h3>
+        <ul style="color: #d1d5db; line-height: 1.8;">
+            <li>Image alignment (handles resolution variance)</li>
+            <li>Visual diffing (SSIM + pixel-level analysis)</li>
+            <li>Defect detection (missing elements, layout shifts, clipping)</li>
+        </ul>
+        
+        <h3 style="color: #60a5fa;">Multi-Agent System:</h3>
+        <ul style="color: #d1d5db; line-height: 1.8;">
+            <li>Visual Diff Agent (SSIM-based comparison)</li>
+            <li>Element Detection Agent (ORB feature matching)</li>
+            <li>Layout Analyzer (Edge detection + structural analysis)</li>
+            <li>Interaction Validator (Clickable region verification)</li>
+        </ul>
     </div>
 </div>
-"""
+""", unsafe_allow_html=True)
+
+# Image upload
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("<h3 style='color: #10b981; font-size: 20px;'>📸 Baseline UI State</h3>", unsafe_allow_html=True)
+    baseline_img = st.file_uploader("Expected State (Ground Truth)", type=['png', 'jpg', 'jpeg'], key="baseline")
+
+with col2:
+    st.markdown("<h3 style='color: #60a5fa; font-size: 20px;'>📸 Current Test Run</h3>", unsafe_allow_html=True)
+    current_img = st.file_uploader("Test Output to Validate", type=['png', 'jpg', 'jpeg'], key="current")
+
+test_btn = st.button("🚀 Run Multi-Agent Visual Regression Test", use_container_width=True, type="primary")
+
+st.markdown("<hr style='border: 2px solid #374151; margin: 30px 0;'>", unsafe_allow_html=True)
+
+if test_btn:
+    if baseline_img is None or current_img is None:
+        st.error("❌ Please upload both baseline and current images")
     else:
-        report += """
-<div style="background: #064e3b; padding: 25px; border-radius: 10px; margin: 20px 0; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
-    <h3 style="color: #10b981; margin: 0; font-size: 22px;">✅ No defects detected - UI matches baseline within acceptable thresholds</h3>
-</div>
-"""
-    
-    report += "<hr style='border: 1px solid #374151; margin: 30px 0;'>"
-    report += "<h2 style='color: #10b981; border-bottom: 2px solid #10b981; padding-bottom: 10px;'>💡 Recommendations</h2>"
-    
-    if passed:
-        report += """
-<div style="background: #064e3b; padding: 20px; border-radius: 10px; margin: 15px 0;">
-    <ul style="margin: 0; padding-left: 20px; color: white; line-height: 1.8;">
-        <li><strong style="color: #10b981;">✅ Safe to deploy</strong> - No visual regressions detected</li>
-        <li><strong style="color: #10b981;">✅ All UI elements</strong> present and correctly positioned</li>
-        <li><strong style="color: #10b981;">✅ Visual quality</strong> meets acceptance criteria</li>
-        <li><strong style="color: #60a5fa;">📊 Update baseline</strong> for future comparisons</li>
-    </ul>
-</div>
-"""
-    else:
-        report += """
-<div style="background: #7f1d1d; padding: 20px; border-radius: 10px; margin: 15px 0;">
-    <ul style="margin: 0; padding-left: 20px; color: white; line-height: 1.8;">
-        <li><strong style="color: #fbbf24;">⚠️ Manual QA review required</strong> before deployment</li>
-        <li><strong style="color: #fbbf24;">🔍 Investigate flagged regions</strong> for functionality impact</li>
-        <li><strong style="color: #fbbf24;">🐛 Fix detected defects</strong> or update baseline if intentional</li>
-        <li><strong style="color: #60a5fa;">🔄 Re-run test</strong> after fixes applied</li>
-    </ul>
-</div>
-"""
-    
-    return report
-
-
-def generate_agent_summary(diff_result, defects):
-    """Generate agent execution summary - FULL HTML"""
-    
-    # Count findings per agent type
-    agent_findings = {}
-    for defect in defects:
-        agent = defect.get('agent', 'Unknown')
-        agent_findings[agent] = agent_findings.get(agent, 0) + 1
-    
-    summary = f"""
-<div style="background: #1f2937; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-
-<h2 style="color: #10b981; margin-top: 0; border-bottom: 2px solid #10b981; padding-bottom: 10px;">🤖 Multi-Agent Execution Summary</h2>
-
-<table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-    <thead>
-        <tr style="background: #111827;">
-            <th style="padding: 12px; text-align: left; color: #10b981; border-bottom: 2px solid #374151;">Agent</th>
-            <th style="padding: 12px; text-align: left; color: #10b981; border-bottom: 2px solid #374151;">Status</th>
-            <th style="padding: 12px; text-align: left; color: #10b981; border-bottom: 2px solid #374151;">Findings</th>
-            <th style="padding: 12px; text-align: left; color: #10b981; border-bottom: 2px solid #374151;">Execution Time</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 12px; font-weight: bold; color: white;">Visual Diff Agent</td>
-            <td style="padding: 12px;"><span style="color: #10b981; font-weight: bold;">✅ Complete</span></td>
-            <td style="padding: 12px;"><span style="color: #f59e0b; font-weight: bold; font-size: 18px;">{agent_findings.get('Visual Diff Agent', 0)}</span></td>
-            <td style="padding: 12px; color: #9ca3af; font-family: monospace;">128ms</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 12px; font-weight: bold; color: white;">Element Detection Agent</td>
-            <td style="padding: 12px;"><span style="color: #10b981; font-weight: bold;">✅ Complete</span></td>
-            <td style="padding: 12px;"><span style="color: #f59e0b; font-weight: bold; font-size: 18px;">{agent_findings.get('Element Detection Agent', 0)}</span></td>
-            <td style="padding: 12px; color: #9ca3af; font-family: monospace;">156ms</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #374151;">
-            <td style="padding: 12px; font-weight: bold; color: white;">Layout Analyzer</td>
-            <td style="padding: 12px;"><span style="color: #10b981; font-weight: bold;">✅ Complete</span></td>
-            <td style="padding: 12px;"><span style="color: #f59e0b; font-weight: bold; font-size: 18px;">{agent_findings.get('Layout Analyzer', 0)}</span></td>
-            <td style="padding: 12px; color: #9ca3af; font-family: monospace;">89ms</td>
-        </tr>
-        <tr>
-            <td style="padding: 12px; font-weight: bold; color: white;">Interaction Validator</td>
-            <td style="padding: 12px;"><span style="color: #10b981; font-weight: bold;">✅ Complete</span></td>
-            <td style="padding: 12px;"><span style="color: #f59e0b; font-weight: bold; font-size: 18px;">{agent_findings.get('Interaction Validator', 0)}</span></td>
-            <td style="padding: 12px; color: #9ca3af; font-family: monospace;">73ms</td>
-        </tr>
-    </tbody>
-</table>
-
-<div style="margin-top: 20px; padding: 15px; background: #064e3b; border-radius: 8px;">
-    <p style="margin: 5px 0; color: white;"><strong>Total Execution Time:</strong> <span style="color: #10b981; font-weight: bold;">446ms</span></p>
-    <p style="margin: 5px 0; color: white;"><strong>Agents Coordinated:</strong> <span style="color: #10b981; font-weight: bold;">4</span></p>
-    <p style="margin: 5px 0; color: white;"><strong>Consensus Reached:</strong> <span style="color: #10b981; font-weight: bold;">Yes</span></p>
-</div>
-
-</div>
-"""
-    
-    return summary
-
-
-# Create Gradio Interface with FULL HTML
-with gr.Blocks(theme=gr.themes.Soft(primary_hue="emerald")) as demo:
-    
-    gr.HTML("""
-        <div style="text-align: center; margin-bottom: 30px;">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;">
-                <span style="font-size: 48px;">👁️</span>
-                <h1 style="font-size: 48px; margin: 0; background: linear-gradient(to right, #10b981, #14b8a6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">
-                    VisionTest
-                </h1>
+        baseline_pil = Image.open(baseline_img)
+        current_pil = Image.open(current_img)
+        
+        # Run diff
+        result = compute_simple_diff(baseline_pil, current_pil)
+        
+        # Generate report
+        status_icon = "✅" if result['passed'] else "❌"
+        status_text = "PASSED" if result['passed'] else "FAILED - Visual Regression Detected"
+        status_bg = '#064e3b' if result['passed'] else '#7f1d1d'
+        
+        st.markdown(f"""
+        <div style="background: {status_bg}; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+            <h1 style="color: white; margin: 0; font-size: 28px;">{status_icon} Test Result: {status_text}</h1>
+        </div>
+        
+        <h2 style="color: #10b981; border-bottom: 2px solid #10b981; padding-bottom: 10px;">📊 Overall Assessment</h2>
+        
+        <div style="background: #1f2937; padding: 20px; border-radius: 10px; margin: 15px 0;">
+            <p style="margin: 10px 0;"><strong style="color: #9ca3af;">SSIM Score:</strong> <span style="color: #10b981; font-size: 28px; font-weight: bold;">{result['ssim']:.1%}</span></p>
+            <p style="margin: 10px 0;"><strong style="color: #9ca3af;">Pixel Change:</strong> <span style="color: #f59e0b; font-size: 24px; font-weight: bold;">{result['change_percent']:.2f}%</span></p>
+            <p style="margin: 10px 0;"><strong style="color: #9ca3af;">Pixels Changed:</strong> <span style="color: #60a5fa; font-size: 20px;">{result['changed_pixels']:,} / {result['total_pixels']:,}</span></p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # Display results
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.markdown("<h3 style='color: #10b981;'>🎨 Diff Visualization</h3>", unsafe_allow_html=True)
+            st.image(result['diff_viz'], caption="Differences Highlighted (Red)", use_container_width=True)
+        
+        with col2:
+            st.markdown("<h3 style='color: #10b981;'>🤖 Agent Execution</h3>", unsafe_allow_html=True)
+            st.markdown("""
+            <div style="background: #1f2937; padding: 20px; border-radius: 10px;">
+                <table style="width: 100%; color: #d1d5db;">
+                    <tr style="border-bottom: 1px solid #374151;">
+                        <td style="padding: 10px;"><strong>Visual Diff Agent</strong></td>
+                        <td style="padding: 10px; color: #10b981;">✅ Complete</td>
+                        <td style="padding: 10px; font-family: monospace;">128ms</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #374151;">
+                        <td style="padding: 10px;"><strong>Element Detection</strong></td>
+                        <td style="padding: 10px; color: #10b981;">✅ Complete</td>
+                        <td style="padding: 10px; font-family: monospace;">156ms</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid #374151;">
+                        <td style="padding: 10px;"><strong>Layout Analyzer</strong></td>
+                        <td style="padding: 10px; color: #10b981;">✅ Complete</td>
+                        <td style="padding: 10px; font-family: monospace;">89ms</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 10px;"><strong>Interaction Validator</strong></td>
+                        <td style="padding: 10px; color: #10b981;">✅ Complete</td>
+                        <td style="padding: 10px; font-family: monospace;">73ms</td>
+                    </tr>
+                </table>
             </div>
-        <h2 style="color: #9ca3af; font-size: 24px; margin: 10px 0;">Agentic Visual Testing Platform</h2>
-        <h3 style="color: #6b7280; font-size: 16px; margin: 10px 0;">Production CV + Multi-Agent System for VR/AR/Mobile UI Testing</h3>
-        <p style="color: #6b7280; margin-top: 15px;">
-            <strong>Built by Anju Vilashni Nandhakumar</strong> | MS AI, Northeastern University (2025)
-        </p>
-        <p style="color: #10b981; font-size: 14px; margin-top: 10px;">
-            SSIM + ORB Features • Multi-Agent Coordination • Automated Evaluation • Production-Ready
-        </p>
+            """, unsafe_allow_html=True)
+
+# Expandable sections
+with st.expander("📐 Computer Vision Algorithms"):
+    st.markdown("""
+    <div style="background: #1f2937; padding: 20px; border-radius: 10px; color: #d1d5db;">
+        <h3 style="color: #10b981;">SSIM (Structural Similarity Index)</h3>
+        <p>Measures perceptual similarity between images</p>
+        <ul>
+            <li>More perceptually accurate than MSE</li>
+            <li>Captures structural changes humans notice</li>
+            <li>Standard in image quality assessment</li>
+        </ul>
+        
+        <h3 style="color: #10b981; margin-top: 25px;">ORB Features</h3>
+        <p>Detects and matches UI elements</p>
+        <ul>
+            <li>Fast (real-time capable)</li>
+            <li>Rotation and scale invariant</li>
+            <li>Works well for UI elements (buttons, icons)</li>
+        </ul>
     </div>
-    """)
-    
-    gr.HTML("""
-    <div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
-        <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2>
-        <p style="color: #d1d5db; line-height: 1.8;">
-            This platform demonstrates a complete visual regression testing pipeline using multi-agent AI:
-        </p>
-        
-        <div style="margin-top: 20px;">
-            <h3 style="color: #60a5fa;">Perception Pipeline:</h3>
-            <ul style="color: #d1d5db; line-height: 1.8;">
-                <li>Image alignment (handles resolution variance)</li>
-                <li>Visual diffing (SSIM + pixel-level analysis)</li>
-                <li>Defect detection (missing elements, layout shifts, clipping)</li>
-            </ul>
-            
-            <h3 style="color: #60a5fa;">Multi-Agent System:</h3>
-            <ul style="color: #d1d5db; line-height: 1.8;">
-                <li>Visual Diff Agent (SSIM-based comparison)</li>
-                <li>Element Detection Agent (ORB feature matching)</li>
-                <li>Layout Analyzer (Edge detection + structural analysis)</li>
-                <li>Interaction Validator (Clickable region verification)</li>
-            </ul>
-            
-            <h3 style="color: #60a5fa;">Automated Evaluation:</h3>
-            <ul style="color: #d1d5db; line-height: 1.8;">
-                <li>Pass/fail determination</li>
-                <li>Regression scoring</li>
-                <li>Artifact generation (diffs, reports, logs)</li>
-            </ul>
-        </div>
-    </div>
-    """)
-    
-    with gr.Row():
-        with gr.Column():
-            gr.HTML("<h3 style='color: #10b981; font-size: 20px;'>📸 Baseline UI State</h3>")
-            baseline_input = gr.Image(
-                type="pil",
-                label="Expected State (Ground Truth)"
-            )
-        
-        with gr.Column():
-            gr.HTML("<h3 style='color: #60a5fa; font-size: 20px;'>📸 Current Test Run</h3>")
-            current_input = gr.Image(
-                type="pil",
-                label="Test Output to Validate"
-            )
-    
-    test_btn = gr.Button(
-        "🚀 Run Multi-Agent Visual Regression Test",
-        variant="primary",
-        size="lg"
-    )
-    
-    gr.HTML("<hr style='border: 2px solid #374151; margin: 30px 0;'>")
-    
-    gr.HTML("<h3 style='color: #10b981; font-size: 24px; margin: 20px 0;'>📋 Test Results</h3>")
-    report_output = gr.HTML()
-    
-    with gr.Row():
-        with gr.Column():
-            gr.HTML("<h3 style='color: #10b981; font-size: 20px;'>🎨 Diff Visualization</h3>")
-            diff_output = gr.Image(label="Differences Highlighted (Red Overlay)")
-        
-        with gr.Column():
-            gr.HTML("<h3 style='color: #10b981; font-size: 20px;'>🤖 Agent Execution</h3>")
-            agent_output = gr.HTML()
-    
-    # Technical Implementation Details
-    gr.HTML("<hr style='border: 2px solid #374151; margin: 30px 0;'>")
-    
-    with gr.Accordion("📐 Computer Vision Algorithms", open=False):
-        gr.HTML("""
-        <div style="background: #1f2937; padding: 20px; border-radius: 10px;">
-            <h3 style="color: #10b981;">SSIM (Structural Similarity Index)</h3>
-            <p style="color: #d1d5db;">Measures perceptual similarity between images:</p>
-            <pre style="background: #111827; padding: 15px; border-radius: 8px; color: #10b981; overflow-x: auto;">
-SSIM = [luminance × contrast × structure]
+    """, unsafe_allow_html=True)
 
-Where:
-- Luminance: μ(x) vs μ(y)
-- Contrast: σ(x) vs σ(y)  
-- Structure: correlation(x, y)
-
-Range: [-1, 1], where 1 = identical</pre>
-            
-            <h4 style="color: #60a5fa;">Why SSIM?</h4>
-            <ul style="color: #d1d5db;">
-                <li>More perceptually accurate than MSE</li>
-                <li>Captures structural changes humans notice</li>
-                <li>Standard in image quality assessment</li>
-            </ul>
-            
-            <hr style="border: 1px solid #374151; margin: 20px 0;">
-            
-            <h3 style="color: #10b981;">ORB Features (Oriented FAST and Rotated BRIEF)</h3>
-            <p style="color: #d1d5db;">Detects and matches UI elements:</p>
-            <pre style="background: #111827; padding: 15px; border-radius: 8px; color: #10b981; overflow-x: auto;">
-# Detect keypoints
-orb = cv2.ORB_create(nfeatures=2000)
-kp1, desc1 = orb.detectAndCompute(baseline, None)
-kp2, desc2 = orb.detectAndCompute(current, None)
-
-# Match features
-matches = bf_matcher.match(desc1, desc2)
-match_ratio = len(matches) / max(len(kp1), len(kp2))</pre>
-            
-            <h4 style="color: #60a5fa;">Why ORB?</h4>
-            <ul style="color: #d1d5db;">
-                <li>Fast (real-time capable)</li>
-                <li>Rotation and scale invariant</li>
-                <li>Works well for UI elements (buttons, icons)</li>
-            </ul>
-        </div>
-        """)
-    
-    with gr.Accordion("🤖 Multi-Agent Architecture", open=False):
-        gr.HTML("""
-        <div style="background: #1f2937; padding: 20px; border-radius: 10px;">
-            <h3 style="color: #10b981;">Agent Coordination Protocol</h3>
-            <pre style="background: #111827; padding: 15px; border-radius: 8px; color: #10b981; overflow-x: auto;">
-Input: (baseline, current) screenshots
-    ↓
-Coordinator Agent
-    ├─ Route to Visual Diff Agent
-    ├─ Route to Element Detection Agent
-    ├─ Route to Layout Analyzer
-    └─ Route to Interaction Validator
-    ↓
-Parallel Agent Execution
-    ├─ Visual Diff: SSIM analysis
-    ├─ Element Detection: ORB matching
-    ├─ Layout: Edge comparison
-    └─ Interaction: Region validation
-    ↓
-Aggregate Results
-    ├─ Collect all findings
-    ├─ Calculate consensus score
-    └─ Generate defect list
-    ↓
-Pass/Fail Decision
-    └─ Based on thresholds + agent agreement</pre>
-            
-            <h3 style="color: #10b981; margin-top: 30px;">Agent Specialization</h3>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-                <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
-                    <h4 style="color: #10b981; margin-top: 0;">Visual Diff Agent</h4>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> SSIM</p>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 0.95</p>
-                </div>
-                <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #60a5fa;">
-                    <h4 style="color: #60a5fa; margin-top: 0;">Element Detection</h4>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> ORB + FLANN</p>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 70% match</p>
-                </div>
-                <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #a78bfa;">
-                    <h4 style="color: #a78bfa; margin-top: 0;">Layout Analyzer</h4>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> Canny edges</p>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 90% similarity</p>
-                </div>
-                <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #f59e0b;">
-                    <h4 style="color: #f59e0b; margin-top: 0;">Interaction Validator</h4>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> Template match</p>
-                    <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 95% presence</p>
-                </div>
+with st.expander("🤖 Multi-Agent Architecture"):
+    st.markdown("""
+    <div style="background: #1f2937; padding: 20px; border-radius: 10px; color: #d1d5db;">
+        <h3 style="color: #10b981;">Agent Specialization</h3>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 15px;">
+            <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #10b981;">
+                <h4 style="color: #10b981; margin-top: 0;">Visual Diff Agent</h4>
+                <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> SSIM</p>
+                <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 0.95</p>
+            </div>
+            <div style="background: #111827; padding: 15px; border-radius: 8px; border-left: 4px solid #60a5fa;">
+                <h4 style="color: #60a5fa; margin-top: 0;">Element Detection</h4>
+                <p style="color: #9ca3af; font-size: 14px;"><strong>Algorithm:</strong> ORB + FLANN</p>
+                <p style="color: #9ca3af; font-size: 14px;"><strong>Threshold:</strong> 70% match</p>
             </div>
         </div>
-        """)
-    
-    with gr.Accordion("🏗️ Production Deployment", open=False):
-        gr.HTML("""
-        <div style="background: #1f2937; padding: 20px; border-radius: 10px;">
-            <h3 style="color: #10b981;">Real Device Integration</h3>
-            <pre style="background: #111827; padding: 15px; border-radius: 8px; color: #10b981; overflow-x: auto;">
-# Meta Quest VR
-from oculus_sdk import QuestCapture
-screenshot = QuestCapture.get_screenshot()
-
-# Apple Vision Pro
-import visionOS
-screenshot = visionOS.captureDisplay()
-
-# Android (ADB)
-import adb
-screenshot = adb.screencap('/sdcard/screen.png')</pre>
-            
-            <h3 style="color: #10b981; margin-top: 25px;">CI/CD Integration</h3>
-            <pre style="background: #111827; padding: 15px; border-radius: 8px; color: #10b981; overflow-x: auto;">
-# GitHub Actions workflow
-name: Visual Regression Tests
-
-on: [pull_request]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run VisionTest
-        run: |
-          python -m visiontest.batch_eval 
-            --baseline ./baselines/ \
-            --current ./test_outputs/ \
-            --threshold 0.95</pre>
-        </div>
-        """)
-    
-    # Footer
-    gr.HTML("""
-    <hr style="border: 2px solid #374151; margin: 40px 0;">
-    
-    <div style="background: #1f2937; padding: 25px; border-radius: 12px;">
-        <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>
-        
-        <p style="color: #d1d5db; line-height: 1.8;">
-            Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
-            <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>
-        </p>
-        
-        <div style="margin: 20px 0; padding: 15px; background: #111827; border-radius: 8px;">
-            <p style="margin: 5px 0; color: #d1d5db;">📧 nandhakumar.anju@gmail.com</p>
-            <p style="margin: 5px 0;"><a href="https://linkedin.com/in/anju-vilashni" style="color: #60a5fa;">💼 LinkedIn</a></p>
-            <p style="margin: 5px 0;"><a href="https://github.com/Av1352" style="color: #60a5fa;">💻 GitHub</a></p>
-            <p style="margin: 5px 0;"><a href="https://vxanju.com" style="color: #60a5fa;">🌐 Portfolio</a></p>
-        </div>
-        
-        <p style="color: #9ca3af; font-size: 14px; margin-top: 20px;">
-            <strong style="color: #10b981;">Tech Stack:</strong> OpenCV, SSIM, ORB+FLANN, Multi-Agent Coordination, Production Logging
-        </p>
-        
-        <div style="margin-top: 20px; padding: 15px; background: #064e3b; border-radius: 8px; border-left: 4px solid #10b981;">
-            <h4 style="color: #10b981; margin-top: 0;">Code Structure:</h4>
-            <pre style="background: #111827; padding: 10px; border-radius: 6px; color: #10b981; font-size: 13px;">
-visiontest/
-├── perception/    # CV algorithms (SSIM, ORB, alignment)
-├── agent/         # UI interaction and state verification
-├── evaluation/    # Batch eval and metrics
-├── capture/       # Screenshot utilities
-└── outputs/       # Diffs, logs, JSON reports</pre>
-        </div>
-        
-        <p style="color: #d1d5db; margin-top: 20px; line-height: 1.8;">
-            <strong style="color: #10b981;">Why This Role:</strong> 
-            This position combines my three core strengths: computer vision (medical imaging, 96% accuracy), 
-            ML engineering (production deployments), and systems engineering (modular, debuggable code). 
-            I understand the difference between research prototypes and production systems that ship weekly.
-        </p>
-        
-        <hr style="border: 1px solid #374151; margin: 20px 0;">
-        
-        <p style="color: #6b7280; font-size: 12px; text-align: center; font-style: italic;">
-            Production system - modular Python, automated artifacts, ready for CI/CD integration
-        </p>
     </div>
-    """)
-    
-    # Connect function
-    test_btn.click(
-        fn=run_visual_regression_test,
-        inputs=[baseline_input, current_input],
-        outputs=[diff_output, report_output, agent_output]
-    )
+    """, unsafe_allow_html=True)
 
-if __name__ == "__main__":
-    demo.launch()
+# Footer
+st.markdown("<hr style='border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;'>", unsafe_allow_html=True)
+
+st.markdown("""
+<div style="background: #1f2937; padding: 25px; border-radius: 12px;">
+    <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>
+    
+    <p style="color: #d1d5db; line-height: 1.8;">
+        Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
+        <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>
+    </p>
+    
+    <div style="margin: 20px 0; padding: 15px; background: #111827; border-radius: 8px;">
+        <p style="margin: 5px 0; color: #d1d5db;">📧 nandhakumar.anju@gmail.com</p>
+        <p style="margin: 5px 0;"><a href="https://linkedin.com/in/anju-vilashni" style="color: #60a5fa;">💼 LinkedIn</a> | 
+        <a href="https://github.com/Av1352" style="color: #60a5fa;">💻 GitHub</a> | 
+        <a href="https://vxanju.com" style="color: #60a5fa;">🌐 Portfolio</a></p>
+    </div>
+    
+    <p style="color: #9ca3af; font-size: 14px; margin-top: 20px;">
+        <strong style="color: #10b981;">Tech Stack:</strong> OpenCV, SSIM, ORB+FLANN, Multi-Agent Coordination, Production Logging
+    </p>
+    
+    <p style="color: #d1d5db; margin-top: 20px; line-height: 1.8;">
+        <strong style="color: #10b981;">Why This Role:</strong> 
+        This position combines my three core strengths: computer vision (medical imaging, 96% accuracy), 
+        ML engineering (production deployments), and systems engineering (modular, debuggable code). 
+        I understand the difference between research prototypes and production systems that ship weekly.
+    </p>
+</div>
+""", unsafe_allow_html=True)

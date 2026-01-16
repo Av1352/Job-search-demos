@@ -4,7 +4,7 @@
 
 Built for **Seal** by **Anju Nandhakumar**  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/seal-gxp-validation)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/seal)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

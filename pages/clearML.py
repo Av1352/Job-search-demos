@@ -5,7 +5,6 @@ Built for ClearML by Anju Nandhakumar
 """
 
 import streamlit as st
-import streamlit.components.v1 as components
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -14,7 +13,6 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import io
 from PIL import Image
-import streamlit.components.v1 as components
 
 # Page config
 st.set_page_config(

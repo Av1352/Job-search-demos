@@ -4,7 +4,7 @@
 
 Built for **Novoflow** by Anju Nandhakumar  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/novoflow-medical-triage)** | 💻 **[Source](https://github.com/Av1352/Job-search-demos/tree/main/novoflow)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/novoflow)** | 💻 **[Source](https://github.com/Av1352/Job-search-demos/tree/main/novoflow)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

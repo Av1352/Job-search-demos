@@ -8,3 +8,5 @@ matplotlib
 opencv-python-headless
 torch
 torchvision
+transformers
+protobuf

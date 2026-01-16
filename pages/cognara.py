@@ -152,7 +152,7 @@ components.html(
 st.markdown("---")
 
 # System overview
-st.markdown("""
+components.html("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
     <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2>
     <p style="color: #d1d5db; line-height: 1.8;">
@@ -176,7 +176,7 @@ st.markdown("""
         </ul>
     </div>
 </div>
-""", unsafe_allow_html=True)
+""", height=300)
 
 # Image upload
 col1, col2 = st.columns(2)
@@ -302,7 +302,7 @@ with st.expander("🤖 Multi-Agent Architecture"):
 # Footer
 st.markdown("<hr style='border: 3px solid #e5e7eb; margin: 45px 0; border-radius: 2px;'>", unsafe_allow_html=True)
 
-st.markdown("""
+components.html("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px;">
     <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>
     
@@ -329,4 +329,4 @@ st.markdown("""
         I understand the difference between research prototypes and production systems that ship weekly.
     </p>
 </div>
-""", unsafe_allow_html=True)
+""", height=300)

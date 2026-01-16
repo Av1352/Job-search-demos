@@ -176,7 +176,7 @@ components.html("""
         </ul>
     </div>
 </div>
-""", height=300)
+""", height=500)
 
 # Image upload
 col1, col2 = st.columns(2)
@@ -329,4 +329,4 @@ components.html("""
         I understand the difference between research prototypes and production systems that ship weekly.
     </p>
 </div>
-""", height=300)
+""", height=350)

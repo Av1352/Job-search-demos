@@ -168,7 +168,6 @@ def analyze_sales_call(call_name):
         </div>
     </div>
     """
-    
     coaching_html = f"""
     <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2); margin-bottom: 25px;">
         <h3 style="color: #065f46; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">💡 AI Coaching Insights</h3>
@@ -194,7 +193,6 @@ def analyze_sales_call(call_name):
         </div>
     </div>
     """
-    
     transcript_html = f"""
     <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);">
         <h3 style="color: #1e40af; font-size: 24px; font-weight: 900; margin: 0 0 18px 0;">📝 Call Transcript</h3>
@@ -212,7 +210,6 @@ def analyze_sales_call(call_name):
         </div>
     </div>
     """
-    
     fig_performance = go.Figure()
     
     categories = ['Talk Ratio', 'Questions', 'Objection Handling', 'Next Steps', 'Engagement']
@@ -236,7 +233,6 @@ def analyze_sales_call(call_name):
 
 def generate_team_dashboard():
     """Generate team-wide sales analytics"""
-    
     dashboard_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">📊 Team Performance Dashboard</h2>
@@ -264,7 +260,6 @@ def generate_team_dashboard():
         </div>
     </div>
     """
-    
     reps_html = """
     <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border: 3px solid #f59e0b; border-radius: 20px; padding: 28px; box-shadow: 0 8px 20px rgba(245, 158, 11, 0.2); margin-bottom: 25px;">
         <h3 style="color: #92400e; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🏆 Top Performers</h3>

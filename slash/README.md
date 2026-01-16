@@ -4,7 +4,7 @@
 
 Built for **Slash** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/slash-payments)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/slash)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

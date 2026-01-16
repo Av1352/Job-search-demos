@@ -4,7 +4,7 @@
 
 Built by **Anju Nandhakumar** for agentic systems & CV-driven QA
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/cognara-ui-testing)** | 💻 **[GitHub](https://github.com/Av1352/job-search-demos/tree/main/cognara)** | 🌐 **[Portfolio](https://vxanju.com)**
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/cognara)** | 💻 **[GitHub](https://github.com/Av1352/job-search-demos/tree/main/cognara)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---
 

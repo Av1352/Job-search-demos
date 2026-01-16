@@ -4,7 +4,7 @@
 
 Built for **Nous Research** by Anju Nandhakumar
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/nous-rl-observatory)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)** 
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/nous)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)** 
 
 ---
 

@@ -307,7 +307,7 @@ with tab1:
                     </div>
                 </div>
             </div>
-            """, height=130)
+            """, height=140)
         
         total_lift = sum([s[1]['expected_lift'] for s in sorted_strategies[:3]])
         additional_conversions = int(total_purchases * total_lift)

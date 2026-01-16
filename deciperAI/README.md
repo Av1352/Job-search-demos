@@ -4,7 +4,7 @@
 
 Built by **Anju Nandhakumar** for **Decipher AI**
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/decipher-test-generation)** |  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/decipherAI)** |  
 🔗 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---

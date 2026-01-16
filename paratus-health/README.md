@@ -4,7 +4,7 @@
 
 Built for **Paratus Health** by Anju Nandhakumar  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/av1352/paratus-health-intake)** | 💻 **[Source](https://github.com/Av1352/Job-search-demos/tree/main/paratus-health)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/paratus)** | 💻 **[Source](https://github.com/Av1352/Job-search-demos/tree/main/paratus-health)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

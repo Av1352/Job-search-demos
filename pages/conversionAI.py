@@ -281,7 +281,7 @@ with tab1:
             color = rank_colors[idx]
             
             components.html(f"""
-            <div style="background: white; border-left: 5px solid {color}; border-radius: 12px; padding: 20px; margin-bottom: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+            <div style="background: white; border-left: 5px solid {color}; border-radius: 12px; padding: 20px; margin-bottom: 2px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <div>
                         <span style="background: {color}; color: white; padding: 6px 14px; border-radius: 16px; font-size: 12px; font-weight: 800; margin-right: 10px;">TOP #{idx + 1}</span>
@@ -292,7 +292,7 @@ with tab1:
                         <p style="font-size: 12px; color: #6b7280; margin: 4px 0 0 0;">Expected lift</p>
                     </div>
                 </div>                
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px;">
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 2px;">
                     <div style="background: #f9fafb; border-radius: 8px; padding: 10px; text-align: center;">
                         <p style="font-size: 11px; color: #6b7280; margin: 0;">Target Stage</p>
                         <p style="font-size: 14px; color: #1f2937; font-weight: 700; margin: 4px 0 0 0;">{data['impact_stage']}</p>

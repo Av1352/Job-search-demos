@@ -4,7 +4,7 @@
 
 Built by **Anju Nandhakumar** to demonstrate end-to-end experiment management
 
-🔗 **[ClearML Dashboard](https://app.clear.ml)** | 🔗 **[Live Demo](https://huggingface.co/spaces/av1352/centaur-ml-monitor)** |
+🔗 **[ClearML Dashboard](https://app.clear.ml)** | 🔗 **[Live Demo](https://vxanju-demos.streamlit.app/clearML)** |
 💻 **[GitHub](https://github.com/Av1352)** | 🌐 **[Portfolio](https://vxanju.com)**
 
 ---

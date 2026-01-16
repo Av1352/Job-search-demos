@@ -104,7 +104,7 @@ def generate_sample_image(version, index):
     return img
 
 # Header - Complete in one component
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -127,7 +127,6 @@ components.html(
         ">
             <span style="font-size: 56px;">🗂️</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -137,7 +136,6 @@ components.html(
         ">
             Deep Lake Dataset Versioning
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -146,7 +144,6 @@ components.html(
         ">
             Multi-Modal AI Dataset Management
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -155,7 +152,6 @@ components.html(
         ">
             Version control for ML datasets • Track performance • Compare versions
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -170,7 +166,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Deep Lake</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Activeloop</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -182,7 +177,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 
 st.markdown("---")

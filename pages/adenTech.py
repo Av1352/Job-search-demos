@@ -125,7 +125,7 @@ def generate_agent_execution_trace(agent_type, success=True):
     return trace
 
 
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -148,7 +148,6 @@ components.html(
         ">
             <span style="font-size: 56px;">🤖</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -158,7 +157,6 @@ components.html(
         ">
             Aden Agent Observatory
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -167,7 +165,6 @@ components.html(
         ">
             AI-Native Observability for Agents
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -176,7 +173,6 @@ components.html(
         ">
             Real-time monitoring • Trace visualization • Error debugging
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -191,7 +187,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Trace Analysis</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Cost Tracking</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -203,7 +198,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 st.markdown("---")
 
@@ -304,7 +299,7 @@ with tab1:
                 """
             
             step_html += "</div>"
-            components.html(step_html, height=150)
+            st.markdown(step_html, height=150)
         
         # Waterfall chart
         step_names = [f"Step {s['step_number']}: {s['step_type']}" for s in trace["steps"]]

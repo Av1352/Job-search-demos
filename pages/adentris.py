@@ -129,7 +129,7 @@ def analyze_clinical_note(note_text):
     return issues, score, compliance_level, compliance_color, word_count
 
 # Header
-components.html(
+st.markdown(
     """
     <div style="
         text-align: center;
@@ -152,7 +152,6 @@ components.html(
         ">
             <span style="font-size: 56px;">✅</span>
         </div>
-
         <h1 style="
             font-size: 58px;
             font-weight: 900;
@@ -162,7 +161,6 @@ components.html(
         ">
             Adentris Compliance
         </h1>
-
         <p style="
             font-size: 28px;
             color: rgba(255,255,255,0.95);
@@ -171,7 +169,6 @@ components.html(
         ">
             AI Healthcare Compliance Intelligence
         </p>
-
         <p style="
             font-size: 18px;
             color: rgba(255,255,255,0.85);
@@ -180,7 +177,6 @@ components.html(
         ">
             Automated compliance checking for hospitals & healthcare organizations
         </p>
-
         <div style="
             display: flex;
             gap: 14px;
@@ -195,7 +191,6 @@ components.html(
             <span style="background:#f59e0b;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">Joint Commission</span>
             <span style="background:#10b981;color:white;padding:10px 22px;border-radius:30px;font-weight:800;">YC Backed</span>
         </div>
-
         <p style="
             font-size: 16px;
             color: rgba(255,255,255,0.9);
@@ -207,7 +202,7 @@ components.html(
         </p>
     </div>
     """,
-    height=520,
+    unsafe_allow_html=True,
 )
 st.markdown("---")
 

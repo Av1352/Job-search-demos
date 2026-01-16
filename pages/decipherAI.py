@@ -160,7 +160,6 @@ def generate_tests(code_snippet, test_type, coverage_target):
     st.markdown(f"""
     <div style="background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); border: 3px solid #10b981; border-radius: 20px; padding: 28px; margin-bottom: 25px;">
         <h3 style="color: #065f46; font-size: 26px; font-weight: 900; margin: 0 0 20px 0;">🧪 Generated Test Suite</h3>
-        
         <div style="background: white; border-radius: 14px; padding: 20px; margin-bottom: 15px;">
             <div style="background: #1f2937; border-radius: 10px; padding: 20px; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: #d1d5db; overflow-x: auto;">
 <span style="color: #8b5cf6;">import</span> pytest
@@ -222,7 +221,6 @@ def generate_tests(code_snippet, test_type, coverage_target):
     st.markdown(f"""
     <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 3px solid #3b82f6; border-radius: 20px; padding: 28px; margin-bottom: 25px;">
         <h3 style="color: #1e40af; font-size: 24px; font-weight: 900; margin: 0 0 18px 0;">📊 Code Coverage Analysis</h3>
-        
         <div style="background: white; border-radius: 14px; padding: 22px; margin-bottom: 15px;">
             <div style="margin-bottom: 15px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
@@ -233,7 +231,6 @@ def generate_tests(code_snippet, test_type, coverage_target):
                     <div style="background: linear-gradient(90deg, #10b981, #059669); height: 100%; width: {coverage_pct}%;"></div>
                 </div>
             </div>
-            
             <div style="margin-bottom: 15px;">
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span style="font-size: 16px; color: #1f2937; font-weight: 700;">Branch Coverage</span>
@@ -243,7 +240,6 @@ def generate_tests(code_snippet, test_type, coverage_target):
                     <div style="background: linear-gradient(90deg, #3b82f6, #2563eb); height: 100%; width: {coverage_pct * 0.85}%;"></div>
                 </div>
             </div>
-            
             <div>
                 <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
                     <span style="font-size: 16px; color: #1f2937; font-weight: 700;">Function Coverage</span>
@@ -254,7 +250,6 @@ def generate_tests(code_snippet, test_type, coverage_target):
                 </div>
             </div>
         </div>
-        
         <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 12px; padding: 18px; color: white; text-align: center;">
             <p style="font-size: 18px; font-weight: 800; margin: 0;">✅ Coverage Target Achieved: {coverage_pct:.0f}%</p>
         </div>

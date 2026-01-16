@@ -295,8 +295,7 @@ st.markdown("<hr style='border: 3px solid #e5e7eb; margin: 45px 0; border-radius
 
 st.markdown("""
 <div style="background: #1f2937; padding: 25px; border-radius: 12px;">
-    <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>
-    
+    <h3 style="color: #10b981; margin-top: 0;">👨‍💻 About This Demo</h3>    
     <p style="color: #d1d5db; line-height: 1.8;">
         Built for <strong style="color: #10b981;">Cognara's Agentic Systems Engineer</strong> position by 
         <strong style="color: #10b981;">Anju Vilashni Nandhakumar</strong>

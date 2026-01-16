@@ -3,8 +3,8 @@ plotly
 pandas
 Pillow
 numpy
-torch>=2.0.0
-torchvision>=0.15.0
-clearml>=1.14.0
-matplotlib>=3.7.0
-opencv-python-headless==4.8.1.78
+clearml
+matplotlib
+opencv-python
+torch
+torchvision

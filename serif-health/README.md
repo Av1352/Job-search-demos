@@ -4,7 +4,7 @@
 
 Built for **Serif Health** by **Anju Vilashni Nandhakumar**  
 
-🔗 **[Live Demo](https://huggingface.co/spaces/Av1352/serif-health-ml-demo)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
+🔗 **[Live Demo](https://vxanju-demos.streamlit.app/serif_health)** | 💼 **[LinkedIn](https://linkedin.com/in/anju-vilashni)** | 🌐 **[Portfolio](https://vxanju.com)**  
 
 ---
 

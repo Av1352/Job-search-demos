@@ -138,7 +138,6 @@ def analyze_sales_call(call_name):
     else:
         grade = "D"
         grade_color = "#ef4444"
-    
     summary_html = f"""
     <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; padding: 32px; box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3); margin-bottom: 25px;">
         <h2 style="color: white; font-size: 32px; font-weight: 900; margin: 0 0 20px 0;">📞 Call Analysis: {call_name}</h2>

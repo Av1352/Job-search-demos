@@ -260,7 +260,7 @@ if test_btn:
 
 # Expandable sections
 with st.expander("📐 Computer Vision Algorithms"):
-    st.markdown("""
+    components.html("""
     <div style="background: #1f2937; padding: 20px; border-radius: 10px; color: #d1d5db;">
         <h3 style="color: #10b981;">SSIM (Structural Similarity Index)</h3>
         <p>Measures perceptual similarity between images</p>
@@ -278,7 +278,7 @@ with st.expander("📐 Computer Vision Algorithms"):
             <li>Works well for UI elements (buttons, icons)</li>
         </ul>
     </div>
-    """, unsafe_allow_html=True)
+    """, height=350)
 
 with st.expander("🤖 Multi-Agent Architecture"):
     st.markdown("""
@@ -329,4 +329,4 @@ components.html("""
         I understand the difference between research prototypes and production systems that ship weekly.
     </p>
 </div>
-""", height=350)
+""", height=375)

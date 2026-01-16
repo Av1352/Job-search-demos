@@ -280,7 +280,7 @@ with tab1:
         for idx, (strategy, data) in enumerate(sorted_strategies[:3]):
             color = rank_colors[idx]
             
-            st.markdown(f"""
+            components.html(f"""
             <div style="background: white; border-left: 5px solid {color}; border-radius: 12px; padding: 20px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <div>
@@ -308,7 +308,7 @@ with tab1:
                     </div>
                 </div>
             </div>
-            """, unsafe_allow_html=True)
+            """, height=275)
         
         total_lift = sum([s[1]['expected_lift'] for s in sorted_strategies[:3]])
         additional_conversions = int(total_purchases * total_lift)

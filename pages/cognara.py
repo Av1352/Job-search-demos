@@ -147,27 +147,29 @@ st.markdown("---")
 
 # System overview
 st.markdown("""
-<div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
-    <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2><p style="color: #d1d5db; line-height: 1.8;">
-        This platform demonstrates a complete visual regression testing pipeline using multi-agent AI
-    </p>
-    <div style="margin-top: 20px;">
-        <h3 style="color: #60a5fa;">Perception Pipeline:</h3>
-        <ul style="color: #d1d5db; line-height: 1.8;">
-            <li>Image alignment (handles resolution variance)</li>
-            <li>Visual diffing (SSIM + pixel-level analysis)</li>
-            <li>Defect detection (missing elements, layout shifts, clipping)</li>
-        </ul>
-        <h3 style="color: #60a5fa;">Multi-Agent System:</h3>
-        <ul style="color: #d1d5db; line-height: 1.8;">
-            <li>Visual Diff Agent (SSIM-based comparison)</li>
-            <li>Element Detection Agent (ORB feature matching)</li>
-            <li>Layout Analyzer (Edge detection + structural analysis)</li>
-            <li>Interaction Validator (Clickable region verification)</li>
-        </ul>
+    <div style="background: #1f2937; padding: 25px; border-radius: 12px; margin: 20px 0; border: 1px solid #374151;">
+        <h2 style="color: #10b981; margin-top: 0;">🎯 System Overview</h2><p style="color: #d1d5db; line-height: 1.8;">
+            This platform demonstrates a complete visual regression testing pipeline using multi-agent AI
+        </p>
+        <div style="margin-top: 20px;">
+            <h3 style="color: #60a5fa;">Perception Pipeline:</h3>
+            <ul style="color: #d1d5db; line-height: 1.8;">
+                <li>Image alignment (handles resolution variance)</li>
+                <li>Visual diffing (SSIM + pixel-level analysis)</li>
+                <li>Defect detection (missing elements, layout shifts, clipping)</li>
+            </ul>
+            <h3 style="color: #60a5fa;">Multi-Agent System:</h3>
+            <ul style="color: #d1d5db; line-height: 1.8;">
+                <li>Visual Diff Agent (SSIM-based comparison)</li>
+                <li>Element Detection Agent (ORB feature matching)</li>
+                <li>Layout Analyzer (Edge detection + structural analysis)</li>
+                <li>Interaction Validator (Clickable region verification)</li>
+            </ul>
+        </div>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
 
 # Image upload
 col1, col2 = st.columns(2)

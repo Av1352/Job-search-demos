@@ -311,8 +311,8 @@ if st.button("🔍 Analyze Transactions", type="primary", use_container_width=Tr
     
     # Anomaly scatter
     fig_anomaly = px.scatter(df, x='date', y='amount', color='is_anomaly',
-                             color_discrete_map={True: '#ef4444', False: '#10b981'},
-                             title="Transaction Anomaly Detection")
+                            color_discrete_map={True: '#ef4444', False: '#10b981'},
+                            title="Transaction Anomaly Detection")
     fig_anomaly.update_layout(height=400)
     st.plotly_chart(fig_anomaly, use_container_width=True)
     

@@ -3,10 +3,11 @@ import streamlit as st
 st.set_page_config(
     page_title="ML Engineering Demos - Anju Vilashni",
     page_icon="🚀",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
-# Custom CSS
+# Custom CSS for both main content and sidebar
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
@@ -15,6 +16,113 @@ st.markdown("""
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
+/* Sidebar Styling */
+[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Sidebar content */
+.sidebar-content {
+    padding: 20px 10px;
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 2px solid rgba(255,255,255,0.2);
+}
+
+.sidebar-title {
+    font-size: 24px;
+    font-weight: 900;
+    color: white;
+    margin: 10px 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.sidebar-subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+}
+
+.nav-section {
+    margin: 25px 0;
+}
+
+.nav-section-title {
+    font-size: 12px;
+    font-weight: 800;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    padding: 0 10px;
+}
+
+/* Override Streamlit's default link styling in sidebar */
+[data-testid="stSidebar"] a {
+    text-decoration: none !important;
+}
+
+[data-testid="stSidebar"] .stButton button {
+    width: 100%;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    text-align: left;
+    transition: all 0.3s ease;
+    margin-bottom: 8px;
+}
+
+[data-testid="stSidebar"] .stButton button:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateX(5px);
+}
+
+.sidebar-footer {
+    margin-top: 30px;
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 2px solid rgba(255,255,255,0.2);
+    text-align: center;
+}
+
+.sidebar-footer-text {
+    font-size: 11px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+.stats-badge {
+    background: rgba(255,255,255,0.2);
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+    display: inline-block;
+    margin: 5px 3px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Main content styles */
 .hero-section {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 80px 40px;
@@ -263,6 +371,74 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
+
+# Sidebar Content
+with st.sidebar:
+    st.markdown("""
+    <div class="sidebar-header">
+        <div style="font-size: 48px;">🚀</div>
+        <div class="sidebar-title">ML Demos</div>
+        <div class="sidebar-subtitle">35 Production-Ready Apps</div>
+        <div style="margin-top: 15px;">
+            <span class="stats-badge">15 Days</span>
+            <span class="stats-badge">5 Domains</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Navigation sections
+    st.markdown('<div class="nav-section-title">💰 Fintech</div>', unsafe_allow_html=True)
+    if st.button("💸 Slash - Payment Intelligence"):
+        st.switch_page("pages/slash.py")
+    
+    st.markdown('<div class="nav-section-title">🔐 Identity & Security</div>', unsafe_allow_html=True)
+    if st.button("🔐 Spruce ID - Identity Verification"):
+        st.switch_page("pages/spruce_id.py")
+    
+    st.markdown('<div class="nav-section-title">🛒 E-commerce</div>', unsafe_allow_html=True)
+    if st.button("🛍️ Spur - AI Shopper Simulation"):
+        st.switch_page("pages/spur.py")
+    
+    st.markdown('<div class="nav-section-title">🎙️ Voice AI</div>', unsafe_allow_html=True)
+    if st.button("🎙️ Vapi AI - Voice Platform"):
+        st.switch_page("pages/vapi.py")
+    
+    st.markdown('<div class="nav-section-title">🏥 Healthcare AI</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; margin: 10px 0; border: 1px solid rgba(255,255,255,0.2);">
+        <div style="color: white; font-size: 12px; font-weight: 600; text-align: center;">
+            🚧 Coming Soon<br>
+            <span style="font-size: 11px; opacity: 0.8;">10 Healthcare Demos</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown('<div class="nav-section-title">🤖 ML Infrastructure</div>', unsafe_allow_html=True)
+    st.markdown("""
+    <div style="background: rgba(255,255,255,0.1); padding: 12px; border-radius: 10px; margin: 10px 0; border: 1px solid rgba(255,255,255,0.2);">
+        <div style="color: white; font-size: 12px; font-weight: 600; text-align: center;">
+            🚧 Coming Soon<br>
+            <span style="font-size: 11px; opacity: 0.8;">MLOps & Dev Tools</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Footer in sidebar
+    st.markdown("""
+    <div class="sidebar-footer">
+        <div class="sidebar-footer-text">
+            <strong style="font-size: 13px;">Anju Vilashni</strong><br>
+            MS AI @ Northeastern<br>
+            Graduating May 2025
+        </div>
+        <div style="margin-top: 12px;">
+            <a href="mailto:nandhakumar.anju@gmail.com" style="color: white; font-size: 20px; margin: 0 8px;">📧</a>
+            <a href="https://linkedin.com/in/anju-vilashni" target="_blank" style="color: white; font-size: 20px; margin: 0 8px;">💼</a>
+            <a href="https://github.com/Av1352" target="_blank" style="color: white; font-size: 20px; margin: 0 8px;">💻</a>
+            <a href="https://vxanju.com" target="_blank" style="color: white; font-size: 20px; margin: 0 8px;">🌐</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Hero Section
 st.markdown("""

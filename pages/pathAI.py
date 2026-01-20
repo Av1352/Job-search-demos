@@ -19,6 +19,8 @@ st.set_page_config(page_title="PathAI - Tumor Detection", layout="wide")
 # Initialize session state
 if 'analysis_done' not in st.session_state:
     st.session_state.analysis_done = False
+if 'uploaded_image' not in st.session_state:
+    st.session_state.uploaded_image = None
 
 # ========== ML SYSTEM (Self-Contained) ==========
 

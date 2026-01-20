@@ -320,7 +320,6 @@ st.markdown("""
 st.markdown("""
 <div class="content-section">
     <h2>What I'm Good At</h2>
-    
     <div class="highlight-box">
         <h3>🏥 Healthcare AI & Medical Imaging</h3>
         <p>

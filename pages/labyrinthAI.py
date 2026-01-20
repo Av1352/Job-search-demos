@@ -24,7 +24,12 @@ if 'model_loaded' not in st.session_state:
 def load_yolo_model():
     """Load pre-trained YOLO model - cached for performance"""
     try:
+        import torch
         from ultralytics import YOLO
+        
+        # Fix for PyTorch 2.6+ weights_only default
+        torch.serialization.add_safe_globals(['ultralytics.nn.tasks.DetectionModel'])
+        
         # Using YOLOv8n (nano) for speed - can upgrade to YOLOv8s/m for accuracy
         model = YOLO('yolov8n.pt')
         return model, True

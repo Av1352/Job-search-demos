@@ -11,3 +11,4 @@ torchvision
 transformers
 protobuf
 sentencepiece
+ultralytics

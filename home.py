@@ -252,7 +252,7 @@ st.markdown("""
 
 # Sidebar
 with st.sidebar:
-    st.markdown("""
+    st.markdown(f"""
     <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
         <div style="margin-bottom: 15px;">
             <img src="data:image/png;base64,{logo_base64}" alt="AV Logo" style="width: 60px; height: 60px; filter: brightness(0) invert(1); opacity: 0.95;">

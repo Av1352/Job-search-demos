@@ -26,9 +26,10 @@ def load_yolo_model():
     try:
         import torch
         from ultralytics import YOLO
+        from ultralytics.nn.tasks import DetectionModel
         
         # Fix for PyTorch 2.6+ weights_only default
-        torch.serialization.add_safe_globals(['ultralytics.nn.tasks.DetectionModel'])
+        torch.serialization.add_safe_globals([DetectionModel])
         
         # Using YOLOv8n (nano) for speed - can upgrade to YOLOv8s/m for accuracy
         model = YOLO('yolov8n.pt')

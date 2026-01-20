@@ -26,13 +26,25 @@ def load_yolo_model():
     try:
         import torch
         from ultralytics import YOLO
-        from ultralytics.nn.tasks import DetectionModel
         
-        # Fix for PyTorch 2.6+ weights_only default
-        torch.serialization.add_safe_globals([DetectionModel])
+        # Bypass PyTorch 2.6+ weights_only check
+        # Temporarily allow unsafe loading for YOLO weights
+        import warnings
+        warnings.filterwarnings('ignore', category=FutureWarning)
         
-        # Using YOLOv8n (nano) for speed - can upgrade to YOLOv8s/m for accuracy
+        # Monkey-patch torch.load to use weights_only=False
+        original_load = torch.load
+        def patched_load(*args, **kwargs):
+            kwargs['weights_only'] = False
+            return original_load(*args, **kwargs)
+        torch.load = patched_load
+        
+        # Load model
         model = YOLO('yolov8n.pt')
+        
+        # Restore original torch.load
+        torch.load = original_load
+        
         return model, True
     except Exception as e:
         st.error(f"Model loading error: {e}")

@@ -540,7 +540,7 @@ st.markdown("""
 col1, col2 = st.columns(2)
 with col1:
     if st.button("🔐 View Spruce ID Demo", use_container_width=True):
-        st.switch_page("pages/spruce_id.py")
+        st.switch_page("pages/spruceID.py")
 
 with col2:
     st.info("More identity demos in development...")
@@ -562,7 +562,7 @@ st.markdown("""
 col1, col2 = st.columns(2)
 with col1:
     if st.button("🛍️ View Spur Demo", use_container_width=True):
-        st.switch_page("pages/spur.py")
+        st.switch_page("pages/spurAI.py")
 
 with col2:
     st.info("More e-commerce demos available...")
@@ -584,7 +584,7 @@ st.markdown("""
 col1, col2 = st.columns(2)
 with col1:
     if st.button("🎙️ View Vapi AI Demo", use_container_width=True):
-        st.switch_page("pages/vapi.py")
+        st.switch_page("pages/vapiAI.py")
 
 with col2:
     st.info("More voice AI demos in progress...")

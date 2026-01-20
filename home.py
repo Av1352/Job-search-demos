@@ -393,15 +393,15 @@ with st.sidebar:
     
     st.markdown('<div class="nav-section-title">🔐 Identity & Security</div>', unsafe_allow_html=True)
     if st.button("🔐 Spruce ID - Identity Verification"):
-        st.switch_page("pages/spruce_id.py")
+        st.switch_page("pages/spruceID.py")
     
     st.markdown('<div class="nav-section-title">🛒 E-commerce</div>', unsafe_allow_html=True)
     if st.button("🛍️ Spur - AI Shopper Simulation"):
-        st.switch_page("pages/spur.py")
+        st.switch_page("pages/spurAI.py")
     
     st.markdown('<div class="nav-section-title">🎙️ Voice AI</div>', unsafe_allow_html=True)
     if st.button("🎙️ Vapi AI - Voice Platform"):
-        st.switch_page("pages/vapi.py")
+        st.switch_page("pages/vapiAI.py")
     
     st.markdown('<div class="nav-section-title">🏥 Healthcare AI</div>', unsafe_allow_html=True)
     st.markdown("""

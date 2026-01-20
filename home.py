@@ -16,15 +16,15 @@ st.markdown("""
 }
 
 [data-testid="stSidebar"] {
-    background: linear-gradient(160deg, #2d7a5f 0%, #1e5245 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d7a5f 100%);
 }
 
 [data-testid="stSidebar"] > div:first-child {
-    background: linear-gradient(160deg, #2d7a5f 0%, #1e5245 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #2d7a5f 100%);
 }
 
 .hero {
-    background: linear-gradient(135deg, #2d7a5f 0%, #73BA9B 100%);
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d7a5f 50%, #73BA9B 100%);
     padding: 70px 50px;
     border-radius: 20px;
     margin-bottom: 50px;
@@ -39,12 +39,30 @@ st.markdown("""
     right: -10%;
     width: 60%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(115, 186, 155, 0.15) 0%, transparent 70%);
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-container {
+    flex-shrink: 0;
+}
+
+.logo-container img {
+    width: 120px;
+    height: 120px;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+}
+
+.hero-text {
+    flex: 1;
 }
 
 .hero h1 {
@@ -212,6 +230,8 @@ st.markdown("""
 
 @media (max-width: 768px) {
     .hero h1 { font-size: 36px; }
+    .hero-content { flex-direction: column; text-align: center; }
+    .logo-container img { width: 80px; height: 80px; }
     .demo-showcase { grid-template-columns: 1fr; }
     .tech-grid { grid-template-columns: 1fr; }
 }
@@ -222,7 +242,9 @@ st.markdown("""
 with st.sidebar:
     st.markdown("""
     <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
-        <div style="font-size: 42px; margin-bottom: 12px;">👨‍💻</div>
+        <div style="margin-bottom: 15px;">
+            <img src="assets\logo.png" alt="AV Logo" style="width: 60px; height: 60px; filter: brightness(0) invert(1); opacity: 0.95;">
+        </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
         <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">MS AI @ Northeastern (2025)</div>
@@ -247,11 +269,16 @@ with st.sidebar:
 st.markdown("""
 <div class="hero">
     <div class="hero-content">
-        <h1>I'm Anju, an ML engineer specializing in healthcare AI and medical imaging</h1>
-        <p>
-            I build production ML systems that solve real clinical problems. My focus is on computer vision for medical imaging, 
-            pathology analysis, and healthcare workflows. I believe in showing what I can build rather than just talking about it.
-        </p>
+        <div class="logo-container">
+            <img src="assets\logo.png" alt="AV Logo">
+        </div>
+        <div class="hero-text">
+            <h1>I'm Anju, an ML engineer specializing in healthcare AI and medical imaging</h1>
+            <p>
+                I build production ML systems that solve real clinical problems. My focus is on computer vision for medical imaging, 
+                pathology analysis, and healthcare workflows. I believe in showing what I can build rather than just talking about it.
+            </p>
+        </div>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -267,7 +294,7 @@ st.markdown("""
     <p>
         What excites me most is the intersection of ML and healthcare—building systems that can actually help clinicians make better decisions, 
         catch diseases earlier, and improve patient outcomes. I'm drawn to problems where getting it right really matters.
-    </p>    
+    </p>
     <h3>My Approach</h3>
     <p>
         Instead of sending resumes, I built 36 custom ML demos in 15 days for companies I want to work with. 
@@ -280,14 +307,15 @@ st.markdown("""
 # Expertise
 st.markdown("""
 <div class="content-section">
-    <h2>What I'm Good At</h2>    
+    <h2>What I'm Good At</h2>
+    
     <div class="highlight-box">
         <h3>🏥 Healthcare AI & Medical Imaging</h3>
         <p>
             Computer vision for pathology slides, tumor detection with 96%+ accuracy, medical image enhancement, 
             clinical workflow automation. I understand both the ML and the clinical context—what makes a good prediction clinically useful.
         </p>
-    </div>    
+    </div>
     <h3>Core Technical Skills</h3>
     <div class="tech-grid">
         <div class="tech-item">
@@ -302,7 +330,7 @@ st.markdown("""
             <h4>MLOps</h4>
             <p>Experiment tracking, model versioning, monitoring, CI/CD for ML, deployment automation</p>
         </div>
-    </div>    
+    </div>  
     <h3>What I Care About</h3>
     <ul>
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
@@ -317,7 +345,7 @@ st.markdown("""
 st.markdown("""
 <div class="content-section">
     <h2>Example Work</h2>
-    <p>Here are a few demos that showcase different aspects of what I can build:</p>    
+    <p>Here are a few demos that showcase different aspects of what I can build:</p>
     <div class="demo-showcase">
         <div class="demo-card">
             <h4>🔬 PathAI - Tumor Detection System</h4>
@@ -326,21 +354,21 @@ st.markdown("""
                 regions the model focuses on, clinical metrics integration. Shows I can build medical imaging systems 
                 that clinicians would actually trust.
             </p>
-        </div>        
+        </div>
         <div class="demo-card">
             <h4>🏭 LabyrinthAI - Manufacturing QC</h4>
             <p>
                 Real-time defect detection with YOLOv8. 0.94 mAP@0.5 accuracy, optimized for edge deployment 
                 (<500ms inference). Shows I can build computer vision systems for production environments beyond just healthcare.
             </p>
-        </div>        
+        </div>
         <div class="demo-card">
             <h4>📊 ClearML - MLOps Platform</h4>
             <p>
                 Experiment tracking and model pipeline automation. Shows I understand the full ML lifecycle, 
                 not just training models—versioning, monitoring, deployment, continuous improvement.
             </p>
-        </div>        
+        </div>
         <div class="demo-card">
             <h4>🎙️ Vapi AI - Voice Agent System</h4>
             <p>
@@ -348,7 +376,7 @@ st.markdown("""
                 real-time systems, building developer tools and APIs.
             </p>
         </div>
-    </div>    
+    </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
         All demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>

@@ -1,169 +1,219 @@
 # 🚀 ML Engineering Portfolio
 
-**35 Production AI Systems Built for Real Startups**
+> **I build working software, not resumes.**  
+> 36 production ML demos built for real companies in 15 days.
 
-> Most candidates send resumes. I send working software.
+<div align="center">
 
-**Anju Vilashni Nandhakumar** · MS AI @ Northeastern (2025)  
-📧 [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com) · 💼 [LinkedIn](https://linkedin.com/in/anju-vilashni) · 🔗 [vxanju.com](https://vxanju.com)
+**Anju Vilashni Nandhakumar** · ML Engineer  
+MS AI @ Northeastern University (2025)
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-73BA9B?style=for-the-badge&logo=google-chrome&logoColor=white)](https://vxanju.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/anju-vilashni)
+[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:nandhakumar.anju@gmail.com)
+
+**[🎯 View All Demos →](https://vxanju-demos.streamlit.app)**
+
+</div>
 
 ---
 
-## ⚡ Quick Start
+## 💡 The Concept
 
-**1.** Find your company folder below  
-**2.** Click the live demo link in the README  
-**3.** Try it in your browser (no install needed)
+**Traditional approach:** Send resume → Wait → Interview → Maybe get hired  
+**My approach:** Build custom demo → Show working software → Prove capabilities immediately
 
-**Evaluation time:** 5 minutes
+**Result:** Hiring managers see what I can build before the first conversation.
 
 ---
 
-## 📊 Portfolio Stats
+## 📊 Portfolio Overview
+
 ```
-- 35 Demos Deployed          
-- 96.2% Medical Imaging Accuracy
-- <500ms CV Response          
-- 95%+ Clinical Sensitivity
-- 236M+ Parameters   
-- Built in 15 Days         
+36 Production Demos          🏥 10 Healthcare AI          🎯 96.2% Medical Imaging Accuracy
+15 Days Built               🤖  8 ML Infrastructure       ⚡ <500ms CV Inference  
+10 Domains Covered          💰  6 Fintech                🔬 95%+ Clinical Sensitivity
 ```
-
----
-
-## 🏢 Company Demos
-
-Each folder contains a custom demo built for that specific company, with:
-- Working ML model/pipeline
-- Live deployment link
-- Technical documentation
-- Company-specific README
-
-**Browse by category:**
-
-### 🩺 Healthcare AI (My Specialty)
-`pathAI/` · `glass-imaging/` · `paratus-health/` · `novoflow/` · `akute-health/` · `adentris/` · `serif-health/`
-
-### 🤖 ML Infrastructure
-`clearml/` · `activeLoop/` · `centaur/` · `aden-tech/` · `seal/`
-
-### 🎨 Enterprise & Multi-Agent
-`adobe/` · `nous-research/` · `cognara/` · `signalFire/` · `noho-labs/`
-
-### 💰 Fintech
-`CTGT/` · `slash/` · `method/` · `dots/` · `eddi/` · `alinea/`
-
-### 🗣️ Voice & Conversational
-`simpleAI/` · `vapi/`
-
-### 🔧 No-Code AI
-`reboltAI/` · `olive/`
-
-### 🧪 Testing & QA
-`deciperAI/` · `spurAI/`
-
-### 📞 Sales & Marketing
-`hyperboundAI/` · `conversionAI/` · `loopAI/`
-
-### 🔐 Identity & Legal
-`dioptraAI/` · `spruceID/`
-
-### 🔌 Developer Tools
-`hotglue/`
 
 ---
 
 ## 🎯 Featured Projects
 
-### 👁️ VisionTest (Cognara) – Multi-Agent CV Testing
-**Live:** https://huggingface.co/spaces/av1352/cognara-ui-testing  
-**Tech:** 4 specialized CV agents, ORB+FLANN, SSIM  
-**Impact:** 94% defect detection, <500ms analysis
+### 🏭 [LabyrinthAI - Manufacturing QC Vision](https://vxanju-demos.streamlit.app/labyrinthAI)
+**Real-time defect detection with YOLOv8**
+- 0.94 mAP@0.5 accuracy on manufacturing defects
+- <500ms inference on edge devices (NVIDIA Jetson)
+- Transfer learning from COCO to manufacturing datasets
+- Production-ready deployment for robotic AI systems
 
-### 🔬 PathologyNet (PathAI) – Medical Imaging
-**Live:** https://huggingface.co/spaces/av1352/pathai-tumor-detection  
-**Tech:** ResNet50 (25.6M params), Grad-CAM  
-**Impact:** 96.2% accuracy, κ = 0.92 vs pathologists
+**Tech:** YOLOv8 • PyTorch • OpenCV • Edge Computing
 
-### 🏥 Paratus Health – Clinical NLP
-**Live:** https://huggingface.co/spaces/av1352/paratus-health-intake  
-**Tech:** BioBERT + T5 + DistilBERT (236M params)  
-**Impact:** 95%+ emergency sensitivity, 88% triage accuracy
+---
 
-### 🎨 Adobe AEP – Multi-Agent Marketing
-**Live:** https://adobe-aep-demo.netlify.app/  
-**Tech:** 3 specialized agents + orchestrator  
-**Impact:** Full campaign generation from single brief
+### 🔬 [PathAI - Tumor Detection & Classification](https://vxanju-demos.streamlit.app/pathAI)
+**Deep learning for histopathology analysis**
+- 96.2% accuracy on BreakHis dataset (7,909 images)
+- ResNet50 with transfer learning (25.6M parameters)
+- Grad-CAM explainability for clinical trust
+- κ = 0.92 agreement with pathologists
 
-### 🔬 Glass Imaging – Low-Light Enhancement
-**Live:** https://huggingface.co/spaces/av1352/Glass-imaging  
-**Tech:** CLAHE, LAB color, non-local means  
-**Impact:** 200% brightness improvement, <2s processing
+**Tech:** ResNet50 • Transfer Learning • Medical Imaging • Grad-CAM
 
-### 🚀 ClearML – Experiment Tracking
-**Live:** https://huggingface.co/spaces/av1352/ClearML-experiment-tracking  
-**Tech:** PyTorch, automated logging, versioning  
-**Impact:** 99%+ accuracy, full reproducibility
+---
+
+### 🏥 [Paratus Health - AI Clinical Intake](https://vxanju-demos.streamlit.app/paratus)
+**Automated patient screening and triage**
+- 95%+ emergency detection sensitivity
+- 88% triage accuracy across 40+ conditions
+- BioBERT + T5 + DistilBERT (236M total params)
+- ESI/Schmitt-Thompson protocol implementation
+
+**Tech:** BioBERT • Clinical NLP • Multi-Model Ensemble
+
+---
+
+### 📊 [ClearML - MLOps Experiment Tracking](https://vxanju-demos.streamlit.app/clearML)
+**Full ML lifecycle management**
+- Automated experiment logging and versioning
+- Model artifact management
+- Reproducible training pipelines
+- Production deployment patterns
+
+**Tech:** PyTorch • MLflow • Model Versioning
+
+---
+
+### 🎨 [Adobe AEP - Multi-Agent Marketing](https://vxanju-demos.streamlit.app/adobe)
+**AI-powered campaign generation**
+- 3 specialized agents + orchestrator
+- Full campaign creation from single brief
+- Content generation, targeting, optimization
+- Multi-agent collaboration patterns
+
+**Tech:** Multi-Agent Systems • LLMs • Orchestration
+
+---
+
+## 🏢 All Demos by Category
+
+### 🏥 Healthcare AI (10 demos)
+`LabyrinthAI` · `PathAI` · `Glass Imaging` · `Paratus Health` · `Novoflow` · `Akute Health` · `Adentris` · `Serif Health`
+
+### 🤖 ML Infrastructure (8 demos)
+`ClearML` · `Active Loop` · `Centaur AI` · `Aden Technologies` · `Seal` · `Langbase` · `Nous Research`
+
+### 🏢 Enterprise AI (4 demos)
+`Adobe AEP` · `Signal Fire` · `Noho Labs` · `Flowmentum/Cognara`
+
+### 💰 Fintech (6 demos)
+`Slash` · `CTGT` · `Method` · `Use Dots` · `Eddi` · `Alinea Invest`
+
+### 🎙️ Voice AI (3 demos)
+`Vapi AI` · `Simple AI`
+
+### 📞 Sales & Marketing (3 demos)
+`Hyperbound AI` · `Conversion AI` · `Loop AI`
+
+### 🧪 Testing & QA (2 demos)
+`Decipher AI` · `Spur`
+
+### 🔧 No-Code & Developer Tools (4 demos)
+`Rebolt AI` · `Olive` · `HotGlue`
+
+### 🔐 Legal & Identity (2 demos)
+`Dioptra AI` · `Spruce ID`
 
 ---
 
 ## 💻 Technical Capabilities
 
-**Computer Vision:** ResNet architectures, ORB+FLANN matching, SSIM comparison, Grad-CAM explainability, multi-agent CV systems
+**Computer Vision**
+- YOLOv8, ResNet, EfficientNet architectures
+- Object detection, image segmentation, defect classification
+- Edge deployment optimization (TensorRT)
+- Medical imaging (pathology, radiology)
 
-**Medical AI:** BioBERT (110M params), clinical entity extraction, ESI/Schmitt–Thompson protocols, SOAP generation, medical triage
+**ML Engineering**
+- PyTorch, TensorFlow, model optimization
+- Transfer learning, fine-tuning strategies
+- Production deployment pipelines
+- Edge computing (NVIDIA Jetson)
 
-**Multi-Agent Systems:** Specialized agent design, orchestration, context passing, collaborative reasoning
+**Healthcare AI**
+- Medical imaging (96%+ accuracy)
+- Clinical NLP (BioBERT, clinical entity extraction)
+- Triage automation, workflow optimization
+- Explainability (Grad-CAM, attention mechanisms)
 
-**MLOps:** ClearML tracking, model versioning, artifact management, HF Spaces deployment
+**MLOps**
+- Experiment tracking, model versioning
+- CI/CD for ML, monitoring, drift detection
+- Deployment automation, A/B testing
 
-**Engineering:** PyTorch, Python, Gradio, React, production patterns, clean architecture
+**Multi-Agent Systems**
+- Agent orchestration, specialized agent design
+- Context management, collaborative reasoning
 
 ---
 
-## 📈 Key Results
+## 📈 Impact Metrics
 
-| Project | Metric | Company Impact |
-|---------|--------|----------------|
-| PathAI | 96.2% accuracy, κ = 0.92 | Tumor classification |
-| Paratus | 95%+ emergency sensitivity | Clinical intake automation |
-| Cognara | 94% detection, <500ms | UI testing automation |
-| Loop AI | 35% faster, 25% cost savings | Delivery optimization |
-| Noho Labs | $1.6M annual savings, 92% accuracy | Enterprise automation |
-| Spruce ID | 2s verification, 92% success | Identity validation |
-| Adobe | Full campaigns from single brief | Marketing automation |
+| Project | Key Metric | Business Impact |
+|---------|-----------|-----------------|
+| LabyrinthAI | 0.94 mAP@0.5, <500ms | Manufacturing QC automation |
+| PathAI | 96.2% accuracy, κ=0.92 | Tumor classification at pathologist level |
+| Paratus Health | 95%+ emergency sensitivity | Clinical intake automation |
+| ClearML | 99%+ reproducibility | Full ML lifecycle tracking |
+| Adobe AEP | End-to-end campaigns | Marketing automation |
+
+---
+
+## 🎯 What I'm Looking For
+
+**Role:** ML Engineer · Computer Vision Engineer · Healthcare AI Engineer
+
+**Interests:**
+- Healthcare AI & medical imaging systems
+- Computer vision for production environments
+- ML infrastructure & MLOps platforms
+- Building systems that get deployed and used
+
+**Work Authorization:** F-1 OPT (3-year extension available)  
+**Location:** Boston, MA · Open to remote · Open to relocation
 
 ---
 
 ## 🚀 About Me
 
-**Anju Vilashni Nandhakumar**  
-MS in Artificial Intelligence, Northeastern University (May 2025)
+I recently graduated with an MS in AI from Northeastern University (May 2025). Before grad school, I worked on medical imaging ML projects achieving 95%+ accuracy on tumor classification.
 
-**Seeking:** ML Engineer roles in Computer Vision, Medical AI, MLOps, Multi-Agent Systems  
-**Location:** Boston, MA (open to remote)  
-**Work Authorization:** F1 OPT with 3 years validity
+**My approach:** Show, don't tell. Instead of claiming skills, I build working systems.
 
-**What I bring:**
-- Production ML deployment experience
-- Rapid prototyping (35 demos in 15 days)
-- Healthcare & CV domain expertise
-- Strong software engineering foundations
+**What excites me:** The intersection of ML and healthcare—building systems that help clinicians make better decisions, catch diseases earlier, and improve patient outcomes.
 
-**Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
+**Why 36 demos?** I wanted to prove I can:
+- Understand different problem domains quickly
+- Build production-quality solutions
+- Ship fast (36 demos in 15 days)
+- Adapt ML to different business contexts
 
 ---
 
-## 🎯 Why This Approach?
+## 📬 Get in Touch
 
-Most ML candidates claim skills on resumes. Companies don't know if they can execute.
+**Email:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)  
+**Portfolio:** [vxanju.com](https://vxanju.com)  
+**LinkedIn:** [linkedin.com/in/anju-vilashni](https://linkedin.com/in/anju-vilashni)  
+**Demos:** [vxanju-demos.streamlit.app](https://vxanju-demos.streamlit.app)
 
-**My approach:** Build working systems that solve each company's specific problems.
-
-**Result:** Hiring managers see proof, not promises. Technical teams can test immediately. Risk eliminated.
-
-**Time to value:** Click → Try → See results (< 5 minutes)
+If you're building in healthcare AI, computer vision, or ML infrastructure, let's talk.
 
 ---
 
-**Last Updated:** January 5, 2025 · **Built:** Dec 19 - Jan 4, 2025 (15 days)
+<div align="center">
+
+**Built with ❤️ in 15 days** · December 2025 - January 2026
+
+*Show, don't tell.*
+
+</div>

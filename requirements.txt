@@ -11,4 +11,4 @@ torchvision
 transformers
 protobuf
 sentencepiece
-ultralytics
+ultralytics==8.0.196

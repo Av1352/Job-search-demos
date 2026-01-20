@@ -259,20 +259,23 @@ def create_feature_chart(results):
 
 # Header
 st.markdown("""
-    <div style="text-align: center; margin-bottom: 30px;">
-        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 10px;">
-            <span style="font-size: 48px;">🔬</span>
-            <h1 style="font-size: 48px; margin: 0; background: linear-gradient(to right, #059669, #0d9488); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: inline-block;">
-                PathologyNet
-            </h1>
+    <div style="text-align: center; padding: 50px 30px; background: linear-gradient(135deg, #059669 0%, #0d9488 100%); border-radius: 25px; margin-bottom: 35px; box-shadow: 0 12px 28px rgba(5, 150, 105, 0.35);">
+        <div style="width: 100px; height: 100px; background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5); margin: 0 auto 25px auto; border: 5px solid white;">
+            <span style="font-size: 56px;">🔬</span>
         </div>
-        <h2 style="color: #6b7280; font-size: 24px; margin: 10px 0;">AI Tumor Detection & Classification</h2>
-        <h3 style="color: #9ca3af; font-size: 16px; margin: 10px 0;">Deep Learning for Histopathology Analysis</h3>
-        <p style="color: #6b7280; margin-top: 15px;">
-            <strong>Built by Anju Vilashni Nandhakumar</strong> | MS AI, Northeastern University (2025)
-        </p>
-        <p style="color: #059669; font-size: 14px; margin-top: 10px;">
-            ResNet50 + Transfer Learning • 96.2% Accuracy • Grad-CAM Explainability
+        <h1 style="font-size: 58px; font-weight: 900; color: white; margin: 0 0 18px 0; text-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            PathologyNet
+        </h1>
+        <p style="font-size: 28px; color: rgba(255,255,255,0.95); font-weight: 700; margin: 15px 0;">AI Tumor Detection & Classification</p>
+        <p style="font-size: 18px; color: rgba(255,255,255,0.85); font-weight: 500; margin-bottom: 25px;">Deep Learning for Histopathology Analysis</p>
+        <div style="display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center; max-width: 850px; margin: 28px auto 0 auto;">
+            <span style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);">ResNet50</span>
+            <span style="background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(20, 184, 166, 0.4);">Transfer Learning</span>
+            <span style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(6, 182, 212, 0.4);">96.2% Accuracy</span>
+            <span style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 10px 22px; border-radius: 30px; font-size: 15px; font-weight: 800; box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);">Grad-CAM</span>
+        </div>
+        <p style="font-size: 16px; color: rgba(255,255,255,0.9); margin-top: 25px; font-weight: 600;">
+            Built for <strong style="color: white;">PathAI</strong> by <strong style="color: white;">Anju Nandhakumar</strong>
         </p>
     </div>
     """, unsafe_allow_html=True)

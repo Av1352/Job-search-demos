@@ -1,4 +1,6 @@
 import streamlit as st
+import base64
+from pathlib import Path
 
 st.set_page_config(
     page_title="Anju Vilashni - ML Engineer",

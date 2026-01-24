@@ -74,7 +74,8 @@ def render_sidebar():
                 ("🩺 Paratus Health", "paratus"),
                 ("📋 Akute Health", "akuteHealth"),
                 ("🏥 Adentris", "adentris"),
-                ("💰 Serif Health", "serif_health")
+                ("💰 Serif Health", "serif_health"),
+                ("🏥 Rovi Health", "roviHealth")
             ],
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML", "clearML"),
@@ -83,7 +84,8 @@ def render_sidebar():
                 ("👁️ Aden Technologies", "adenTech"),
                 ("🔒 Seal", "seal"),
                 ("🚀 Langbase", "langbase"),
-                ("🧠 Nous Research", "nous")
+                ("🧠 Nous Research", "nous"),
+                ("🤖 Everest", "everest")
             ],
             "🏢 Enterprise AI & Agentic Systems": [
                 ("🎨 Adobe AEP AI", "adobe"),
@@ -113,20 +115,16 @@ def render_sidebar():
                 ("🧪 Decipher AI", "decipherAI"),
                 ("🛍️ Spur", "spurAI")
             ],
-            "🔧 No-Code & Developer Tools": [
+            "🔧 Developer Tools & Operations": [
                 ("🗣️ Rebolt AI", "reboltAI"),
                 ("🌿 Olive", "olive"),
                 ("🔗 HotGlue", "hotGlue"),
-                ("💻 OpenBuilder", "openBuilder")
+                ("💻 OpenBuilder", "openBuilder"),
+                ("🏗️ Semble AI", "sembleAI")
             ],
             "🔐 Legal & Identity": [
                 ("📄 Dioptra AI", "dioptraAI"),
                 ("🔐 Spruce ID", "spruceID")
-            ],
-            "🚀 New Batch (YC W25)": [
-                ("🏥 Rovi Health", "roviHealth"),
-                ("🤖 Everest", "everest"),
-                ("🏗️ Semble AI", "sembleAI")
             ]
         }
         

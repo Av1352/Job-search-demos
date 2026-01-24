@@ -12,6 +12,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 import random
 import re
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Seal GxP Platform", layout="wide")
 

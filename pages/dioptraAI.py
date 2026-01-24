@@ -11,6 +11,8 @@ import pandas as pd
 from datetime import datetime
 import random
 import re
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 # Page config
 st.set_page_config(

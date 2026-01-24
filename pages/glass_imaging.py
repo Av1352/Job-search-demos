@@ -8,6 +8,8 @@ import streamlit as st
 import numpy as np
 from PIL import Image, ImageEnhance
 import cv2
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 # Page config
 st.set_page_config(

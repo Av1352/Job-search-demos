@@ -5,6 +5,8 @@ Built for OpenBuilder by Anju Nandhakumar
 """
 
 import streamlit as st
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="OpenBuilder - AI Code Generator", layout="wide")
 

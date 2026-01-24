@@ -7,6 +7,8 @@ Built for Rovi Health by Anju Nandhakumar
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Rovi Health - AI Healthcare Concierge", layout="wide")
 

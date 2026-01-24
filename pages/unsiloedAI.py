@@ -11,6 +11,8 @@ import io
 import re
 import json
 from datetime import datetime
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Unsiloed AI - Document Parser", layout="wide")
 

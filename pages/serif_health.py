@@ -9,6 +9,8 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Serif Health - Healthcare Price Predictor", layout="wide")
 

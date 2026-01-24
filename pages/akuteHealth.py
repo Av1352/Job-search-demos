@@ -11,6 +11,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 import random
 import numpy as np
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 # Page config
 st.set_page_config(

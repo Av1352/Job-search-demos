@@ -7,6 +7,15 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+def get_logo_base64():
+    """Load logo and convert to base64"""
+    logo_path = Path(__file__).parent / "assets" / "logo.png"
+    with open(logo_path, 'rb') as f:
+        return base64.b64encode(f.read()).decode()
+
+# Then use it:
+logo_base64 = get_logo_base64()
+
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -243,7 +252,7 @@ with st.sidebar:
     st.markdown("""
     <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
         <div style="margin-bottom: 15px;">
-            <img src="https://vxanju.com/path-to-your-logo.png" alt="AV Logo" style="width: 60px; height: 60px; filter: brightness(0) invert(1); opacity: 0.95;">
+            <img src="data:image/png;base64,{logo_base64}" alt="AV Logo" style="width: 60px; height: 60px; filter: brightness(0) invert(1); opacity: 0.95;">
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>

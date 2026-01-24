@@ -14,6 +14,7 @@ import re
 import textwrap
 from utils.sidebar import render_sidebar
 render_sidebar()
+
 # Page config
 st.set_page_config(
     page_title="Adentris Demo - Anju Vilashni",

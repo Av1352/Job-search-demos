@@ -11,6 +11,8 @@ from plotly.subplots import make_subplots
 import pandas as pd
 from datetime import datetime, timedelta
 import random
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Olive - Build Internal Tools with NLP", layout="wide")
 

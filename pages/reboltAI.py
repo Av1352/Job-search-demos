@@ -10,6 +10,8 @@ import plotly.graph_objects as go
 import pandas as pd
 from datetime import datetime
 import random
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Rebolt AI - Natural Language App Builder", layout="wide")
 

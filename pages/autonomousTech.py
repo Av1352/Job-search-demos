@@ -9,6 +9,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import numpy as np
 from datetime import datetime, timedelta
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Autonomous Tech - AI Financial Advisor", layout="wide")
 

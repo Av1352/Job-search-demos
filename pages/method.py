@@ -10,6 +10,8 @@ import numpy as np
 from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Method - Liability Intelligence", layout="wide")
 

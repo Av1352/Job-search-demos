@@ -8,6 +8,8 @@ import streamlit as st
 from datetime import datetime
 import re
 import random
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Paratus Health - AI Pre-Visit Intake", layout="wide")
 

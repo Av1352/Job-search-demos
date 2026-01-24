@@ -13,6 +13,8 @@ from torchvision import datasets, transforms
 import matplotlib.pyplot as plt
 import io
 from PIL import Image
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 # Page config
 st.set_page_config(

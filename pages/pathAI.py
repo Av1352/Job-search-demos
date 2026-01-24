@@ -13,6 +13,8 @@ import torch
 import torch.nn as nn
 from torchvision import models, transforms
 from torchvision.models import ResNet50_Weights
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="PathAI - Tumor Detection", layout="wide")
 

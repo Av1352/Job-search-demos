@@ -11,6 +11,8 @@ from PIL import Image
 import io
 import time
 import plotly.graph_objects as go
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="LabyrinthAI - Manufacturing QC", layout="wide")
 

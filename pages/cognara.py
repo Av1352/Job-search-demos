@@ -9,6 +9,8 @@ import numpy as np
 import cv2
 from PIL import Image
 from datetime import datetime
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 # Page config
 st.set_page_config(

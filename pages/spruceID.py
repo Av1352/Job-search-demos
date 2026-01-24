@@ -11,6 +11,8 @@ from datetime import datetime, timedelta
 import plotly.graph_objects as go
 import plotly.express as px
 import hashlib
+from utils.sidebar import render_sidebar
+render_sidebar()
 
 st.set_page_config(page_title="Spruce ID Verification", page_icon="🔐", layout="wide")
 
@@ -19,9 +21,9 @@ def generate_credential_data():
     np.random.seed(42)
     
     credential_types = ['Driver License', 'Passport', 'National ID', 'Birth Certificate', 
-                       'University Degree', 'Employment Record', 'Medical License', 'Voter ID']
+                        'University Degree', 'Employment Record', 'Medical License', 'Voter ID']
     issuers = ['DMV California', 'US State Dept', 'UK Home Office', 'Northeastern University',
-               'TechCorp Inc', 'Medical Board CA', 'Election Commission', 'DMV Texas']
+                'TechCorp Inc', 'Medical Board CA', 'Election Commission', 'DMV Texas']
     
     data = []
     for i in range(50):

@@ -8,6 +8,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from PIL import Image, ImageDraw
+from utils.sidebar import render_sidebar
 
 # Page config
 st.set_page_config(
@@ -15,6 +16,8 @@ st.set_page_config(
     page_icon="🗂️",
     layout="wide"
 )
+
+render_sidebar()
 
 # Custom CSS - keeping it minimal
 st.markdown("""

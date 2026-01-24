@@ -2,6 +2,7 @@ import streamlit as st
 import base64
 from pathlib import Path
 
+# Page configuration
 st.set_page_config(
     page_title="Anju Vilashni - ML Engineer",
     page_icon="⚡",
@@ -15,7 +16,7 @@ def get_logo_base64():
     with open(logo_path, 'rb') as f:
         return base64.b64encode(f.read()).decode()
 
-# Then use it:
+# Load logo
 logo_base64 = get_logo_base64()
 
 st.markdown("""
@@ -251,19 +252,103 @@ st.markdown("""
 
 # Sidebar
 with st.sidebar:
-    st.markdown("""
+    st.markdown(f"""
     <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
         <div style="margin-bottom: 15px;">
             <img src="data:image/png;base64,{logo_base64}" alt="AV Logo" style="width: 60px; height: 60px; filter: brightness(0) invert(1); opacity: 0.95;">
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">MS AI @ Northeastern (2025)</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">41 Demos • 10 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
+    # Search bar
+    search_query = st.text_input("🔍 Search demos", placeholder="Type company name...", label_visibility="collapsed")
+    
+    # All demos organized by category
+    categories = {
+        "🏥 Healthcare AI & Computer Vision": [
+            ("🏭 LabyrinthAI", "labyrinthAI"),
+            ("🔬 PathAI", "pathAI"),
+            ("🔍 Glass Imaging", "glass_imaging"),
+            ("🏥 Novoflow", "novoflow"),
+            ("🩺 Paratus Health", "paratus"),
+            ("📋 Akute Health", "akuteHealth"),
+            ("🏥 Adentris", "adentris"),
+            ("💰 Serif Health", "serif_health")
+        ],
+        "🤖 ML Infrastructure & MLOps": [
+            ("📊 ClearML", "clearML"),
+            ("🗄️ Active Loop", "activeLoop"),
+            ("🎯 Centaur AI", "centaur"),
+            ("👁️ Aden Technologies", "adenTech"),
+            ("🔒 Seal", "seal"),
+            ("🚀 Langbase", "langbase"),
+            ("🧠 Nous Research", "nous")
+        ],
+        "🏢 Enterprise AI & Agentic Systems": [
+            ("🎨 Adobe AEP AI", "adobe"),
+            ("📈 Signal Fire", "signalFire"),
+            ("🔬 Noho Labs", "nohoLabs"),
+            ("🤖 Flowmentum/Cognara", "cognara")
+        ],
+        "💰 Fintech & Payments": [
+            ("💸 Slash", "slash"),
+            ("💳 CTGT", "ctgt"),
+            ("🔗 Method", "method"),
+            ("📊 Use Dots", "dots"),
+            ("💼 Eddi", "eddi"),
+            ("📈 Alinea Invest", "alinea"),
+            ("💰 Autonomous Tech", "autonomousTech")
+        ],
+        "🎙️ Voice & Conversational AI": [
+            ("🎙️ Vapi AI", "vapiAI"),
+            ("📞 Simple AI", "simpleAI")
+        ],
+        "📞 Sales & Marketing AI": [
+            ("📞 Hyperbound AI", "hyperboundAI"),
+            ("📈 Conversion AI", "conversionAI"),
+            ("🍕 Loop AI", "loopAI")
+        ],
+        "🧪 Testing & E-commerce": [
+            ("🧪 Decipher AI", "decipherAI"),
+            ("🛍️ Spur", "spurAI")
+        ],
+        "🔧 No-Code & Developer Tools": [
+            ("🗣️ Rebolt AI", "reboltAI"),
+            ("🌿 Olive", "olive"),
+            ("🔗 HotGlue", "hotGlue"),
+            ("💻 OpenBuilder", "openBuilder")
+        ],
+        "🔐 Legal & Identity": [
+            ("📄 Dioptra AI", "dioptraAI"),
+            ("🔐 Spruce ID", "spruceID")
+        ],
+        "🚀 New Batch (YC W25)": [
+            ("🏥 Rovi Health", "roviHealth"),
+            ("🤖 Everest", "everest"),
+            ("🏗️ Semble AI", "sembleAI")
+        ]
+    }
+    
+    # Filter categories based on search
+    for category, demos in categories.items():
+        # Filter demos in this category
+        if search_query:
+            filtered_demos = [(name, page) for name, page in demos if search_query.lower() in name.lower()]
+        else:
+            filtered_demos = demos
+        
+        # Only show category if it has matching demos
+        if filtered_demos:
+            with st.expander(f"{category} ({len(filtered_demos)})", expanded=(search_query != "")):
+                for demo_name, demo_page in filtered_demos:
+                    if st.button(demo_name, key=demo_page):
+                        st.switch_page(f"pages/{demo_page}.py")
+    
     st.markdown("""
-    <div style="padding: 20px 15px; background: rgba(255,255,255,0.08); border-radius: 10px;">
+    <div style="padding: 20px 15px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-top: 20px;">
         <div style="color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; margin-bottom: 15px;">CONTACT</div>
         <div style="color: white; font-size: 13px; line-height: 1.8; word-break: break-all;">
             <a href="mailto:nandhakumar.anju@gmail.com" style="color: rgba(255,255,255,0.9); text-decoration: none;">nandhakumar.anju@gmail.com</a>
@@ -309,7 +394,7 @@ st.markdown("""
     
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 36 custom ML demos in 15 days for companies I want to work with. 
+        Instead of sending resumes, I built 41 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -350,7 +435,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 36 demos in 15 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 41 demos in 17 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -397,7 +482,7 @@ st.markdown("""
     </div>
     
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 41 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

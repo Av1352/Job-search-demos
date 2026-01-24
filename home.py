@@ -277,11 +277,11 @@ with st.sidebar:
     """, unsafe_allow_html=True)
 
 # Hero
-st.markdown("""
+st.markdown(f"""
 <div class="hero">
     <div class="hero-content">
         <div class="logo-container">
-            <img src="https://vxanju.com/path-to-your-logo.png" alt="AV Logo">
+            <img src="data:image/png;base64,{logo_base64}" alt="AV Logo">
         </div>
         <div class="hero-text">
             <h1>I'm Anju, an ML engineer specializing in healthcare AI and medical imaging</h1>

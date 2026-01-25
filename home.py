@@ -231,6 +231,7 @@ st.markdown("""
 }
 
 .contact-link {
+    text-align: center;
     background: #73BA9B;
     color: white;
     padding: 12px 28px;

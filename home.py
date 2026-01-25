@@ -10,14 +10,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
-[data-testid="stSidebarNav"] {
-    display: none;
-}
-</style>
-""", unsafe_allow_html=True)
-
 def get_logo_base64():
     """Load logo and convert to base64"""
     logo_path = Path(__file__).parent / "assets" / "logo.png"
@@ -284,7 +276,8 @@ with st.sidebar:
             ("🩺 Paratus Health", "paratus"),
             ("📋 Akute Health", "akuteHealth"),
             ("🏥 Adentris", "adentris"),
-            ("💰 Serif Health", "serif_health")
+            ("💰 Serif Health", "serif_health"),
+            ("🏥 Rovi Health", "roviHealth")
         ],
         "🤖 ML Infrastructure & MLOps": [
             ("📊 ClearML", "clearML"),
@@ -293,7 +286,8 @@ with st.sidebar:
             ("👁️ Aden Technologies", "adenTech"),
             ("🔒 Seal", "seal"),
             ("🚀 Langbase", "langbase"),
-            ("🧠 Nous Research", "nous")
+            ("🧠 Nous Research", "nous"),
+            ("🤖 Everest", "everest")
         ],
         "🏢 Enterprise AI & Agentic Systems": [
             ("🎨 Adobe AEP AI", "adobe"),
@@ -323,20 +317,16 @@ with st.sidebar:
             ("🧪 Decipher AI", "decipherAI"),
             ("🛍️ Spur", "spurAI")
         ],
-        "🔧 No-Code & Developer Tools": [
+        "🔧 Developer Tools & Operations": [
             ("🗣️ Rebolt AI", "reboltAI"),
             ("🌿 Olive", "olive"),
             ("🔗 HotGlue", "hotGlue"),
-            ("💻 OpenBuilder", "openBuilder")
+            ("💻 OpenBuilder", "openBuilder"),
+            ("🏗️ Semble AI", "sembleAI")
         ],
         "🔐 Legal & Identity": [
             ("📄 Dioptra AI", "dioptraAI"),
             ("🔐 Spruce ID", "spruceID")
-        ],
-        "🚀 New Batch (YC W25)": [
-            ("🏥 Rovi Health", "roviHealth"),
-            ("🤖 Everest", "everest"),
-            ("🏗️ Semble AI", "sembleAI")
         ]
     }
     
@@ -399,6 +389,7 @@ st.markdown("""
         What excites me most is the intersection of ML and healthcare—building systems that can actually help clinicians make better decisions, 
         catch diseases earlier, and improve patient outcomes. I'm drawn to problems where getting it right really matters.
     </p>
+    
     <h3>My Approach</h3>
     <p>
         Instead of sending resumes, I built 41 custom ML demos for companies I want to work with. 
@@ -412,6 +403,7 @@ st.markdown("""
 st.markdown("""
 <div class="content-section">
     <h2>What I'm Good At</h2>
+    
     <div class="highlight-box">
         <h3>🏥 Healthcare AI & Medical Imaging</h3>
         <p>
@@ -419,6 +411,7 @@ st.markdown("""
             clinical workflow automation. I understand both the ML and the clinical context—what makes a good prediction clinically useful.
         </p>
     </div>
+    
     <h3>Core Technical Skills</h3>
     <div class="tech-grid">
         <div class="tech-item">
@@ -434,6 +427,7 @@ st.markdown("""
             <p>Experiment tracking, model versioning, monitoring, CI/CD for ML, deployment automation</p>
         </div>
     </div>
+    
     <h3>What I Care About</h3>
     <ul>
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
@@ -449,6 +443,7 @@ st.markdown("""
 <div class="content-section">
     <h2>Example Work</h2>
     <p>Here are a few demos that showcase different aspects of what I can build:</p>
+    
     <div class="demo-showcase">
         <div class="demo-card">
             <h4>🔬 PathAI - Tumor Detection System</h4>
@@ -458,6 +453,7 @@ st.markdown("""
                 that clinicians would actually trust.
             </p>
         </div>
+        
         <div class="demo-card">
             <h4>🏭 LabyrinthAI - Manufacturing QC</h4>
             <p>
@@ -465,6 +461,7 @@ st.markdown("""
                 (<500ms inference). Shows I can build computer vision systems for production environments beyond just healthcare.
             </p>
         </div>
+        
         <div class="demo-card">
             <h4>📊 ClearML - MLOps Platform</h4>
             <p>
@@ -472,6 +469,7 @@ st.markdown("""
                 not just training models—versioning, monitoring, deployment, continuous improvement.
             </p>
         </div>
+        
         <div class="demo-card">
             <h4>🎙️ Vapi AI - Voice Agent System</h4>
             <p>
@@ -480,6 +478,7 @@ st.markdown("""
             </p>
         </div>
     </div>
+    
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
         All 41 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>

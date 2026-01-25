@@ -498,10 +498,6 @@ st.markdown("""
         <li>Work with a team that ships fast and iterates based on real feedback</li>
         <li>Contribute to both the ML and the engineering side—training models and building the systems around them</li>
     </ul>
-    <p>
-        I'm on F-1 status and will need visa sponsorship. I'm specifically interested in companies that are building in healthcare, 
-        or have strong computer vision/ML infrastructure challenges.
-    </p>
 </div>
 """, unsafe_allow_html=True)
 

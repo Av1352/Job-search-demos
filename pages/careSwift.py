@@ -203,25 +203,21 @@ with tab1:
         with col_x:
             st.markdown(f"""
             <div style="background: white; padding: 25px; border-radius: 15px; border: 2px solid #e5e7eb;">
-                <h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 20px;">📋 Patient Care Report</h3>
-                
+                <h3 style="color: #1f2937; margin: 0 0 20px 0; font-size: 20px;">📋 Patient Care Report</h3
                 <div style="background: #f9fafb; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
                     <p style="color: #6b7280; font-size: 12px; margin: 0; font-weight: 600;">PATIENT DEMOGRAPHICS</p>
                     <p style="color: #1f2937; font-size: 14px; margin: 5px 0;"><strong>Age:</strong> {pcr['patient_demographics']['age']} years</p>
                     <p style="color: #1f2937; font-size: 14px; margin: 5px 0;"><strong>Gender:</strong> {pcr['patient_demographics']['gender']}</p>
                     <p style="color: #1f2937; font-size: 14px; margin: 5px 0;"><strong>Chief Complaint:</strong> {pcr['patient_demographics']['chief_complaint']}</p>
                 </div>
-                
                 <div style="background: #f9fafb; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
                     <p style="color: #6b7280; font-size: 12px; margin: 0; font-weight: 600;">NARRATIVE</p>
                     <p style="color: #1f2937; font-size: 13px; margin: 8px 0; line-height: 1.7;">{pcr['narrative']['assessment']}</p>
                 </div>
-                
                 <div style="background: #f9fafb; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
                     <p style="color: #6b7280; font-size: 12px; margin: 0; font-weight: 600;">INTERVENTIONS</p>
                     {''.join([f'<p style="color: #059669; font-size: 13px; margin: 5px 0;">✓ {intervention}</p>' for intervention in pcr['interventions']])}
                 </div>
-                
                 <div style="background: #ecfdf5; padding: 15px; border-radius: 10px;">
                     <p style="color: #6b7280; font-size: 12px; margin: 0; font-weight: 600;">DISPOSITION</p>
                     <p style="color: #059669; font-size: 14px; font-weight: 700; margin: 5px 0;">{pcr['disposition']}</p>

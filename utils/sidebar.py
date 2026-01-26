@@ -39,6 +39,12 @@ def render_sidebar():
     logo_base64 = get_logo_base64()
     
     with st.sidebar:
+        # Home button at top
+        if st.button("← Back to Home", use_container_width=True, key="nav_home"):
+            st.switch_page("home.py")
+        
+        st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
+        
         # Header with logo
         if logo_base64:
             st.markdown(f"""
@@ -48,7 +54,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">46 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">51 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -80,7 +86,9 @@ def render_sidebar():
                 ("🔬 Novaflow", "novaflow")
             ],
             "👁️ Computer Vision & Robotics": [
-                ("📦 dScribe AI", "dScribeAI")
+                ("📦 dScribe AI", "dScribeAI"),
+                ("🎥 OnDeck AI", "onDeckAI"),
+                ("🤖 Verne Robotics", "verneRobotics")
             ],
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML", "clearML"),
@@ -90,7 +98,10 @@ def render_sidebar():
                 ("🔒 Seal", "seal"),
                 ("🚀 Langbase", "langbase"),
                 ("🧠 Nous Research", "nous"),
-                ("🤖 Everest", "everest")
+                ("🤖 Everest", "everest"),
+                ("🎮 Halluminate", "halluminate"),
+                ("⚡ Wafer", "wafer"),
+                ("🛡️ Metis", "metis")
             ],
             "🏢 Enterprise AI & Agentic Systems": [
                 ("🎨 Adobe AEP AI", "adobe"),

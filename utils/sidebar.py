@@ -48,7 +48,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">41 Demos • 10 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">45 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -66,16 +66,21 @@ def render_sidebar():
         
         # All demos organized by category
         categories = {
-            "🏥 Healthcare AI & Computer Vision": [
+            "🏥 Healthcare AI & Biotech": [
                 ("🏭 LabyrinthAI", "labyrinthAI"),
                 ("🔬 PathAI", "pathAI"),
                 ("🔍 Glass Imaging", "glass_imaging"),
-                ("🏥 Novoflow", "novoflow"),
                 ("🩺 Paratus Health", "paratus"),
                 ("📋 Akute Health", "akuteHealth"),
                 ("🏥 Adentris", "adentris"),
                 ("💰 Serif Health", "serif_health"),
-                ("🏥 Rovi Health", "roviHealth")
+                ("🏥 Rovi Health", "roviHealth"),
+                ("🧬 Blank Bio", "blankBio"),
+                ("🚑 CareSwift", "careSwift"),
+                ("🔬 Novaflow", "novaflow")
+            ],
+            "👁️ Computer Vision & Robotics": [
+                ("📦 dScribe AI", "dScribeAI")
             ],
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML", "clearML"),
@@ -110,6 +115,9 @@ def render_sidebar():
                 ("📞 Hyperbound AI", "hyperboundAI"),
                 ("📈 Conversion AI", "conversionAI"),
                 ("🍕 Loop AI", "loopAI")
+            ],
+            "📄 Document AI & Parsing": [
+                ("📄 Unsiloed AI", "unsiloedAI")
             ],
             "🧪 Testing & E-commerce": [
                 ("🧪 Decipher AI", "decipherAI"),

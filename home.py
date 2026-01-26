@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">42 Demos • 11 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">46 Demos • 11 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     

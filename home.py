@@ -10,6 +10,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+st.markdown("""
+<style>
+[data-testid="stSidebarNav"] {
+    display: none;
+}
+</style>
+""", unsafe_allow_html=True)
+
 def get_logo_base64():
     """Load logo and convert to base64"""
     logo_path = Path(__file__).parent / "assets" / "logo.png"

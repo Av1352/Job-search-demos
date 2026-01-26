@@ -10,14 +10,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-st.markdown("""
-<style>
-[data-testid="stSidebarNav"] {
-    display: none;
-}
-</style>
-""", unsafe_allow_html=True)
-
 def get_logo_base64():
     """Load logo and convert to base64"""
     logo_path = Path(__file__).parent / "assets" / "logo.png"
@@ -401,10 +393,9 @@ st.markdown("""
         What excites me most is the intersection of ML and healthcare—building systems that can actually help clinicians make better decisions, 
         catch diseases earlier, and improve patient outcomes. I'm drawn to problems where getting it right really matters.
     </p>
-    
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 45 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 46 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -415,7 +406,6 @@ st.markdown("""
 st.markdown("""
 <div class="content-section">
     <h2>What I'm Good At</h2>
-    
     <div class="highlight-box">
         <h3>🏥 Healthcare AI & Medical Imaging</h3>
         <p>
@@ -423,7 +413,6 @@ st.markdown("""
             clinical workflow automation. I understand both the ML and the clinical context—what makes a good prediction clinically useful.
         </p>
     </div>
-    
     <h3>Core Technical Skills</h3>
     <div class="tech-grid">
         <div class="tech-item">
@@ -439,13 +428,12 @@ st.markdown("""
             <p>Experiment tracking, model versioning, monitoring, CI/CD for ML, deployment automation</p>
         </div>
     </div>
-    
     <h3>What I Care About</h3>
     <ul>
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 45 demos in 30 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 46 demos in 18 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -455,7 +443,6 @@ st.markdown("""
 <div class="content-section">
     <h2>Example Work</h2>
     <p>Here are a few demos that showcase different aspects of what I can build:</p>
-    
     <div class="demo-showcase">
         <div class="demo-card">
             <h4>🔬 PathAI - Tumor Detection System</h4>
@@ -465,7 +452,6 @@ st.markdown("""
                 that clinicians would actually trust.
             </p>
         </div>
-        
         <div class="demo-card">
             <h4>🏭 LabyrinthAI - Manufacturing QC</h4>
             <p>
@@ -473,7 +459,6 @@ st.markdown("""
                 (<500ms inference). Shows I can build computer vision systems for production environments beyond just healthcare.
             </p>
         </div>
-        
         <div class="demo-card">
             <h4>📊 ClearML - MLOps Platform</h4>
             <p>
@@ -481,7 +466,6 @@ st.markdown("""
                 not just training models—versioning, monitoring, deployment, continuous improvement.
             </p>
         </div>
-        
         <div class="demo-card">
             <h4>🎙️ Vapi AI - Voice Agent System</h4>
             <p>
@@ -490,9 +474,8 @@ st.markdown("""
             </p>
         </div>
     </div>
-    
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 45 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 46 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -510,10 +493,6 @@ st.markdown("""
         <li>Work with a team that ships fast and iterates based on real feedback</li>
         <li>Contribute to both the ML and the engineering side—training models and building the systems around them</li>
     </ul>
-    <p>
-        I'm on F-1 status and will need visa sponsorship. I'm specifically interested in companies that are building in healthcare, 
-        or have strong computer vision/ML infrastructure challenges.
-    </p>
 </div>
 """, unsafe_allow_html=True)
 

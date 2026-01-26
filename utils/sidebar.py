@@ -60,7 +60,7 @@ def render_sidebar():
         else:
             st.markdown("""
             <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
-                <div style="font-size: 42px; margin-bottom: 12px;">👨‍💻</div>
+                <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
                 <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">41 Demos • 10 Domains</div>

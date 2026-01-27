@@ -64,7 +64,7 @@ AI-powered dental insurance automation that handles eligibility verification and
 
 ## Tech Stack
 
-Python • Gradio • Plotly • Healthcare Domain Logic • Insurance Workflows
+Python • Streamlit • Plotly • Healthcare Domain Logic • Insurance Workflows
 
 ---
 

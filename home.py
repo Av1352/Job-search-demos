@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">51 Demos • 11 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -286,7 +286,8 @@ with st.sidebar:
             ("🏥 Adentris", "adentris"),
             ("💰 Serif Health", "serif_health"),
             ("🏥 Rovi Health", "roviHealth"),
-            ("🧬 Blank Bio", "blankBio")
+            ("🧬 Blank Bio", "blankBio"),
+            ("🦷 Toothy AI", "toothyAI")
         ],
         "🤖 ML Infrastructure & MLOps": [
             ("📊 ClearML", "clearML"),
@@ -296,7 +297,10 @@ with st.sidebar:
             ("🔒 Seal", "seal"),
             ("🚀 Langbase", "langbase"),
             ("🧠 Nous Research", "nous"),
-            ("🤖 Everest", "everest")
+            ("🤖 Everest", "everest"),
+            ("📊 Confident AI", "confidentAI"),
+            ("🔬 AfterQuery", "afterQuery"),
+            ("🎮 hud", "hud")
         ],
         "🏢 Enterprise AI & Agentic Systems": [
             ("🎨 Adobe AEP AI", "adobe"),
@@ -315,7 +319,8 @@ with st.sidebar:
         ],
         "🎙️ Voice & Conversational AI": [
             ("🎙️ Vapi AI", "vapiAI"),
-            ("📞 Simple AI", "simpleAI")
+            ("📞 Simple AI", "simpleAI"),
+            ("🎙️ careCycle", "careCycle")
         ],
         "📞 Sales & Marketing AI": [
             ("📞 Hyperbound AI", "hyperboundAI"),
@@ -403,7 +408,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 51 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 56 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -441,7 +446,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 51 demos in 18 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 56 demos in 20 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -468,22 +473,22 @@ st.markdown("""
             </p>
         </div>
         <div class="demo-card">
-            <h4>📊 ClearML - MLOps Platform</h4>
+            <h4>📊 Confident AI - LLM Observability</h4>
             <p>
-                Experiment tracking and model pipeline automation. Shows I understand the full ML lifecycle, 
-                not just training models—versioning, monitoring, deployment, continuous improvement.
+                Real-time monitoring for LLM applications. Tracks accuracy, latency, hallucination rate with 578 automated tests.
+                Shows I understand MLOps, production monitoring, and quality assurance for AI systems.
             </p>
         </div>
         <div class="demo-card">
-            <h4>🎙️ Vapi AI - Voice Agent System</h4>
+            <h4>🎮 hud - RL Environment Platform</h4>
             <p>
-                API-first voice agents with <700ms latency. Shows I can work beyond just vision—NLP, 
-                real-time systems, building developer tools and APIs.
+                Custom RL environment builder with 5 algorithms (DQN, PPO, SAC). Real-time training dashboards and 
+                comprehensive evaluation suite. Shows I can work with reinforcement learning and agent systems.
             </p>
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 51 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 56 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

@@ -54,7 +54,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">51 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -63,7 +63,7 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">41 Demos • 10 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -83,7 +83,8 @@ def render_sidebar():
                 ("🏥 Rovi Health", "roviHealth"),
                 ("🧬 Blank Bio", "blankBio"),
                 ("🚑 CareSwift", "careSwift"),
-                ("🔬 Novaflow", "novaflow")
+                ("🔬 Novaflow", "novaflow"),
+                ("🦷 Toothy AI", "toothyAI")
             ],
             "👁️ Computer Vision & Robotics": [
                 ("📦 dScribe AI", "dScribeAI"),
@@ -101,7 +102,10 @@ def render_sidebar():
                 ("🤖 Everest", "everest"),
                 ("🎮 Halluminate", "halluminate"),
                 ("⚡ Wafer", "wafer"),
-                ("🛡️ Metis", "metis")
+                ("🛡️ Metis", "metis"),
+                ("📊 Confident AI", "confidentAI"),
+                ("🔬 AfterQuery", "afterQuery"),
+                ("🎮 hud", "hud")
             ],
             "🏢 Enterprise AI & Agentic Systems": [
                 ("🎨 Adobe AEP AI", "adobe"),
@@ -120,7 +124,8 @@ def render_sidebar():
             ],
             "🎙️ Voice & Conversational AI": [
                 ("🎙️ Vapi AI", "vapiAI"),
-                ("📞 Simple AI", "simpleAI")
+                ("📞 Simple AI", "simpleAI"),
+                ("🎙️ careCycle", "careCycle")
             ],
             "📞 Sales & Marketing AI": [
                 ("📞 Hyperbound AI", "hyperboundAI"),

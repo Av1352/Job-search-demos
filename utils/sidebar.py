@@ -54,7 +54,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -63,7 +63,7 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -76,6 +76,7 @@ def render_sidebar():
                 ("🏭 LabyrinthAI", "labyrinthAI"),
                 ("🔬 PathAI", "pathAI"),
                 ("🔍 Glass Imaging", "glass_imaging"),
+                ("🏥 Novoflow", "novoflow"),
                 ("🩺 Paratus Health", "paratus"),
                 ("📋 Akute Health", "akuteHealth"),
                 ("🏥 Adentris", "adentris"),
@@ -83,13 +84,17 @@ def render_sidebar():
                 ("🏥 Rovi Health", "roviHealth"),
                 ("🧬 Blank Bio", "blankBio"),
                 ("🚑 CareSwift", "careSwift"),
-                ("🔬 Novaflow", "novaflow"),
-                ("🦷 Toothy AI", "toothyAI")
+                ("🦷 Toothy AI", "toothyAI"),
+                ("📄 Sample Healthcare", "sampleHealthcare"),
+                ("📋 Trellis AI", "trellisAI")
             ],
             "👁️ Computer Vision & Robotics": [
                 ("📦 dScribe AI", "dScribeAI"),
                 ("🎥 OnDeck AI", "onDeckAI"),
-                ("🤖 Verne Robotics", "verneRobotics")
+                ("🤖 Verne Robotics", "verneRobotics"),
+                ("🎥 Luma AI", "lumaAI"),
+                ("🤖 Revise Robotics", "reviseRobotics"),
+                ("🏗️ Bild AI", "bildAI")
             ],
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML", "clearML"),
@@ -97,7 +102,6 @@ def render_sidebar():
                 ("🎯 Centaur AI", "centaur"),
                 ("👁️ Aden Technologies", "adenTech"),
                 ("🔒 Seal", "seal"),
-                ("🚀 Langbase", "langbase"),
                 ("🧠 Nous Research", "nous"),
                 ("🤖 Everest", "everest"),
                 ("🎮 Halluminate", "halluminate"),
@@ -105,7 +109,10 @@ def render_sidebar():
                 ("🛡️ Metis", "metis"),
                 ("📊 Confident AI", "confidentAI"),
                 ("🔬 AfterQuery", "afterQuery"),
-                ("🎮 hud", "hud")
+                ("🎮 hud", "hud"),
+                ("⚡ Modal", "modal"),
+                ("🔥 Fireworks AI", "fireworksAI"),
+                ("🔧 Weave", "weave")
             ],
             "🏢 Enterprise AI & Agentic Systems": [
                 ("🎨 Adobe AEP AI", "adobe"),
@@ -144,7 +151,10 @@ def render_sidebar():
                 ("🌿 Olive", "olive"),
                 ("🔗 HotGlue", "hotGlue"),
                 ("💻 OpenBuilder", "openBuilder"),
-                ("🏗️ Semble AI", "sembleAI")
+                ("🏗️ Semble AI", "sembleAI"),
+                ("🌐 Browser Use", "browserUse"),
+                ("🌐 ThirdLayer", "thirdLayer"),
+                ("💜 Lovable", "lovable")
             ],
             "🔐 Legal & Identity": [
                 ("📄 Dioptra AI", "dioptraAI"),

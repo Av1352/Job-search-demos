@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">56 Demos • 11 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -287,7 +287,19 @@ with st.sidebar:
             ("💰 Serif Health", "serif_health"),
             ("🏥 Rovi Health", "roviHealth"),
             ("🧬 Blank Bio", "blankBio"),
-            ("🦷 Toothy AI", "toothyAI")
+            ("🚑 CareSwift", "careSwift"),
+            ("🔬 Novaflow", "novaflow"),
+            ("🦷 Toothy AI", "toothyAI"),
+            ("📄 Sample Healthcare", "sampleHealthcare"),
+            ("📋 Trellis AI", "trellisAI")
+        ],
+        "👁️ Computer Vision & Robotics": [
+            ("📦 dScribe AI", "dScribeAI"),
+            ("🎥 OnDeck AI", "onDeckAI"),
+            ("🤖 Verne Robotics", "verneRobotics"),
+            ("🎥 Luma AI", "lumaAI"),
+            ("🤖 Revise Robotics", "reviseRobotics"),
+            ("🏗️ Bild AI", "bildAI")
         ],
         "🤖 ML Infrastructure & MLOps": [
             ("📊 ClearML", "clearML"),
@@ -295,12 +307,17 @@ with st.sidebar:
             ("🎯 Centaur AI", "centaur"),
             ("👁️ Aden Technologies", "adenTech"),
             ("🔒 Seal", "seal"),
-            ("🚀 Langbase", "langbase"),
             ("🧠 Nous Research", "nous"),
             ("🤖 Everest", "everest"),
+            ("🎮 Halluminate", "halluminate"),
+            ("⚡ Wafer", "wafer"),
+            ("🛡️ Metis", "metis"),
             ("📊 Confident AI", "confidentAI"),
             ("🔬 AfterQuery", "afterQuery"),
-            ("🎮 hud", "hud")
+            ("🎮 hud", "hud"),
+            ("⚡ Modal", "modal"),
+            ("🔥 Fireworks AI", "fireworksAI"),
+            ("🔧 Weave", "weave")
         ],
         "🏢 Enterprise AI & Agentic Systems": [
             ("🎨 Adobe AEP AI", "adobe"),
@@ -339,7 +356,10 @@ with st.sidebar:
             ("🌿 Olive", "olive"),
             ("🔗 HotGlue", "hotGlue"),
             ("💻 OpenBuilder", "openBuilder"),
-            ("🏗️ Semble AI", "sembleAI")
+            ("🏗️ Semble AI", "sembleAI"),
+            ("🌐 Browser Use", "browserUse"),
+            ("🌐 ThirdLayer", "thirdLayer"),
+            ("💜 Lovable", "lovable")
         ],
         "🔐 Legal & Identity": [
             ("📄 Dioptra AI", "dioptraAI"),
@@ -408,7 +428,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 56 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 68 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -446,7 +466,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 56 demos in 20 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 68 demos in 22 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -466,10 +486,10 @@ st.markdown("""
             </p>
         </div>
         <div class="demo-card">
-            <h4>🏭 LabyrinthAI - Manufacturing QC</h4>
+            <h4>🤖 Revise Robotics - Electronics QC</h4>
             <p>
-                Real-time defect detection with YOLOv8. 0.94 mAP@0.5 accuracy, optimized for edge deployment 
-                (<500ms inference). Shows I can build computer vision systems for production environments beyond just healthcare.
+                Real-time defect detection with YOLOv8. 98.7% accuracy, 0.3s inspection time, 12K units/hour throughput.
+                Shows I can build computer vision for manufacturing at scale with safety-critical requirements.
             </p>
         </div>
         <div class="demo-card">
@@ -480,15 +500,15 @@ st.markdown("""
             </p>
         </div>
         <div class="demo-card">
-            <h4>🎮 hud - RL Environment Platform</h4>
+            <h4>⚡ Modal - Serverless ML Infrastructure</h4>
             <p>
-                Custom RL environment builder with 5 algorithms (DQN, PPO, SAC). Real-time training dashboards and 
-                comprehensive evaluation suite. Shows I can work with reinforcement learning and agent systems.
+                GPU deployment platform showing 95% cost reduction vs AWS/GCP. Auto-scaling, <3s cold start.
+                Shows I understand ML infrastructure, cost optimization, and production deployment.
             </p>
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 56 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 68 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

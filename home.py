@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">77 Demos • 12 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -288,10 +288,17 @@ with st.sidebar:
             ("🏥 Rovi Health", "roviHealth"),
             ("🧬 Blank Bio", "blankBio"),
             ("🚑 CareSwift", "careSwift"),
-            ("🔬 Novaflow", "novaflow"),
             ("🦷 Toothy AI", "toothyAI"),
             ("📄 Sample Healthcare", "sampleHealthcare"),
-            ("📋 Trellis AI", "trellisAI")
+            ("📋 Trellis AI", "trellisAI"),
+            ("🩻 Mecha Health", "mechaHealth"),
+            ("🔬 Nucleo", "nucleo"),
+            ("🧪 Double Blind Bio", "doubleBlindBio"),
+            ("⚗️ Phases", "phases"),
+            ("🏥 Parachute", "parachute"),
+            ("🏥 Wedge", "wedge"),
+            ("🧬 Output Biosciences", "outputBio"),
+            ("🧠 Legion Health", "legionHealth")
         ],
         "👁️ Computer Vision & Robotics": [
             ("📦 dScribe AI", "dScribeAI"),
@@ -299,7 +306,9 @@ with st.sidebar:
             ("🤖 Verne Robotics", "verneRobotics"),
             ("🎥 Luma AI", "lumaAI"),
             ("🤖 Revise Robotics", "reviseRobotics"),
-            ("🏗️ Bild AI", "bildAI")
+            ("🏗️ Bild AI", "bildAI"),
+            ("✈️ Enhanced Radar", "enhancedRadar"),
+            ("💪 Tempo", "tempo")
         ],
         "🤖 ML Infrastructure & MLOps": [
             ("📊 ClearML", "clearML"),
@@ -428,7 +437,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 68 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 77 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -466,7 +475,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 68 demos in 22 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 77 demos in 24 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -478,37 +487,36 @@ st.markdown("""
     <p>Here are a few demos that showcase different aspects of what I can build:</p>
     <div class="demo-showcase">
         <div class="demo-card">
-            <h4>🔬 PathAI - Tumor Detection System</h4>
+            <h4>🔬 Nucleo - 3D CT Analysis</h4>
             <p>
-                ResNet50 trained on histopathology images. 96.2% accuracy, Grad-CAM explainability to show which 
-                regions the model focuses on, clinical metrics integration. Shows I can build medical imaging systems 
-                that clinicians would actually trust.
+                3D volumetric CNNs (ResNet3D, U-Net3D) for CT scan analysis. 96% accuracy detecting lung nodules and PE across 
+                320 slices in 2.2 seconds. Shows I can build 3D medical imaging systems with volumetric analysis.
             </p>
         </div>
         <div class="demo-card">
-            <h4>🤖 Revise Robotics - Electronics QC</h4>
+            <h4>🧬 Output Biosciences - Drug Discovery</h4>
             <p>
-                Real-time defect detection with YOLOv8. 98.7% accuracy, 0.3s inspection time, 12K units/hour throughput.
-                Shows I can build computer vision for manufacturing at scale with safety-critical requirements.
+                Large Biological Models for drug candidate generation. Protein language models (ESM-2) generating 10K+ candidates 
+                with 94% confidence. Shows I can work with bio AI and generative models for healthcare.
             </p>
         </div>
         <div class="demo-card">
-            <h4>📊 Confident AI - LLM Observability</h4>
+            <h4>💪 Tempo - Fitness Computer Vision</h4>
             <p>
-                Real-time monitoring for LLM applications. Tracks accuracy, latency, hallucination rate with 578 automated tests.
-                Shows I understand MLOps, production monitoring, and quality assurance for AI systems.
+                3D pose estimation at 60 FPS with 25 joint keypoints and <50ms feedback latency. Real-time form correction 
+                for fitness. Shows I can build CV systems beyond medical imaging with edge AI optimization.
             </p>
         </div>
         <div class="demo-card">
-            <h4>⚡ Modal - Serverless ML Infrastructure</h4>
+            <h4>⚡ Fireworks AI - LLM Infrastructure</h4>
             <p>
-                GPU deployment platform showing 95% cost reduction vs AWS/GCP. Auto-scaling, <3s cold start.
-                Shows I understand ML infrastructure, cost optimization, and production deployment.
+                Custom CUDA kernels achieving 45ms latency (10x faster than OpenAI) at 98% lower cost. 
+                Shows I understand ML infrastructure optimization and production deployment at scale.
             </p>
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 68 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 77 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

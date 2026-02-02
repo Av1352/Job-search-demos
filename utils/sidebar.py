@@ -54,7 +54,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">77 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -63,7 +63,7 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">68 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">77 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -86,7 +86,15 @@ def render_sidebar():
                 ("🚑 CareSwift", "careSwift"),
                 ("🦷 Toothy AI", "toothyAI"),
                 ("📄 Sample Healthcare", "sampleHealthcare"),
-                ("📋 Trellis AI", "trellisAI")
+                ("📋 Trellis AI", "trellisAI"),
+                ("🩻 Mecha Health", "mechaHealth"),
+                ("🔬 Nucleo", "nucleo"),
+                ("🧪 Double Blind Bio", "doubleBlindBio"),
+                ("⚗️ Phases", "phases"),
+                ("🏥 Parachute", "parachute"),
+                ("🏥 Wedge", "wedge"),
+                ("🧬 Output Biosciences", "outputBio"),
+                ("🧠 Legion Health", "legionHealth")
             ],
             "👁️ Computer Vision & Robotics": [
                 ("📦 dScribe AI", "dScribeAI"),
@@ -94,7 +102,9 @@ def render_sidebar():
                 ("🤖 Verne Robotics", "verneRobotics"),
                 ("🎥 Luma AI", "lumaAI"),
                 ("🤖 Revise Robotics", "reviseRobotics"),
-                ("🏗️ Bild AI", "bildAI")
+                ("🏗️ Bild AI", "bildAI"),
+                ("✈️ Enhanced Radar", "enhancedRadar"),
+                ("💪 Tempo", "tempo")
             ],
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML", "clearML"),

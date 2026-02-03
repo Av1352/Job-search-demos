@@ -54,7 +54,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">77 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">83 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -63,7 +63,7 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">77 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">83 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         
@@ -94,7 +94,12 @@ def render_sidebar():
                 ("🏥 Parachute", "parachute"),
                 ("🏥 Wedge", "wedge"),
                 ("🧬 Output Biosciences", "outputBio"),
-                ("🧠 Legion Health", "legionHealth")
+                ("🧠 Legion Health", "legionHealth"),
+                ("📋 Ruma Care", "rumaCare"),
+                ("🩺 Prana", "prana"),
+                ("🔄 Locata", "locata"),
+                ("🛡️ Aegis", "aegis"),
+                ("💳 Avelis Health", "avelisHealth")
             ],
             "👁️ Computer Vision & Robotics": [
                 ("📦 dScribe AI", "dScribeAI"),
@@ -142,7 +147,8 @@ def render_sidebar():
             "🎙️ Voice & Conversational AI": [
                 ("🎙️ Vapi AI", "vapiAI"),
                 ("📞 Simple AI", "simpleAI"),
-                ("🎙️ careCycle", "careCycle")
+                ("🎙️ careCycle", "careCycle"),
+                ("🎙️ LunaBill", "lunaBill")
             ],
             "📞 Sales & Marketing AI": [
                 ("📞 Hyperbound AI", "hyperboundAI"),

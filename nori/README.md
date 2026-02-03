@@ -114,7 +114,3 @@ Python • Personalization Engine • Nutrition Science • Behavioral AI • Fi
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Nori | AI Coaching • Personalization • Behavior Change
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-Hi [Founder Name], I'm Anju, ML engineer interested in AI personalization and health tech. Built a demo for Nori showing AI health coaching - excited about behavior change at scale!

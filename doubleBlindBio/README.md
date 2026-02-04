@@ -111,10 +111,3 @@ Python • XGBoost • Clinical NLP • Predictive Modeling • Trial Optimizati
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Double Blind Bio | Clinical Trials • Machine Learning • Drug Development
-
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/dave-hughes-13648b42/
-https://www.linkedin.com/in/shruti45/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI. Built a demo for Double Blind Bio showing clinical trial optimization - excited about using AI to accelerate drug development!

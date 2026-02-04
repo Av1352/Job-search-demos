@@ -110,8 +110,3 @@ Python • Healthcare APIs • EHR Integration • Multi-App Platform • Clinic
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Wedge | Healthcare AI • Platform Development • Clinical Workflows
-
-💼 **LINKEDIN CONNECTION NOTE** 
-https://www.linkedin.com/in/dev-gopal/
-https://www.linkedin.com/in/steven-segawa/
-Hi [Founder Name], I'm Anju, ML engineer with healthcare AI experience. Built a demo for Wedge showing unified health AI platform - excited about the AI OS vision!

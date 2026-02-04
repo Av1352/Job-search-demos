@@ -110,9 +110,3 @@ Python • Clinical NLP • Predictive Analytics • Automation • Regulatory C
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Phases | Clinical Trials • Healthcare AI • Trial Automation
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/jonathan-vw/
-https://www.linkedin.com/in/j-m-wall/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI. Built a demo for Phases showing clinical trial automation - excited about streamlining drug development!

@@ -102,19 +102,3 @@ Python • 3D CNNs • ResNet3D • U-Net3D • Medical Imaging • DICOM Proces
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Nucleo | 3D Computer Vision • CT Analysis • Medical Imaging AI
-```
-
----
-
-## 📧 **FOUNDER EMAIL**
-```
-
-```
-
----
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/angelica-iacovelli-490a8a1a7/
-https://www.linkedin.com/in/luca-pegolotti/
-Hi [Founder Name], I'm Anju, ML engineer specializing in medical imaging (96%+ accuracy on tumor detection). Built a demo for Nucleo showing 3D CT analysis - excited about volumetric AI!

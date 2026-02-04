@@ -114,9 +114,3 @@ Python • Conversational AI • Health Coaching • Behavioral Science • Chro
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Galen AI | Healthcare AI • Chronic Disease • Patient Engagement
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/priyanka-shrestha-/
-https://www.linkedin.com/in/virajmehta28/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI. Built a demo for Galen showing AI health companion for chronic disease - excited about improving patient adherence!

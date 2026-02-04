@@ -114,7 +114,3 @@ Python • MLOps • HL7/FHIR • EHR Integration • Healthcare Compliance • 
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Parachute | Healthcare MLOps • EHR Integration • Clinical AI
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-Hi [Founder Name], I'm Anju, ML engineer with MLOps and healthcare AI experience. Built a demo for Parachute showing hospital AI deployment - excited about clinical MLOps!

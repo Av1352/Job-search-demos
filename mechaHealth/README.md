@@ -83,10 +83,3 @@ Python • ResNet50 • DenseNet121 • EfficientNet • Medical Imaging • DIC
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Mecha Health | Medical Imaging • Computer Vision • Radiology AI
-
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/nina-montaña-brown-6aa24b133/
-https://www.linkedin.com/in/aya-/
-Hi [Founder Name], I'm Anju, ML engineer specializing in medical imaging (96%+ accuracy on tumor detection). Built a demo for Mecha showing X-ray analysis - excited about AI in radiology!

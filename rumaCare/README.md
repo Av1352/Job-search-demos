@@ -104,9 +104,3 @@ Python • Clinical NLP • Healthcare Automation • EHR Integration • Payer 
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Ruma Care | Healthcare AI • Prior Auth Automation • Clinical NLP
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/mengfei-shen/
-https://www.linkedin.com/in/christina-lee-huang/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI. Built a demo for Ruma Care showing prior auth automation - excited about eliminating healthcare admin burden!

@@ -106,10 +106,3 @@ Python • Smart Matching Algorithms • Healthcare Workflows • EHR Integratio
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Locata | Healthcare AI • Referral Management • Patient Coordination
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/daniel-master/
-https://www.linkedin.com/in/asalinas21/
-https://www.linkedin.com/in/joshua-r-chang/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI and workflow automation. Built a demo for Locata showing intelligent referral matching - excited about solving referral leakage!

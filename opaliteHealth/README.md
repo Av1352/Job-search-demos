@@ -114,9 +114,3 @@ Python • Speech Recognition • Neural Machine Translation • Medical NLP •
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Opalite Health | Voice AI • Medical Interpretation • Healthcare Access
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/cathleenkuo/
-https://www.linkedin.com/in/alex-mehregan/
-Hi [Founder Name], I'm Anju, ML engineer with healthcare AI and voice AI experience. Built a demo for Opalite showing medical interpretation - excited about eliminating language barriers!

@@ -110,10 +110,3 @@ Python • XGBoost • Random Forest • BERT • LSTM • Clinical NLP • Pred
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Avelis Health | Machine Learning • Claims Analytics • Healthcare Revenue
-
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/ahmad-shehu/
-https://www.linkedin.com/in/angel-onuoha/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI and predictive analytics. Built a demo for Avelis showing claims ML - excited about preventing revenue loss!

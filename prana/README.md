@@ -112,11 +112,3 @@ Python • Clinical NLP • Medical AI • Evidence-Based Medicine • Healthcar
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for Prana | AI Physician • Primary Care • Clinical AI
-
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/sanjit-menon/
-https://www.linkedin.com/in/vishvam-rawal-985b04238/
-https://www.linkedin.com/in/meerpatel/
-Hi [Founder Name], I'm Anju, ML engineer specializing in healthcare AI. Built a demo for Prana showing AI physician consultations - excited about democratizing primary care access!

@@ -112,9 +112,3 @@ Python • Speech Recognition • Clinical NLP • Medical Coding • Revenue Cy
 **Contact:** [nandhakumar.anju@gmail.com](mailto:nandhakumar.anju@gmail.com)
 
 Built with ❤️ for LunaBill | Voice AI • Medical Billing • Revenue Cycle
-
-## 💼 **LINKEDIN CONNECTION NOTE**
-```
-https://www.linkedin.com/in/daviddaytw/
-https://www.linkedin.com/in/yashraj22/
-Hi [Founder Name], I'm Anju, ML engineer with healthcare AI and voice AI experience. Built a demo for LunaBill showing voice-activated billing - excited about hands-free revenue capture!

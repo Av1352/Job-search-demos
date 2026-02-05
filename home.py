@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">83 Demos • 12 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">95 Demos • 12 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -303,7 +303,16 @@ with st.sidebar:
             ("🩺 Prana", "prana"),
             ("🔄 Locata", "locata"),
             ("🛡️ Aegis", "aegis"),
-            ("💳 Avelis Health", "avelisHealth")
+            ("💳 Avelis Health", "avelisHealth"),
+            ("🤖 Galen AI", "galenAI"),
+            ("💚 Nori", "nori"),
+            ("🎀 Play Health", "playHealth"),
+            ("🟡 Saffron Health", "saffronHealth"),
+            ("🏥 Kaigo Health", "kaigoHealth"),
+            ("🤰 Delfina", "delfina"),
+            ("🏥 Tala Health", "talaHealth"),
+            ("🥗 Revero", "revero"),
+            ("🌻 Sunflower", "sunflower")
         ],
         "👁️ Computer Vision & Robotics": [
             ("📦 dScribe AI", "dScribeAI"),
@@ -337,7 +346,8 @@ with st.sidebar:
             ("🎨 Adobe AEP AI", "adobe"),
             ("📈 Signal Fire", "signalFire"),
             ("🔬 Noho Labs", "nohoLabs"),
-            ("🤖 Flowmentum/Cognara", "cognara")
+            ("🤖 Flowmentum/Cognara", "cognara"),
+            ("💼 Avenir AI", "avenirAI")
         ],
         "💰 Fintech & Payments": [
             ("💸 Slash", "slash"),
@@ -352,7 +362,9 @@ with st.sidebar:
             ("🎙️ Vapi AI", "vapiAI"),
             ("📞 Simple AI", "simpleAI"),
             ("🎙️ careCycle", "careCycle"),
-            ("🎙️ LunaBill", "lunaBill")
+            ("🎙️ LunaBill", "lunaBill"),
+            ("🌐 Opalite Health", "opaliteHealth"),
+            ("🎤 VoiceCare AI", "voiceCareAI")
         ],
         "📞 Sales & Marketing AI": [
             ("📞 Hyperbound AI", "hyperboundAI"),
@@ -404,7 +416,7 @@ with st.sidebar:
             <a href="mailto:nandhakumar.anju@gmail.com" style="color: rgba(255,255,255,0.9); text-decoration: none;">nandhakumar.anju@gmail.com</a>
         </div>
         <div style="margin-top: 18px; font-size: 24px; display: flex; gap: 12px; justify-content: center;">
-            <a href="https://linkedin.com/in/anju-vilashni" target="_blank" style="color: white; text-decoration: none;">💼</a>
+            <a href="https://linkedin.com/in/anju-vilashini" target="_blank" style="color: white; text-decoration: none;">💼</a>
             <a href="https://github.com/Av1352" target="_blank" style="color: white; text-decoration: none;">💻</a>
             <a href="https://vxanju.com" target="_blank" style="color: white; text-decoration: none;">🌐</a>
         </div>
@@ -443,7 +455,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 83 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 95 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -481,7 +493,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 83 demos in 24 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 95 demos in 24 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -503,7 +515,7 @@ st.markdown("""
             <h4>🧬 Output Biosciences - Drug Discovery</h4>
             <p>
                 Large Biological Models for drug candidate generation. Protein language models (ESM-2) generating 10K+ candidates 
-                with 94% confidence. Shows I can work with bio AI and generative models for healthcare.
+                with 95% confidence. Shows I can work with bio AI and generative models for healthcare.
             </p>
         </div>
         <div class="demo-card">
@@ -522,7 +534,7 @@ st.markdown("""
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 83 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 95 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -556,7 +568,7 @@ st.markdown("""
     </p>
     <div class="contact-links">
         <a href="mailto:nandhakumar.anju@gmail.com" class="contact-link">📧 Email Me</a>
-        <a href="https://linkedin.com/in/anju-vilashni" target="_blank" class="contact-link">💼 LinkedIn</a>
+        <a href="https://linkedin.com/in/anju-vilashini" target="_blank" class="contact-link">💼 LinkedIn</a>
         <a href="https://github.com/Av1352" target="_blank" class="contact-link">💻 GitHub</a>
         <a href="https://vxanju.com" target="_blank" class="contact-link">🌐 Portfolio</a>
     </div>

@@ -267,7 +267,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">95 Demos • 12 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">108 Demos • 12 Domains</div>
     </div>
     """, unsafe_allow_html=True)
     
@@ -312,7 +312,13 @@ with st.sidebar:
             ("🤰 Delfina", "delfina"),
             ("🏥 Tala Health", "talaHealth"),
             ("🥗 Revero", "revero"),
-            ("🌻 Sunflower", "sunflower")
+            ("🌻 Sunflower", "sunflower"),
+            ("❤️ Wearlinq", "wearlinq"),
+            ("💳 Logical Health", "logicalHealth"),
+            ("🌀 Swing Therapeutics", "swingTherapeutics"),
+            ("💪 Sweatpals", "sweatpals"),
+            ("🧬 The Generation Lab", "generationLab"),
+            ("⚡ Superpower", "superpower"),
         ],
         "👁️ Computer Vision & Robotics": [
             ("📦 dScribe AI", "dScribeAI"),
@@ -322,7 +328,9 @@ with st.sidebar:
             ("🤖 Revise Robotics", "reviseRobotics"),
             ("🏗️ Bild AI", "bildAI"),
             ("✈️ Enhanced Radar", "enhancedRadar"),
-            ("💪 Tempo", "tempo")
+            ("💪 Tempo", "tempo"),
+            ("🏗️ Bedrock Robotics", "bedrockRobotics"),
+            ("🤖 Omni Instrument", "omniInstrument"),
         ],
         "🤖 ML Infrastructure & MLOps": [
             ("📊 ClearML", "clearML"),
@@ -340,14 +348,17 @@ with st.sidebar:
             ("🎮 hud", "hud"),
             ("⚡ Modal", "modal"),
             ("🔥 Fireworks AI", "fireworksAI"),
-            ("🔧 Weave", "weave")
+            ("🔧 Weave", "weave"),
+            ("🌐 Airweave", "airweave"),
         ],
         "🏢 Enterprise AI & Agentic Systems": [
             ("🎨 Adobe AEP AI", "adobe"),
             ("📈 Signal Fire", "signalFire"),
             ("🔬 Noho Labs", "nohoLabs"),
             ("🤖 Flowmentum/Cognara", "cognara"),
-            ("💼 Avenir AI", "avenirAI")
+            ("💼 Avenir AI", "avenirAI"),
+            ("🏭 Candid Intelligence", "candidIntelligence"),
+            ("🏭 Dryft", "dryft"),
         ],
         "💰 Fintech & Payments": [
             ("💸 Slash", "slash"),
@@ -356,7 +367,9 @@ with st.sidebar:
             ("📊 Use Dots", "dots"),
             ("💼 Eddi", "eddi"),
             ("📈 Alinea Invest", "alinea"),
-            ("💰 Autonomous Tech", "autonomousTech")
+            ("💰 Autonomous Tech", "autonomousTech"),
+            ("🛡️ Navasana", "navasanaCyberRisk"),
+            ("📋 Avallon AI", "avallonAI"),
         ],
         "🎙️ Voice & Conversational AI": [
             ("🎙️ Vapi AI", "vapiAI"),
@@ -396,13 +409,11 @@ with st.sidebar:
     
     # Filter categories based on search
     for category, demos in categories.items():
-        # Filter demos in this category
         if search_query:
             filtered_demos = [(name, page) for name, page in demos if search_query.lower() in name.lower()]
         else:
             filtered_demos = demos
         
-        # Only show category if it has matching demos
         if filtered_demos:
             with st.expander(f"{category} ({len(filtered_demos)})", expanded=(search_query != "")):
                 for demo_name, demo_page in filtered_demos:
@@ -455,7 +466,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 95 custom ML demos for companies I want to work with. 
+        Instead of sending resumes, I built 108 custom ML demos for companies I want to work with. 
         Each demo is tailored to a specific company's product and shows what I could contribute. 
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -493,7 +504,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 95 demos in 24 days because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 108 demos in 24 days because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -534,7 +545,7 @@ st.markdown("""
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 95 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 108 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

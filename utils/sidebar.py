@@ -13,13 +13,11 @@ def get_logo_base64():
         with open(logo_path, 'rb') as f:
             return base64.b64encode(f.read()).decode()
     except:
-        # Fallback if logo not found
         return ""
 
 def render_sidebar():
     """Render consistent sidebar across all pages"""
     
-    # Hide default Streamlit navigation
     st.markdown("""
     <style>
     [data-testid="stSidebarNav"] {
@@ -39,13 +37,11 @@ def render_sidebar():
     logo_base64 = get_logo_base64()
     
     with st.sidebar:
-        # Home button at top
         if st.button("← Back to Home", use_container_width=True, key="nav_home"):
             st.switch_page("home.py")
         
         st.markdown("<div style='height: 10px;'></div>", unsafe_allow_html=True)
         
-        # Header with logo
         if logo_base64:
             st.markdown(f"""
             <div style="text-align: center; padding: 25px 15px; background: rgba(255,255,255,0.1); border-radius: 12px; margin-bottom: 25px;">
@@ -54,7 +50,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">95 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">108 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -63,14 +59,12 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👨‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">95 Demos • 12 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">108 Demos • 12 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         
-        # Search bar
         search_query = st.text_input("🔍 Search demos", placeholder="Type company name...", label_visibility="collapsed")
         
-        # All demos organized by category
         categories = {
             "🏥 Healthcare AI & Biotech": [
                 ("🏭 LabyrinthAI", "labyrinthAI"),
@@ -152,7 +146,8 @@ def render_sidebar():
                 ("📊 Use Dots", "dots"),
                 ("💼 Eddi", "eddi"),
                 ("📈 Alinea Invest", "alinea"),
-                ("💰 Autonomous Tech", "autonomousTech")
+                ("💰 Autonomous Tech", "autonomousTech"),
+                ("🛡️ Navasana", "navasanaCyberRisk")
             ],
             "🎙️ Voice & Conversational AI": [
                 ("🎙️ Vapi AI", "vapiAI"),
@@ -190,22 +185,18 @@ def render_sidebar():
             ]
         }
         
-        # Filter categories based on search
         for category, demos in categories.items():
-            # Filter demos in this category
             if search_query:
                 filtered_demos = [(name, page) for name, page in demos if search_query.lower() in name.lower()]
             else:
                 filtered_demos = demos
             
-            # Only show category if it has matching demos
             if filtered_demos:
                 with st.expander(f"{category} ({len(filtered_demos)})", expanded=(search_query != "")):
                     for demo_name, demo_page in filtered_demos:
                         if st.button(demo_name, key=f"nav_{demo_page}"):
                             st.switch_page(f"pages/{demo_page}.py")
         
-        # Contact section
         st.markdown("""
         <div style="padding: 20px 15px; background: rgba(255,255,255,0.08); border-radius: 10px; margin-top: 20px;">
             <div style="color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 600; margin-bottom: 15px;">CONTACT</div>

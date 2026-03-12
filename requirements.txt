@@ -12,3 +12,4 @@ transformers
 protobuf
 sentencepiece
 ultralytics==8.0.196
+anthropic>=0.25.0

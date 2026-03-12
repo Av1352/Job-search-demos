@@ -302,7 +302,8 @@ border-radius:16px;padding:30px 40px;margin-bottom:22px;border-left:5px solid {B
         <span style="color:{BRAND};">Clinical Chart Abstractor</span>
       </h1>
       <p style="color:#94a3b8;font-size:13px;margin:6px 0 0 0;">
-        AI-powered structured extraction · source-linked evidence ·
+        Built for <strong style="color:{BRAND};">Layer Health</strong> ·
+        AI-powered chart review · source-linked evidence ·
         Registry · Quality Measurement · Research Cohort
       </p>
     </div>
@@ -618,7 +619,7 @@ with tab_howto:
 st.markdown("---")
 st.markdown(f"""
 <div style="text-align:center;padding:14px;font-size:12px;color:#9ca3af;">
-  LayerLens · Clinical Chart Abstractor · Built by
+  LayerLens · Built for <strong style="color:{BRAND};">Layer Health</strong> · by
   <strong style="color:#1f2937;">Anju Vilashni Nandhakumar</strong> ·
   <a href="https://vxanju.com" style="color:{BRAND};">vxanju.com</a> ·
   <a href="https://linkedin.com/in/anju-vilashni" style="color:{BRAND};">LinkedIn</a> ·

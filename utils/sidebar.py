@@ -39,7 +39,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">108 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">109 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -48,14 +48,13 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👩‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">108 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">109 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
 
         search_query = st.text_input("🔍 Search demos", placeholder="Type company name...", label_visibility="collapsed")
 
         categories = {
-            # ── 44 demos ──────────────────────────────────────────────────────
             "🏥 Healthcare AI & Biotech": [
                 ("🔍 Glass Imaging",          "glassImaging"),
                 ("🏥 Novoflow",               "novoflow"),
@@ -67,7 +66,7 @@ def render_sidebar():
                 ("🏥 Rovi Health",             "roviHealth"),
                 ("🧬 Blank Bio",              "blankBio"),
                 ("🚑 CareSwift",              "careSwift"),
-                ("🧪 Novaflow",               "novaflow"),       # ← #46 biology lab AI
+                ("🧪 Novaflow",               "novaflow"),
                 ("🦷 Toothy AI",              "toothyAI"),
                 ("📄 Sample Healthcare",       "sampleHealthcare"),
                 ("📋 Trellis AI",             "trellisAI"),
@@ -91,7 +90,7 @@ def render_sidebar():
                 ("🏥 Kaigo Health",            "kaigoHealth"),
                 ("🤰 Delfina",                "delfina"),
                 ("🏥 Tala Health",             "talaHealth"),
-                ("💼 Avenir AI",              "avenirAI"),       # ← doc: Healthcare
+                ("💼 Avenir AI",              "avenirAI"),
                 ("🥗 Revero",                 "revero"),
                 ("🌻 Sunflower",              "sunflower"),
                 ("❤️ Wearlinq",               "wearlinq"),
@@ -100,9 +99,8 @@ def render_sidebar():
                 ("💪 Sweatpals",              "sweatpals"),
                 ("🧬 The Generation Lab",      "generationLab"),
                 ("⚡ Superpower",             "superpower"),
-                ("📋 Avallon AI",             "avallonAI"),      # ← doc: Healthcare
+                ("📋 Avallon AI",             "avallonAI"),
             ],
-            # ── 11 demos ──────────────────────────────────────────────────────
             "👁️ Computer Vision & Robotics": [
                 ("🏭 LabyrinthAI",            "labyrinthAI"),
                 ("📦 dScribe AI",             "dScribeAI"),
@@ -116,7 +114,6 @@ def render_sidebar():
                 ("🏗️ Bedrock Robotics",        "bedrockRobotics"),
                 ("🤖 Omni Instrument",         "omniInstrument"),
             ],
-            # ── 17 demos ──────────────────────────────────────────────────────
             "🤖 ML Infrastructure & MLOps": [
                 ("📊 ClearML",                "clearML"),
                 ("🧠 Nous Research",           "nous"),
@@ -136,7 +133,6 @@ def render_sidebar():
                 ("🔥 Fireworks AI",            "fireworksAI"),
                 ("🌐 Airweave",               "airweave"),
             ],
-            # ── 6 demos ───────────────────────────────────────────────────────
             "🏢 Enterprise AI & Agentic Systems": [
                 ("🎨 Adobe AEP AI",            "adobe"),
                 ("📈 Signal Fire",             "signalFire"),
@@ -145,7 +141,6 @@ def render_sidebar():
                 ("🏭 Candid Intelligence",     "candidIntelligence"),
                 ("🏭 Dryft",                  "dryft"),
             ],
-            # ── 8 demos ───────────────────────────────────────────────────────
             "💰 Fintech & Payments": [
                 ("💸 Slash",                  "slash"),
                 ("💳 CTGT",                   "ctgt"),
@@ -156,7 +151,6 @@ def render_sidebar():
                 ("💰 Autonomous Tech",         "autonomousTech"),
                 ("🛡️ Navasana",               "navasanaCyberRisk"),
             ],
-            # ── 6 demos ───────────────────────────────────────────────────────
             "🎙️ Voice & Conversational AI": [
                 ("📞 Simple AI",              "simpleAI"),
                 ("🎙️ Vapi AI",                "vapiAI"),
@@ -165,22 +159,19 @@ def render_sidebar():
                 ("🌐 Opalite Health",          "opaliteHealth"),
                 ("🎤 VoiceCare AI",            "voiceCareAI"),
             ],
-            # ── 3 demos ───────────────────────────────────────────────────────
             "📞 Sales & Marketing AI": [
                 ("📞 Hyperbound AI",           "hyperboundAI"),
                 ("📈 Conversion AI",           "conversionAI"),
                 ("🍕 Loop AI",                "loopAI"),
             ],
-            # ── 1 demo ────────────────────────────────────────────────────────
             "📄 Document AI & Parsing": [
                 ("📄 Unsiloed AI",             "unsiloedAI"),
+                ("🔬 LayerLens (Layer Health)", "layerLens"),
             ],
-            # ── 2 demos ───────────────────────────────────────────────────────
             "🧪 Testing & E-commerce": [
                 ("🧪 Decipher AI",             "decipherAI"),
                 ("🛍️ Spur",                   "spurAI"),
             ],
-            # ── 8 demos ───────────────────────────────────────────────────────
             "🔧 Developer Tools & Operations": [
                 ("🗣️ Rebolt AI",              "reboltAI"),
                 ("🌿 Olive",                  "olive"),
@@ -191,7 +182,6 @@ def render_sidebar():
                 ("🌐 ThirdLayer",             "thirdLayer"),
                 ("💜 Lovable",               "lovable"),
             ],
-            # ── 2 demos ───────────────────────────────────────────────────────
             "🔐 Legal & Identity": [
                 ("📄 Dioptra AI",             "dioptraAI"),
                 ("🔐 Spruce ID",              "spruceID"),
@@ -203,7 +193,6 @@ def render_sidebar():
                 filtered_demos = [(n, p) for n, p in demos if search_query.lower() in n.lower()]
             else:
                 filtered_demos = demos
-
             if filtered_demos:
                 with st.expander(f"{category} ({len(filtered_demos)})", expanded=(search_query != "")):
                     for demo_name, demo_page in filtered_demos:

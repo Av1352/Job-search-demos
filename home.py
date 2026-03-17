@@ -83,7 +83,7 @@ with st.sidebar:
         </div>
         <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
         <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">109 Demos • 11 Domains</div>
+        <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">110 demos • 11 Domains</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -193,6 +193,7 @@ with st.sidebar:
             ("🎙️ LunaBill",               "lunaBill"),
             ("🌐 Opalite Health",          "opaliteHealth"),
             ("🎤 VoiceCare AI",            "voiceCareAI"),
+            ("🧠 Bland AI",                "blandHealthCallAI"),
         ],
         "📞 Sales & Marketing AI": [
             ("📞 Hyperbound AI",           "hyperboundAI"),
@@ -280,7 +281,7 @@ st.markdown("""
     </p>
     <h3>My Approach</h3>
     <p>
-        Instead of sending resumes, I built 109 custom ML demos for companies I want to work with.
+        Instead of sending resumes, I built 110 custom ML demos for companies I want to work with.
         Each demo is tailored to a specific company's product and shows what I could contribute.
         It's not about volume—it's about demonstrating that I understand the problem space and can build solutions.
     </p>
@@ -318,7 +319,7 @@ st.markdown("""
         <li><strong>Real-world impact:</strong> Building systems that actually get deployed and used, not just research projects</li>
         <li><strong>Production quality:</strong> Models that work reliably in the real world, with proper error handling and monitoring</li>
         <li><strong>Explainability:</strong> Especially in healthcare, understanding why a model makes a prediction is as important as the prediction itself</li>
-        <li><strong>Fast execution:</strong> I built 109 demos in under 3 months because I bias toward shipping and iterating quickly</li>
+        <li><strong>Fast execution:</strong> I built 110 demos in under 3 months because I bias toward shipping and iterating quickly</li>
     </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -359,7 +360,7 @@ st.markdown("""
         </div>
     </div>
     <p style="font-size: 15px; color: #6b7280; margin-top: 20px;">
-        All 109 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
+        All 110 demos are in the sidebar. Each one is custom-built for a specific company to show I understand their product and could contribute from day one.
     </p>
 </div>
 """, unsafe_allow_html=True)

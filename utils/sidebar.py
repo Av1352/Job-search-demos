@@ -39,7 +39,7 @@ def render_sidebar():
                 </div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">109 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">110 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
         else:
@@ -48,7 +48,7 @@ def render_sidebar():
                 <div style="font-size: 51px; margin-bottom: 12px;">👩‍💻</div>
                 <div style="color: white; font-size: 20px; font-weight: 700; margin-bottom: 5px;">Anju Vilashni</div>
                 <div style="color: rgba(255,255,255,0.85); font-size: 14px;">ML Engineer</div>
-                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">109 Demos • 11 Domains</div>
+                <div style="color: rgba(255,255,255,0.75); font-size: 13px; margin-top: 8px;">110 Demos • 11 Domains</div>
             </div>
             """, unsafe_allow_html=True)
 
@@ -158,6 +158,7 @@ def render_sidebar():
                 ("🎙️ LunaBill",               "lunaBill"),
                 ("🌐 Opalite Health",          "opaliteHealth"),
                 ("🎤 VoiceCare AI",            "voiceCareAI"),
+                ("🧠 Bland AI",                "blandHealthCallAI"),
             ],
             "📞 Sales & Marketing AI": [
                 ("📞 Hyperbound AI",           "hyperboundAI"),

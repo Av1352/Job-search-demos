@@ -204,18 +204,9 @@ border-radius:16px;padding:30px 40px;margin-bottom:22px;border-left:5px solid {B
 """, unsafe_allow_html=True)
 
 # ── API key fallback inputs ────────────────────────────────────────────────────
-with st.expander("🔑 API Keys", expanded=not (bland_key and anthropic_key)):
-    c1, c2 = st.columns(2)
-    with c1:
-        if not bland_key:
-            bland_key = st.text_input("Bland AI Key", type="password", placeholder="sk_...")
-        else:
-            st.success("✅ Bland AI key loaded")
-    with c2:
-        if not anthropic_key:
-            anthropic_key = st.text_input("Anthropic Key", type="password", placeholder="sk-ant-...")
-        else:
-            st.success("✅ Anthropic key loaded")
+if not bland_key or not anthropic_key:
+    st.error("⚠️ API keys missing from secrets. Add BLAND_API_KEY and ANTHROPIC_API_KEY to Streamlit secrets.", icon="🔑")
+    st.stop()
 
 st.markdown("---")
 

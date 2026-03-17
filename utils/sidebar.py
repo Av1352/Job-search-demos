@@ -158,7 +158,7 @@ def render_sidebar():
                 ("🎙️ LunaBill",               "lunaBill"),
                 ("🌐 Opalite Health",          "opaliteHealth"),
                 ("🎤 VoiceCare AI",            "voiceCareAI"),
-                ("🧠 Bland AI",                "blandHealthCallAI"),
+                ("🧠 Bland AI",                "blandHealthCallML"),
             ],
             "📞 Sales & Marketing AI": [
                 ("📞 Hyperbound AI",           "hyperboundAI"),
